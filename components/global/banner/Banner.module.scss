@@ -1,0 +1,202 @@
+.banner {
+  position: relative;
+  overflow: hidden;
+  padding: 0 rem(10);
+  z-index: 1;
+  --border: 16px;
+
+  @include breakpoint(large) {
+    padding: 0 rem(24);
+    max-width: 2200px;
+    margin: auto;
+    --border: 32px;
+  }
+
+  &_full {
+    --border: 0;
+    padding: 0;
+
+    .banner_inner {
+      height: 87vh;
+    }
+  }
+
+  &_inner {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    height: 250px;
+    color: white;
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 35px;
+
+    @include breakpoint(medium) {
+      height: 300px;
+    }
+
+    @include breakpoint(large) {
+      height: 400px;
+      padding-bottom: 0;
+    }
+
+    @include breakpoint(huge) {
+      height: 500px;
+    }
+
+    .banner_small & {
+      @include breakpoint(large) {
+        text-align: left;
+      }
+    }
+  }
+
+  &_media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--border);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &_desktop {
+      display: none;
+      @include breakpoint(medium) {
+        display: block;
+      }
+    }
+
+    &_mobile {
+      @include breakpoint(medium) {
+        display: none;
+      }
+    }
+
+    @include breakpoint(large) {
+      padding-bottom: 40px;
+    }
+  }
+
+  &_content {
+    position: relative;
+    padding: 0 rem(8) 0 rem(8);
+    z-index: 1;
+    width: 100%;
+
+    @include breakpoint(large) {
+      padding: rem(16) 0 rem(103) rem(16);
+    }
+  }
+
+  &_text {
+    display: inline-flex;
+    flex-flow: column;
+    padding: rem(16) rem(10);
+    margin: auto;
+    text-align: center;
+    border-radius: 12px;
+    background: rgba(19, 19, 19, 0.7);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    @include breakpoint(medium) {
+      max-width: 885px;
+      padding: rem(16) rem(24);
+    }
+
+    @include breakpoint(large) {
+      max-width: 950px;
+
+      .banner_small & {
+        max-width: calc(100% - 800px);
+        min-height: 70px;
+        justify-content: center;
+        padding: rem(8) rem(16);
+      }
+    }
+
+    @include breakpoint(huge) {
+      max-width: 1090px;
+    }
+
+    del {
+      display: block;
+      font-size: 0;
+    }
+    h1,
+    h2 {
+      white-space: pre-wrap;
+      margin: 0;
+      font-weight: var(--font-regular);
+      font-size: 14px;
+
+      strong,
+      b {
+        color: var(--color-rentals);
+        font-weight: var(--font-demi);
+      }
+
+      @supports not (aspect-ratio: 16 / 9) {
+        white-space: unset;
+      }
+
+      small {
+        font-size: 14px;
+        font-size: clamp(0.875rem, 0.8447rem + 0.1294vw, 1rem);
+      }
+    }
+
+    h1 {
+      font-size: clamp(1rem, 0.8483rem + 0.6472vw, 1.625rem);
+    }
+
+    h2 {
+      font-size: clamp(0.75rem, 0.659rem + 0.3883vw, 1.125rem);
+      color: var(--color-rentals);
+      font-weight: var(--font-demi);
+    }
+  }
+
+  &_shape {
+    &:before {
+      position: absolute;
+      content: '';
+      left: 0;
+      right: 0;
+      bottom: -10px;
+      height: 10px;
+      background: var(--color-background);
+      z-index: 1;
+    }
+    &:after {
+      box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  &_heading {
+    position: relative;
+    z-index: 1;
+    font-weight: var(--font-regular);
+
+    @include breakpoint(medium) {
+      margin-bottom: 3rem;
+    }
+    @include breakpoint(large) {
+      margin-top: -40px;
+    }
+
+    &_margin {
+      @include breakpoint(medium) {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

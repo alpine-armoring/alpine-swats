@@ -1,0 +1,171 @@
+.hp_banner {
+  position: relative;
+  margin-bottom: rem(-30);
+  height: 93vh;
+  height: calc(100svh + 50px);
+  max-height: 800px;
+  overflow: hidden;
+  z-index: 2;
+  color: var(--color-white);
+
+  @include breakpoint(large) {
+    max-height: 1400px;
+    height: calc(100vh + 100px);
+
+    &:hover {
+      .hp_banner_pause {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &_inner {
+    position: relative;
+    height: 100%;
+    background: #030303;
+
+    &:after {
+      position: absolute;
+      content: '';
+      left: 0;
+      top: 30%;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 41%,
+        rgb(0, 0, 0) 117%
+      );
+    }
+  }
+
+  &_content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: rem(32) rem(16) rem(72) rem(16);
+    z-index: 3;
+
+    @include breakpoint(medium) {
+      padding: rem(32) rem(32) rem(72) rem(32);
+    }
+
+    @include breakpoint(large) {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: rem(90) rem(32) rem(128) rem(32);
+      max-width: 2010px;
+      margin: auto;
+    }
+
+    @include breakpoint(huge) {
+      padding: rem(90) rem(48) rem(128) rem(48);
+    }
+  }
+
+  &_video {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  &_title {
+    margin-bottom: rem(12);
+    font-weight: var(--font-light);
+    font-size: rem(24);
+    font-size: clamp(1.5rem, 1.3786rem + 0.5178vw, 2rem);
+    text-transform: uppercase;
+    white-space: pre-wrap;
+
+    b {
+      font-size: rem(24);
+      font-size: clamp(1.5rem, 1.1359rem + 1.5534vw, 3rem);
+      font-weight: var(--font-regular);
+    }
+
+    @include breakpoint(small) {
+      transition-delay: unset;
+    }
+
+    @include breakpoint(large) {
+      margin-bottom: 0;
+    }
+  }
+
+  &_description {
+    font-size: rem(14);
+    font-size: clamp(0.875rem, 0.7612rem + 0.4854vw, 1.34375rem);
+    font-weight: var(--font-light);
+    @include breakpoint(large) {
+      text-align: right;
+      padding-bottom: rem(8);
+      font-size: rem(15.3);
+    }
+    strong,
+    b {
+      font-weight: var(--font-light);
+      font-size: rem(14);
+      font-size: clamp(0.875rem, 0.7612rem + 0.4854vw, 1.34375rem);
+      letter-spacing: 0.45px;
+      @include breakpoint(large) {
+        display: block;
+        font-size: rem(21.5);
+      }
+    }
+  }
+
+  &_shape {
+    @include breakpoint(large) {
+      height: 150px;
+      &:after {
+        box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0.5);
+        left: -150px;
+        right: -150px;
+      }
+    }
+
+    &_white {
+      --background: var(--color-background);
+    }
+  }
+
+  &_pause {
+    display: none;
+    @include breakpoint(large) {
+      display: block;
+      position: absolute;
+      z-index: 4;
+      cursor: pointer;
+      left: 0;
+      right: 0;
+      top: 45%;
+      transform: translateY(-50%);
+      text-align: center;
+
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+
+      svg {
+        max-width: 30px;
+        path {
+          transition: fill 0.3s ease;
+        }
+      }
+
+      &:hover {
+        path {
+          fill: var(--color-primary) !important;
+        }
+      }
+    }
+    @include breakpoint(huge) {
+      right: rem(48);
+    }
+  }
+}

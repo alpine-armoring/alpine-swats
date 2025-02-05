@@ -1,0 +1,156 @@
+.featuredVehicles {
+  &_container {
+    position: relative;
+    margin: 50px 0 82px 0;
+  }
+
+  &_slider {
+    position: relative;
+    overflow: hidden;
+
+    &_container {
+      backface-visibility: hidden;
+      display: flex;
+      touch-action: pan-y;
+      height: 100%;
+      position: relative;
+
+      @include breakpoint(medium) {
+        align-items: baseline;
+        padding-bottom: 20px;
+      }
+    }
+
+    &_item {
+      flex: 0 0 100%;
+      position: relative;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
+
+      @include breakpoint(small) {
+        padding: 0 8px;
+      }
+
+      @include breakpoint(medium) {
+        flex: 0 0 50%;
+        flex-flow: column;
+        justify-content: flex-start;
+      }
+
+      @include breakpoint(large) {
+        flex: 0 0 35%;
+        max-width: 900px;
+      }
+
+      &_image {
+        @include breakpoint(medium) {
+          transform: scale(0.8);
+          transform-origin: bottom;
+          transition: transform 0.3s ease-in-out;
+        }
+      }
+
+      &_content {
+        position: relative;
+        padding: 30px 16px 16px 16px;
+        width: 95%;
+        margin: -20px auto 0 auto;
+
+        @include breakpoint(medium) {
+          padding: 16px;
+          width: 100%;
+          max-width: 430px;
+          font-size: rem(20);
+          border-radius: 48px;
+          box-shadow:
+            0 8px 16px 0 rgba(0, 0, 0, 0.2),
+            0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          transform: scale(0.7);
+          transform-origin: top;
+          transition: transform 0.3s ease-in-out;
+        }
+
+        @include breakpoint(large) {
+          padding: 24px;
+          max-width: 500px;
+          font-size: rem(24);
+        }
+
+        &:before {
+          position: absolute;
+          content: '';
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          border-radius: 24px;
+          background: url(/assets/glass.png);
+          background-size: cover;
+          z-index: -1;
+          @include breakpoint(medium) {
+            border-radius: 48px;
+            opacity: 0.8;
+          }
+        }
+      }
+
+      &_title {
+        color: white;
+        font-size: clamp(1.125rem, 1.034rem + 0.3883vw, 1.5rem);
+        font-weight: var(--font-medium);
+        white-space: pre-wrap;
+      }
+
+      &_button {
+        margin-top: rem(10);
+        cursor: pointer;
+
+        @include breakpoint(medium) {
+          margin-top: rem(20);
+        }
+      }
+
+      &.active {
+        @include breakpoint(medium) {
+          .featuredVehicles_slider_item {
+            &_content,
+            &_image {
+              transform: scale(1);
+            }
+          }
+        }
+      }
+    }
+
+    &_arrows {
+      @include breakpoint(small) {
+        button {
+          background: white;
+          border: 1px solid var(--color-dark);
+
+          path {
+            fill: var(--color-dark);
+          }
+        }
+      }
+      @include breakpoint(medium) {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+
+        button {
+          position: static;
+          height: 40px;
+          width: 40px;
+          transform: none;
+
+          &:nth-child(2) {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+  }
+}

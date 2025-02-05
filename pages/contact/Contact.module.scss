@@ -1,0 +1,118 @@
+.contact {
+  &_main {
+    margin-bottom: rem(54);
+
+    @include breakpoint(large) {
+      display: flex;
+      gap: 56px;
+      max-width: 1500px;
+      align-items: flex-start;
+      margin-bottom: rem(120);
+      // margin-top: rem(60);
+    }
+
+    &_left {
+      margin-bottom: rem(64);
+      @include breakpoint(large) {
+        width: 50%;
+        margin-bottom: 0;
+      }
+      &_title {
+        margin-bottom: rem(16);
+        font-size: rem(26);
+        @include breakpoint(large) {
+          font-size: rem(36);
+        }
+      }
+      &_description {
+        display: block;
+        @include breakpoint(large) {
+          max-width: 600px;
+        }
+      }
+    }
+    &_right {
+      &_boxes {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        font-size: rem(15);
+
+        @include breakpoint(medium) {
+          justify-content: space-evenly;
+        }
+
+        @include breakpoint(large) {
+          justify-content: space-between;
+
+          a:hover {
+            color: var(--color-primary);
+          }
+        }
+      }
+
+      p {
+        margin-bottom: rem(10);
+      }
+
+      @include breakpoint(large) {
+        width: 50%;
+      }
+
+      &_column {
+        &:not(:last-child) {
+          margin-bottom: rem(24);
+          @include breakpoint(medium) {
+            margin-bottom: 0;
+          }
+        }
+
+        @include breakpoint(large) {
+          // width: 47%;
+          &:nth-child(2) {
+            display: flex;
+            flex-flow: column;
+            align-self: stretch;
+
+            div {
+              margin-top: auto;
+            }
+          }
+        }
+      }
+
+      &_title {
+        margin-bottom: rem(10);
+        color: var(--color-primary);
+        font-size: rem(20);
+      }
+    }
+  }
+
+  &_map {
+    display: block;
+    margin: rem(16) rem(-16) 0 rem(-16);
+    position: relative;
+    aspect-ratio: 2.2/1;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+
+    @supports not (aspect-ratio: 16 / 9) {
+      padding-top: 67%;
+      height: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @include breakpoint(medium) {
+      aspect-ratio: 2.6/1;
+      margin: rem(16) 0 0 0;
+    }
+
+    img {
+      object-fit: cover;
+      // filter: grayscale(100%) invert(100%);
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.fillingText {
+  padding-top: rem(50);
+  padding-bottom: rem(32);
+  color: var(--color-white);
+  overflow: hidden;
+
+  &_dark {
+    color: var(--color-secondary);
+  }
+
+  &_text {
+    font-size: 15px;
+    font-size: clamp(0.9375rem, 0.6393rem + 1.2723vw, 1.25rem);
+    font-weight: var(--font-regular);
+
+    @include breakpoint(large) {
+      font-size: clamp(1.375rem, 0.8rem + 0.6vw, 2.5rem);
+    }
+
+    .fillingText_small & {
+      font-size: clamp(0.875rem, 0.8447rem + 0.1294vw, 1rem);
+      @include breakpoint(large) {
+        font-size: clamp(1.25rem, 0.75rem + 0.625vw, 1.5rem);
+      }
+    }
+
+    span {
+      position: relative;
+      opacity: 0.1;
+      z-index: 2;
+    }
+  }
+
+  &_content {
+    @include breakpoint(large) {
+      max-width: 1566px;
+      margin: auto;
+    }
+  }
+}
