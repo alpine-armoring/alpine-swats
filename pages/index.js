@@ -2,11 +2,9 @@ import { useEffect } from 'react';
 import { getPageData } from 'hooks/api';
 import Head from 'next/head';
 
-// import { BannerFull } from '@este93/shared-components';
 import HPBanner from 'components/hp-banner/HPBanner';
 import FillingText from 'components/global/filling-text/FillingText';
 import FeaturedVehicles from 'components/global/featured-vehicles/FeaturedVehicles';
-import Benefits from 'components/global/benefits/Benefits';
 
 function Home(props) {
   const data = props.homepageData.data?.attributes;
@@ -45,21 +43,14 @@ function Home(props) {
     white: true,
   };
 
-  const quote = data?.quote;
+  const topText = data?.topText;
 
   const featuredVehiclesData = {
     title: data?.featuredVehiclesTitle,
     items: data?.featuredRentalVehicles?.data,
   };
 
-  const benefitsData = {
-    section1Title: data?.section1Title,
-    section1Text: data?.section1Text,
-    section1List: data?.section1List,
-    section1Text2: data?.section1text2,
-    section2Title: data?.section2title,
-    section2Text: data?.section2text,
-  };
+  const GSA = data?.GSA;
 
   // Animations
   useEffect(() => {
@@ -100,18 +91,18 @@ function Home(props) {
 
       {topBanner ? <HPBanner props={topBanner} /> : null}
 
-      {quote ? <FillingText small dark data={quote} /> : null}
+      {topText ? <FillingText small dark data={topText} /> : null}
 
       <FeaturedVehicles data={featuredVehiclesData} />
 
-      <Benefits data={benefitsData} />
+      {GSA ? <FillingText small dark data={GSA} /> : null}
     </>
   );
 }
 
 export async function getStaticProps() {
   const homepageData = await getPageData({
-    route: 'rentals-homepage',
+    route: 'swat-homepage',
     populate: 'deep',
   });
 
