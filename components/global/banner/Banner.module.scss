@@ -132,7 +132,7 @@
     margin: auto;
     text-align: center;
     border-radius: 12px;
-    background: rgba(43, 49, 10, .7);
+    background: rgba(43, 49, 10, 0.7);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -217,7 +217,7 @@
     h1 {
       font-size: clamp(1rem, 0.9393rem + 0.2589vw, 1.25rem);
 
-      span{
+      span {
         color: #81856a;
         font-weight: var(--font-medium);
       }
