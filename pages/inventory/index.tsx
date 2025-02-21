@@ -106,7 +106,7 @@ function Home(props) {
 }
 
 export async function getServerSideProps() {
-  const query = `filters[$or][0][categories][slug][$eq]=armored-law-enforcement&filters[$or][1][categories][slug][$eq]=armored-specialty-vehicles`;
+  const query = `filters[$or][0][categories][slug][$eq]=armored-law-enforcement&filters[$or][1][categories][slug][$eq]=armored-specialty-vehicles&filters[slug][$notContains]=mastiff`;
 
   const vehicles = await getPageData({
     route: 'inventories',
