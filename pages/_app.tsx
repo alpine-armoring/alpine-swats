@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const paths = ['/available-now', '/vehicles-we-armor'];
+    const paths = ['/inventory', '/vehicles-we-armor'];
 
     const handleChangeStart = (url: string) => {
       const isTargetPath = paths.some((path) => {

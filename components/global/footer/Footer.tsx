@@ -14,10 +14,9 @@ import Link from 'next/link';
 
 const Footer = () => {
   const links = [
-    { path: '/armored-rentals', text: 'Bulletproof Rental Cars Stock' },
-    { path: '/faqs', text: 'FAQ' },
-    { path: '/rental-policy', text: 'Rental Policy' },
-    { path: '/ballistic-chart', text: 'Ballistic Chart' },
+    { path: '/inventory', text: 'Available SWAT Vehicles' },
+    { path: '/faqs', text: 'FAQs' },
+    { path: '/ballistic-chart', text: 'Ballistic Testing' },
     { path: '/contact', text: 'Contact Us' },
   ];
 
@@ -67,12 +66,12 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="mailto:rental@armoredautos.com"
+                    href="mailto:sales@armored-swat.com"
                     className={`${styles.footer_column_list_item}`}
                     rel="nofollow noreferrer noopener"
                   >
                     <MailIcon color="#2d2d27" />
-                    Rental@ArmoredAutos.com
+                    sales@armored-swat.com
                   </Link>
                 </li>
                 <li className={`${styles.footer_column_list_item}`}>

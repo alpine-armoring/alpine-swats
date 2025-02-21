@@ -52,8 +52,8 @@ function Home(props) {
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Armored Vehicles Ready to rent',
-          item: `https://www.armoredautos.com/armored-rentals`,
+          name: 'Armored SWATS in stock',
+          item: `https://www.armoredautos.com/inventory`,
         },
       ],
     };
@@ -74,7 +74,7 @@ function Home(props) {
         <div className={`b-breadcrumbs b-breadcrumbs-list container`}>
           <Link href="/">Home</Link>
           <span>&gt;</span>
-          Armored Vehicles Ready to rent
+          Inventory
         </div>
 
         {topBanner.title && <Banner props={topBanner} shape="white" />}
@@ -106,7 +106,7 @@ function Home(props) {
 }
 
 export async function getServerSideProps() {
-  const query = `filters[categories][slug][$eq]=armored-rental`;
+  const query = `filters[$or][0][categories][slug][$eq]=armored-law-enforcement&filters[$or][1][categories][slug][$eq]=armored-specialty-vehicles`;
 
   const vehicles = await getPageData({
     route: 'inventories',
@@ -114,12 +114,12 @@ export async function getServerSideProps() {
     sort: 'order',
     populate: 'rentalsFeaturedImage',
     fields:
-      'fields[0]=rentalsVehicleID&fields[1]=armor_level&fields[2]=engine&fields[3]=engine&fields[4]=title&fields[5]=slug&fields[6]=trans',
+      'fields[0]=vehicleID&fields[1]=armor_level&fields[2]=engine&fields[3]=engine&fields[4]=title&fields[5]=slug&fields[6]=trans&fields[7]=VIN',
     pageSize: 100,
   });
 
   let pageData = await getPageData({
-    route: 'rentals-listing',
+    route: 'swat-listing-inventory',
     populate: 'deep',
   }).then((response) => response.data);
 

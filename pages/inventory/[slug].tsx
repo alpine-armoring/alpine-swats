@@ -1,10 +1,15 @@
 import styles from './InventoryVehicle.module.scss';
 import { getPageData } from 'hooks/api';
+import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+const DownloadIcon = dynamic(() => import('components/icons/Download'));
 const InfoIcon = dynamic(() => import('components/icons/Info'));
+const PDFIcon = dynamic(() => import('components/icons/PDF2'));
+const PopupPDF = dynamic(() => import('components/global/lightbox/PopupPDF'), {
+  ssr: false,
+});
 import Link from 'next/link';
-import Head from 'next/head';
 import Button from 'components/global/button/Button';
 import Carousel from 'components/global/carousel/Carousel';
 import LightboxCustom from 'components/global/lightbox/LightboxCustom';
@@ -13,11 +18,10 @@ import InquiryForm from 'components/global/form/InquiryForm';
 import VideoScale, {
   animateVideo,
 } from 'components/global/video-scale/VideoScale';
-import { useMarkdownToHtml } from 'hooks/useMarkdownToHtml';
+import CustomMarkdown from 'components/CustomMarkdown';
+import Accordion from 'components/global/accordion/Accordion';
 
 function InventoryVehicle(props) {
-  const convertMarkdown = useMarkdownToHtml();
-
   useEffect(() => {
     const setupObserver = () => {
       const targets = document.querySelectorAll('.observe');
@@ -82,16 +86,31 @@ function InventoryVehicle(props) {
     videoSrc: videoSrc,
   };
 
+  // Popup
+  const [isPDFPopupOpen, setPDFPopupOpen] = useState(false);
+  const [currentPdfUrl, setCurrentPdfUrl] = useState('');
+
+  const togglePDFPopup = (url) => {
+    setPDFPopupOpen((prevState) => !prevState);
+    setCurrentPdfUrl(url);
+  };
+
   if (!props.data?.data?.[0]) {
     return <div>Loading...</div>;
   }
 
   const data =
     props && props.data && props.data.data[0] && props.data.data[0].attributes;
-  const topGallery = data?.rentalsGallery?.data;
-  const mainText = data?.rentalsDescription;
+
+  const topGallery = data?.gallery?.data;
+  const mainText = data?.description;
+  const category = data?.categories?.data[0]?.attributes?.title;
+  const categorySlug = data?.categories?.data[0]?.attributes?.slug;
+
   const videoWebm = data?.video?.data?.attributes;
   const videoMP4 = data?.videoMP4?.data?.attributes;
+
+  const faqs = data?.faqs;
 
   const sliderTopOptions = {
     dragFree: false,
@@ -101,18 +120,29 @@ function InventoryVehicle(props) {
 
   const vehicleDetailsMain = {
     Level: 'armor_level',
-    'Vehicle ID': 'rentalsVehicleID',
+    VIN: 'VIN',
+    'Vehicle ID': 'vehicleID',
     'Engine & Power': 'engine',
     Trans: 'trans',
+    // Power: 'power',
+    Year: 'year',
+    Miles: 'miles',
     Drivetrain: 'driveTrain',
     'Color (Exterior)': 'color_ext',
     'Color (Interior)': 'color_int',
+    Trim: 'trim',
+    Wheels: 'wheels',
+    Height: 'height',
+    Length: 'length',
+    Width: 'width',
+    Wheelbase: 'wheelbase',
+    'Weight (Armored)': 'weight',
   };
 
   const formData = {
-    title: data?.title.replaceAll(/luxury/gi, ''),
-    vehicleID: data?.rentalsVehicleID,
-    featuredImage: data?.rentalsFeaturedImage,
+    title: data?.title,
+    vehicleID: data?.vehicleID,
+    featuredImage: data?.featuredImage,
   };
 
   const scroll = () => {
@@ -120,34 +150,6 @@ function InventoryVehicle(props) {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const getBreadcrumbStructuredData = () => {
-    const structuredData = {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: 'https://www.armoredautos.com/',
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Available now',
-          item: `https://www.armoredautos.com/armored-rentals`,
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: data?.title,
-          item: `https://www.armoredautos.com/armored-rentals/${data?.slug}`,
-        },
-      ],
-    };
-    return JSON.stringify(structuredData);
   };
 
   const getProductStructuredData = () => {
@@ -158,15 +160,15 @@ function InventoryVehicle(props) {
       image: data?.featuredImage?.data?.attributes?.url,
       description:
         props.seoData?.metaDescription || data?.title?.replace('\n', ' '),
-      url: `https://www.armoredautos.com/armored-rentals/${data?.slug}`,
+      url: `https://www.alpineco.com/available-now/${data?.slug}`,
       brand: {
         '@type': 'Brand',
-        name: 'Alpine Armoring® Armored Vehicles for Rent',
+        name: 'Alpine Armoring® Armored Vehicles',
       },
       sku: `Alpine-${data?.slug}`,
       offers: {
         '@type': 'AggregateOffer',
-        url: `https://www.armoredautos.com/armored-rentals/${data?.slug}`,
+        url: `https://www.alpineco.com/available-now/${data?.slug}`,
         priceCurrency: 'USD',
         lowPrice: '50000',
         highPrice: '200000',
@@ -187,8 +189,13 @@ function InventoryVehicle(props) {
         },
         {
           '@type': 'PropertyValue',
+          name: 'VIN',
+          value: data?.VIN,
+        },
+        {
+          '@type': 'PropertyValue',
           name: 'Vehicle ID',
-          value: data?.rentalsVehicleID,
+          value: data?.vehicleID,
         },
         {
           '@type': 'PropertyValue',
@@ -199,6 +206,16 @@ function InventoryVehicle(props) {
           '@type': 'PropertyValue',
           name: 'Trans',
           value: data?.trans,
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Year',
+          value: data?.year,
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Miles',
+          value: data?.miles,
         },
         {
           '@type': 'PropertyValue',
@@ -215,8 +232,106 @@ function InventoryVehicle(props) {
           name: 'Color (Interior)',
           value: data?.color_int,
         },
+        {
+          '@type': 'PropertyValue',
+          name: 'Trim',
+          value: data?.trim,
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Wheels',
+          value: data?.wheels,
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Height',
+          value: `${data?.height} in.`,
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Length',
+          value: `${data?.length} in.`,
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Width',
+          value: `${data?.width} in.`,
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Wheelbase',
+          value: `${data?.wheelbase} in.`,
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Weight (Armored)',
+          value: `${data?.weight} lbs`,
+        },
       ],
     };
+  };
+
+  const getBreadcrumbStructuredData = () => {
+    const structuredData = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.alpineco.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Available now',
+          item: `https://www.alpineco.com/available-now`,
+        },
+        // {
+        //   '@type': 'ListItem',
+        //   position: 3,
+        //   name: category,
+        //   item: `https://www.alpineco.com/available-now/type/${categorySlug}`,
+        // },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: data?.title,
+          item: `https://www.alpineco.com/available-now/${data?.slug}`,
+        },
+      ],
+    };
+    return JSON.stringify(structuredData);
+  };
+
+  // FAQ structured data
+  const getFAQStructuredData = () => {
+    if (!faqs || !Array.isArray(faqs)) {
+      console.error('FAQs is not an array:', faqs);
+      return null;
+    }
+
+    const structuredData = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq, index) => {
+        const title =
+          faq?.attributes?.title || faq?.title || `FAQ ${index + 1}`;
+        const text = faq?.attributes?.text || faq?.text || 'No answer provided';
+
+        return {
+          '@type': 'Question',
+          name: title,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: text,
+          },
+        };
+      }),
+    };
+
+    return JSON.stringify(structuredData);
   };
 
   const getVideoStructuredData = () => {
@@ -244,6 +359,11 @@ function InventoryVehicle(props) {
     return JSON.stringify(structuredData);
   };
 
+  if (!data) {
+    console.error('Missing or malformed data structure');
+    return null;
+  }
+
   return (
     <>
       <Head>
@@ -252,6 +372,13 @@ function InventoryVehicle(props) {
           dangerouslySetInnerHTML={{ __html: getBreadcrumbStructuredData() }}
           key="breadcrumb-jsonld"
         />
+        {faqs?.length > 0 && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: getFAQStructuredData() }}
+            key="faq-jsonld"
+          />
+        )}
         {(videoWebm || videoMP4) && (
           <script
             type="application/ld+json"
@@ -270,24 +397,24 @@ function InventoryVehicle(props) {
         )}
       </Head>
 
-      <div className={`${styles.inventory}`}>
+      <div className={`${styles.inventory} background-dark`}>
         <div className={`${styles.inventory_main}`}>
           <div className={`${styles.inventory_heading}`}>
             <div className={`b-breadcrumbs`}>
               <Link href="/">Home</Link>
               <span>&gt;</span>
-              <Link href="/armored-rentals">Ready to rent</Link>
+              <Link href="/available-now">Available now</Link>
+              <span>&gt;</span>
+              <Link href={`/available-now/type/${categorySlug}`}>
+                {category}
+              </Link>
               <span>&gt;</span>
               <span className={`b-breadcrumbs_current`}>{data?.title}</span>
             </div>
 
             <div className={`${styles.inventory_heading_title}`}>
               {data?.title ? (
-                <h1
-                  dangerouslySetInnerHTML={{
-                    __html: `Rental ${data.title.replaceAll(/luxury/gi, '')}`,
-                  }}
-                ></h1>
+                <h1 dangerouslySetInnerHTML={{ __html: data.title }}></h1>
               ) : null}
             </div>
 
@@ -295,8 +422,9 @@ function InventoryVehicle(props) {
               <div className={`${styles.inventory_heading_description}`}>
                 <InfoIcon />
                 <p>
-                  This {data?.title.replaceAll(/luxury/gi, '')} is now available
-                  for rental
+                  {data?.shortDescription
+                    ? data.shortDescription
+                    : `This ${data?.title} is in stock and available to ship immediately`}
                 </p>
               </div>
             ) : null}
@@ -359,6 +487,17 @@ function InventoryVehicle(props) {
                 ) : null}
               </div>
 
+              <div className={`${styles.inventory_cta_wrap}`}>
+                <Button
+                  onClick={scroll}
+                  button={true}
+                  className={`${styles.inventory_cta} primary attention`}
+                  attention
+                >
+                  Request a quote
+                </Button>
+              </div>
+
               <div
                 className={`${styles.inventory_top_shape} shape-before shape-before-dark mobile-only`}
               ></div>
@@ -418,38 +557,64 @@ function InventoryVehicle(props) {
                 })}
               </ul>
 
-              {data?.rentalsShortDescription ? (
-                <div
-                  className={`${styles.inventory_details_description}`}
-                  dangerouslySetInnerHTML={{
-                    __html: convertMarkdown(data?.rentalsShortDescription),
-                  }}
-                ></div>
-              ) : null}
+              {data?.OEMWindowSticker?.data || data?.OEMArmoringSpecs?.data ? (
+                <div className={`${styles.inventory_pdfs}`}>
+                  {data?.OEMWindowSticker?.data ? (
+                    <Button
+                      href={data.OEMWindowSticker.data.attributes?.url.replace(
+                        /\.ai$/,
+                        '.pdf'
+                      )}
+                      iconComponent={PDFIcon}
+                      className={`${styles.inventory_pdfs_button} icon rounded`}
+                      target
+                    >
+                      <strong>OEM</strong> Window Sticker
+                    </Button>
+                  ) : null}
 
-              <div className={`${styles.inventory_cta_wrap}`}>
-                <Button
-                  onClick={scroll}
-                  button={true}
-                  className={`${styles.inventory_cta} primary attention`}
-                  attention
-                >
-                  Request a quote
-                </Button>
-              </div>
+                  {data?.OEMArmoringSpecs?.data ? (
+                    <Button
+                      // href={data.OEMArmoringSpecs.data.attributes?.url.replace(
+                      //   /\.ai$/,
+                      //   '.pdf'
+                      // )}
+                      onClick={() =>
+                        togglePDFPopup(data.OEMArmoringSpecs.data.attributes)
+                      }
+                      iconComponent={DownloadIcon}
+                      className={`${styles.inventory_pdfs_button} icon rounded`}
+                      button
+                    >
+                      Armoring Specs
+                    </Button>
+                  ) : null}
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
 
+        <PopupPDF
+          isOpen={isPDFPopupOpen}
+          onClose={() => togglePDFPopup('')}
+          pdfUrl={currentPdfUrl}
+        />
+
         {mainText ? (
-          <div
-            className={`${styles.inventory_description} container_small`}
-            dangerouslySetInnerHTML={{ __html: convertMarkdown(mainText) }}
-          ></div>
+          <div className={`${styles.inventory_description} container_small`}>
+            <CustomMarkdown>{mainText}</CustomMarkdown>
+          </div>
         ) : null}
 
         {videoWebm || videoMP4 ? (
           <VideoScale videoWebm={videoWebm} videoMP4={videoMP4} />
+        ) : null}
+
+        {faqs?.length > 0 ? (
+          <div className={`mt2`}>
+            <Accordion items={faqs} title="Frequently Asked Questions" />
+          </div>
         ) : null}
 
         {formData ? <InquiryForm {...formData} className={`formCTA`} /> : null}
@@ -466,88 +631,47 @@ function InventoryVehicle(props) {
   );
 }
 
-// export async function getServerSideProps(context) {
-//   const data = await getPageData({
-//     route: 'inventories',
-//     params: `filters[slug][$eq]=${context.params.slug}`,
-//   });
-
-//   const seoData = data?.data?.[0]?.attributes?.seo ?? null;
-
-//   if (!data || !data.data || data.data.length === 0) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-
-//   return {
-//     props: { data, seoData },
-//   };
-// }
-
-export async function getStaticPaths() {
+export async function getServerSideProps({ params, locale }) {
   try {
-    const slugsResponse = await getPageData({
+    let data = await getPageData({
       route: 'inventories',
-      fields: 'fields[0]=slug',
-      populate: '/',
+      params: `filters[slug][$eq]=${params.slug}`,
+      locale,
     });
 
-    if (!Array.isArray(slugsResponse.data)) {
-      throw new Error('Invalid data format');
+    // If no data found, try fetching without language suffix
+    if (!data?.data?.length) {
+      const baseSlug = params.slug.replace(/-[a-z]{2}$/, '');
+      data = await getPageData({
+        route: 'inventories',
+        params: `filters[slug][$eq]=${baseSlug}`,
+        locale,
+      });
     }
 
-    const paths = slugsResponse.data.reduce((acc, item) => {
-      if (item.attributes && item.attributes.slug) {
-        acc.push({ params: { slug: item.attributes.slug } });
-      }
-      return acc;
-    }, []);
+    if (!data?.data?.length) {
+      return { notFound: true };
+    }
+
+    const seoData = data.data[0].attributes.seo ?? null;
+    if (seoData) {
+      seoData.thumbnail =
+        data.data[0].attributes.featuredImage?.data.attributes ?? null;
+    }
 
     return {
-      paths,
-      fallback: 'blocking',
+      props: {
+        data,
+        seoData,
+        locale,
+      },
     };
   } catch (error) {
-    // console.error('Error fetching slugs:', error);
-    return {
-      paths: [],
-      fallback: 'blocking',
-    };
-  }
-}
-
-export async function getStaticProps({ params }) {
-  const data = await getPageData({
-    route: 'inventories',
-    params: `filters[slug][$eq]=${params.slug}`,
-  });
-
-  const seoData = data?.data?.[0]?.attributes?.seo ?? null;
-  if (seoData) {
-    seoData.metaTitle = `Rental ${seoData.metaTitle}`;
-
-    seoData.thumbnail =
-      data?.data?.[0]?.attributes?.rentalsFeaturedImage?.data?.attributes ??
-      null;
-
-    if (seoData.metaDescription) {
-      seoData.metaDescription = seoData.metaDescription.replace(
-        /\b(armored)\b/,
-        'rental armored'
-      );
-    }
-  }
-
-  if (!data || !data.data || data.data.length === 0) {
+    console.error('Error fetching inventory data:', error);
     return {
       notFound: true,
     };
   }
-
-  return {
-    props: { data, seoData },
-  };
 }
 
 export default InventoryVehicle;

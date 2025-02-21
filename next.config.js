@@ -1,8 +1,19 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const routes = require('./routes');
+
+module.exports = {
   reactStrictMode: true,
   sassOptions: {
     prependData: `@import './styles/_mixins.scss';`,
+  },
+  async rewrites() {
+    return Object.values(routes)
+      .map((route) => route.getRewrites())
+      .flat();
+  },
+  i18n: {
+    locales: ['en', 'es'],
+    defaultLocale: 'en',
+    localeDetection: false,
   },
   images: {
     // unoptimized: true,
@@ -45,5 +56,3 @@ const nextConfig = {
   },
   productionBrowserSourceMaps: true,
 };
-
-export default nextConfig;

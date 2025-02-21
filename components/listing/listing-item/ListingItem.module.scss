@@ -33,7 +33,7 @@
       box-shadow:
         0 7px 25px -5px #000,
         0 8px 10px -6px #000;
-      color: var(--color-primary);
+      // color: var(--color-primary);
 
       .inventory_item {
         &_image:before {
@@ -46,9 +46,9 @@
           background: var(--color-primary);
           color: var(--color-white);
 
-          span {
-            color: var(--color-rentals2);
-          }
+          // span {
+          //   color: var(--color-rentals2);
+          // }
         }
         &_label {
           opacity: 0;
@@ -242,9 +242,8 @@
     }
 
     span {
-      color: #06374e;
       font-weight: var(--font-demi);
-      transition: color 0.3s ease;
+      // transition: color 0.3s ease;
     }
   }
 

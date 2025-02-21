@@ -21,11 +21,42 @@
     }
   }
 
+  &_heading {
+    position: relative;
+    z-index: 1;
+    font-weight: var(--font-medium);
+
+    @include breakpoint(medium) {
+      margin-bottom: 3rem;
+    }
+    @include breakpoint(large) {
+      margin-top: -40px;
+    }
+
+    &_margin {
+      @include breakpoint(medium) {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &_subheading {
+    margin-top: -25px;
+    margin-bottom: 32px;
+    text-align: center;
+    font-size: 13px;
+    font-size: clamp(0.8125rem, 0.7367rem + 0.3236vw, 1.125rem);
+    @include breakpoint(medium) {
+      margin-top: -40px;
+    }
+  }
+
   &_inner {
     position: relative;
     display: flex;
     align-items: flex-end;
-    height: 250px;
+    height: 200px;
     color: white;
     overflow: hidden;
     text-align: center;
@@ -97,18 +128,18 @@
   &_text {
     display: inline-flex;
     flex-flow: column;
-    padding: rem(16) rem(10);
+    padding: rem(8) rem(16);
     margin: auto;
     text-align: center;
     border-radius: 12px;
-    background: rgba(19, 19, 19, 0.7);
+    background: rgba(43, 49, 10, .7);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.18);
 
     @include breakpoint(medium) {
       max-width: 885px;
-      padding: rem(16) rem(24);
+      padding: rem(16);
     }
 
     @include breakpoint(large) {
@@ -130,16 +161,46 @@
       display: block;
       font-size: 0;
     }
+
+    &_withMake {
+      @media (max-width: 768px), (min-width: 1280px) and (max-width: 1600px) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+      }
+
+      @media (min-width: 768px) and (max-width: 1279px), (min-width: 1600px) {
+        strong {
+          position: relative;
+          &:before {
+            position: relative;
+            content: '|';
+            margin-left: 8px;
+          }
+        }
+      }
+
+      strong {
+        text-transform: capitalize;
+      }
+    }
+
     h1,
     h2 {
-      white-space: pre-wrap;
       margin: 0;
       font-weight: var(--font-regular);
       font-size: 14px;
 
+      @include breakpoint(medium) {
+        &:not(.banner_text_withMake) {
+          white-space: pre-wrap;
+        }
+      }
+
       strong,
       b {
-        color: var(--color-rentals);
+        color: var(--color-primary);
         font-weight: var(--font-demi);
       }
 
@@ -154,12 +215,18 @@
     }
 
     h1 {
-      font-size: clamp(1rem, 0.8483rem + 0.6472vw, 1.625rem);
+      font-size: clamp(1rem, 0.9393rem + 0.2589vw, 1.25rem);
+
+      span{
+        color: #81856a;
+        font-weight: var(--font-medium);
+      }
     }
 
     h2 {
+      margin-top: 8px;
       font-size: clamp(0.75rem, 0.659rem + 0.3883vw, 1.125rem);
-      color: var(--color-rentals);
+      color: var(--color-primary);
       font-weight: var(--font-demi);
     }
   }
@@ -175,28 +242,12 @@
       background: var(--color-background);
       z-index: 1;
     }
+    &_dark:before {
+      background: #101010 url(/assets/noise4.png) !important;
+      background-size: 30px !important;
+    }
     &:after {
       box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0.5);
-    }
-  }
-
-  &_heading {
-    position: relative;
-    z-index: 1;
-    font-weight: var(--font-regular);
-
-    @include breakpoint(medium) {
-      margin-bottom: 3rem;
-    }
-    @include breakpoint(large) {
-      margin-top: -40px;
-    }
-
-    &_margin {
-      @include breakpoint(medium) {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
     }
   }
 }

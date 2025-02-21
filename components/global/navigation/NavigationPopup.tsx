@@ -18,7 +18,7 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
   const router = useRouter();
 
   const links = [
-    { path: '/armored-rentals', text: 'Ready to Rent' },
+    { path: '/inventory', text: 'Inventory' },
     { path: '/ballistic-chart', text: 'Ballistic Chart' },
     { path: '/faqs', text: 'FAQ' },
     { path: '/contact', text: 'Contact' },
@@ -76,12 +76,12 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
               1.703.471.0002
             </Link>
             <Link
-              href="mailto:Rental@ArmoredAutos.com"
+              href="mailto:sales@armored-swat.com"
               className={`${styles.navigationPopup_contact_item}`}
               rel="nofollow noreferrer noopener"
             >
               <MailIcon />
-              Rental@ArmoredAutos.com
+              sales@armored-swat.com
             </Link>
 
             <div className={`${styles.navigationPopup_contact_item}`}>

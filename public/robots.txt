@@ -5,7 +5,7 @@ Disallow: /vehicle-pages/
 Disallow: /pdf/
 Disallow: /link
 Disallow: /allaboutcookies.org
-Disallow: /armored-rentals/armored-mercedes-benz-s580-executive-1287
+Disallow: /inventory/armored-mercedes-benz-s580-executive-1287
 Disallow: /pdf/MB-S550-3947/mercedes-benz-S550-full-armoring-specs.pdf
 Disallow: /contact-message.html
 Disallow: /Standard-0108.00

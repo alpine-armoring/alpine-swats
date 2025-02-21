@@ -3,6 +3,7 @@ import { BannerProps } from 'types';
 import React, { useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+// import useLocale from 'hooks/useLocale';
 
 const TopBanner = ({ props, shape, small }: BannerProps) => {
   const router = useRouter();
@@ -14,6 +15,26 @@ const TopBanner = ({ props, shape, small }: BannerProps) => {
   const bannerSubitle = props.subtitle;
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoMP4 = props.mediaMP4?.data;
+  // const { lang } = useLocale();
+
+  // Special uppercase cases
+  const specialUppercaseCases = ['bmw', 'cuda', 'gmc', 'mastiff', 'pointer'];
+
+  function formatMake(make: string) {
+    return make
+      .toString()
+      .replace('-', ' ')
+      .split(' ')
+      .map((word) => {
+        // Check if the word is in special uppercase cases (case-insensitive)
+        if (specialUppercaseCases.includes(word.toLowerCase())) {
+          return word.toUpperCase();
+        }
+        // Otherwise, do standard capitalization
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      })
+      .join(' ');
+  }
 
   function isIOS() {
     return /iPad|iPhone|iPod/i.test(navigator.userAgent);
@@ -89,7 +110,8 @@ const TopBanner = ({ props, shape, small }: BannerProps) => {
           sizes={bannerImageMobile ? '(max-width: 767px) 1vw, 100vw' : '100vw'}
           className={`${styles.banner_media} ${bannerImageMobile ? styles.banner_media_desktop : ''}`}
           priority
-          fill
+          width={2200}
+          height={500}
           quality={100}
         />
         {bannerImageMobile && (
@@ -97,7 +119,8 @@ const TopBanner = ({ props, shape, small }: BannerProps) => {
             src={bannerImageMobile.url}
             alt={bannerImageMobile?.alternativeText || 'Alpine Armoring'}
             sizes="(max-width: 767px) 100vw, 1vw"
-            fill
+            width={375}
+            height={250}
             className={`${styles.banner_media} ${styles.banner_media_mobile}`}
             priority
             quality={100}
@@ -142,11 +165,25 @@ const TopBanner = ({ props, shape, small }: BannerProps) => {
       <div className={`${styles.banner_inner}`}>
         {mediaElement}
 
-        {currentRoute.startsWith('/armored-rentals') ? (
+        {currentRoute.startsWith('/inventory') ||
+        currentRoute.startsWith('/vehicles-we-armor') ? (
           <div className={`${styles.banner_content}`}>
             <div className={`${styles.banner_text}`}>
               {bannerTitle ? (
-                <h1 dangerouslySetInnerHTML={{ __html: bannerTitle }}></h1>
+                <h1
+                  className={`${router.query.make ? styles.banner_text_withMake : ''}`}
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      router.query.type && router.query.make
+                        ? `${bannerTitle}<strong>
+                          ${formatMake(router.query.make.toString())}</strong>`
+                        : router.query.make
+                          ? `Armored
+                          ${formatMake(router.query.make.toString())}
+                        for preorder`
+                          : bannerTitle,
+                  }}
+                ></h1>
               ) : null}
               {bannerSubitle ? (
                 <h2 dangerouslySetInnerHTML={{ __html: bannerSubitle }}></h2>
@@ -162,23 +199,33 @@ const TopBanner = ({ props, shape, small }: BannerProps) => {
         />
       ) : null}
 
-      {bannerTitle && !currentRoute.startsWith('/armored-rentals') ? (
-        <h1
-          className={`
-            ${styles.banner_heading} 
-            c-title
-            ${
-              [
-                '/manufacturing',
-                '/ballistic-testing',
-                '/shipping-and-logistics',
-              ].includes(currentRoute)
-                ? styles.banner_heading_margin
-                : ''
-            }
-            observe fade-in-scale`}
-          dangerouslySetInnerHTML={{ __html: bannerTitle }}
-        ></h1>
+      {bannerTitle &&
+      !currentRoute.startsWith('/inventory') &&
+      !currentRoute.startsWith('/vehicles-we-armor') ? (
+        <>
+          <h1
+            className={`
+              ${styles.banner_heading} 
+              c-title
+              ${
+                [
+                  '/manufacturing',
+                  '/ballistic-testing',
+                  '/shipping-and-logistics',
+                ].includes(currentRoute)
+                  ? styles.banner_heading_margin
+                  : ''
+              }
+              observe fade-in-scale`}
+            dangerouslySetInnerHTML={{ __html: bannerTitle }}
+          ></h1>
+          {bannerSubitle ? (
+            <h2
+              className={`${styles.banner_subheading} observe fade-in-scale`}
+              dangerouslySetInnerHTML={{ __html: bannerSubitle }}
+            ></h2>
+          ) : null}
+        </>
       ) : null}
     </div>
   );

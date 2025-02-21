@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './ListingItem.module.scss';
+import { useRouter } from 'next/router';
+import useLocale from 'hooks/useLocale';
 
 interface InventoryItemProps {
   props: any;
@@ -8,20 +10,33 @@ interface InventoryItemProps {
 }
 
 const InventoryItem = ({ props, index }: InventoryItemProps) => {
+  const { lang } = useLocale();
   const data = props.attributes;
+  const router = useRouter();
+  const currentPath = router.asPath;
+
+  const linkHref = currentPath.includes('armored-rental')
+    ? `/rental-vehicles/${data.slug}`
+    : `/inventory/${data.slug}`;
 
   return (
     <Link
-      href={`/armored-rentals/${data.slug}`}
+      href={linkHref}
       className={`
-        ${styles.inventory_item}
+        ${styles.inventory_item} 
+        ${data.flag == 'sold' ? styles.inventory_item_sold : ''}
+        ${
+          currentPath.includes('inventory/type/armored-rental')
+            ? styles.inventory_item_rental
+            : ''
+        }
       `}
     >
       <div className={`${styles.inventory_item_image}`}>
-        {data?.rentalsFeaturedImage?.data ? (
+        {data.rentalsFeaturedImage.data ? (
           <Image
             src={`${
-              data.rentalsFeaturedImage.data.attributes.formats.medium.url ||
+              data.rentalsFeaturedImage.data.attributes.formats.medium?.url ||
               data.rentalsFeaturedImage.data.attributes.url
             }`}
             alt={
@@ -36,41 +51,65 @@ const InventoryItem = ({ props, index }: InventoryItemProps) => {
         ) : null}
 
         <div className={`${styles.inventory_item_button}`}>
-          <span>VIEW DETAILS</span>
+          <span>{lang.viewDetails}</span>
         </div>
+
+        {data.flag && data.label ? (
+          <>
+            {(() => {
+              const flagClass = `inventory_item_label_${data.flag}`;
+              return (
+                <div
+                  className={`${styles.inventory_item_label} ${styles[flagClass]}`}
+                >
+                  <span>{data.flag}</span>
+                </div>
+              );
+            })()}
+          </>
+        ) : null}
       </div>
 
       <div className={`${styles.inventory_item_content}`}>
         <h2
           className={`${styles.inventory_item_title}`}
           dangerouslySetInnerHTML={{
-            __html: `${data.title.replaceAll(/luxury/gi, '')}`,
+            __html: data.title,
           }}
         ></h2>
 
-        <h3 className={`${styles.inventory_item_level}`}>
-          Armored to <span>level {data.armor_level}</span>
-        </h3>
+        {data.armor_level && (
+          <h3 className={`${styles.inventory_item_level}`}>
+            {lang.armoredTo}{' '}
+            <span>
+              {lang.level} {data.armor_level}
+            </span>
+          </h3>
+        )}
 
         <ul className={`${styles.inventory_item_info}`}>
-          {data.rentalsVehicleID ? (
-            <li className={`${styles.inventory_item_info_item}`}>
-              <strong>Vehicle ID:</strong>
-              <span>{data.rentalsVehicleID}</span>
-            </li>
-          ) : null}
-          {data.engine ? (
-            <li className={`${styles.inventory_item_info_item}`}>
-              <strong>Engine:</strong>
-              <span>{data.engine}</span>
-            </li>
-          ) : null}
-          {data.trans ? (
-            <li className={`${styles.inventory_item_info_item}`}>
-              <strong>Trans:</strong>
-              <span>{data.trans}</span>
-            </li>
-          ) : null}
+          {(() => {
+            const fieldsToDisplay = currentPath.includes(lang.armoredRentalURL)
+              ? [
+                  { key: 'rentalsVehicleID', label: lang.vehicleID },
+                  { key: 'engine', label: lang.engine },
+                  { key: 'trans', label: lang.trans },
+                ]
+              : [
+                  { key: 'VIN', label: lang.VIN },
+                  { key: 'vehicleID', label: lang.vehicleID },
+                  { key: 'engine', label: lang.engine },
+                ];
+
+            return fieldsToDisplay.map(({ key, label }) =>
+              data[key] ? (
+                <li key={key} className={`${styles.inventory_item_info_item}`}>
+                  <strong>{label}:</strong>
+                  <span>{data[key]}</span>
+                </li>
+              ) : null
+            );
+          })()}
         </ul>
       </div>
     </Link>
