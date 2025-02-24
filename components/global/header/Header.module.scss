@@ -34,10 +34,27 @@
   &.down,
   &.up,
   &_navOpen {
-    .header_logo path,
-    .header_logo rect,
-    .header_logo polygon {
-      fill: white;
+    // .header_logo path,
+    // .header_logo rect,
+    // .header_logo polygon {
+    //   fill: white;
+    // }
+
+    .header_logo {
+      g:nth-child(2) {
+        polygon {
+          fill: white;
+        }
+        polygon:first-child {
+          fill: none;
+          stroke: white;
+        }
+      }
+      g:nth-child(3) {
+        path {
+          fill: white;
+        }
+      }
     }
   }
 
