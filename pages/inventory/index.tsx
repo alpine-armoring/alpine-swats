@@ -114,9 +114,12 @@ export async function getServerSideProps() {
     sort: 'order',
     populate: 'rentalsFeaturedImage',
     fields:
-      'fields[0]=vehicleID&fields[1]=armor_level&fields[2]=engine&fields[3]=engine&fields[4]=title&fields[5]=slug&fields[6]=trans&fields[7]=VIN',
+      'fields[0]=vehicleID&fields[1]=armor_level&fields[2]=engine&fields[3]=engine&fields[4]=title&fields[5]=slug&fields[6]=trans&fields[7]=VIN&fields[8]=hide',
     pageSize: 100,
   });
+
+  // Filter out hidden vehicles
+  vehicles.data = vehicles.data.filter((vehicle) => !vehicle.attributes.hide);
 
   let pageData = await getPageData({
     route: 'swat-listing-inventory',
