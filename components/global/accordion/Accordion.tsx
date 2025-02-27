@@ -1,10 +1,12 @@
 import styles from './Accordion.module.scss';
 import React, { useState } from 'react';
+import useLocale from 'hooks/useLocale';
 import Button from 'components/global/button/Button';
-import { useMarkdownToHtml } from 'hooks/useMarkdownToHtml';
+import CustomMarkdown from 'components/CustomMarkdown';
 
 const Accordion = ({ items, title = '', button = false }) => {
-  const convertMarkdown = useMarkdownToHtml();
+  const { lang } = useLocale();
+
   const [activeIndex, setActiveIndex] = useState(null);
 
   const handleTitleClick = (index) => {
@@ -22,7 +24,7 @@ const Accordion = ({ items, title = '', button = false }) => {
             onClick={() => handleTitleClick(index)}
           >
             <div className={`${styles.accordion_item_heading_title}`}>
-              {item.attributes?.title}
+              {item.attributes?.title || item?.title}
             </div>
 
             <div
@@ -32,19 +34,18 @@ const Accordion = ({ items, title = '', button = false }) => {
             ></div>
           </div>
 
-          {item.attributes?.text ? (
+          {item.attributes?.text || item?.text ? (
             <div
               style={{
                 maxHeight: activeIndex === index ? '300px' : '0',
               }}
               className={`${styles.accordion_item_content}`}
             >
-              <div
-                className={`${styles.accordion_item_content_text}`}
-                dangerouslySetInnerHTML={{
-                  __html: convertMarkdown(item.attributes?.text),
-                }}
-              ></div>
+              <div className={`${styles.accordion_item_content_text}`}>
+                <CustomMarkdown>
+                  {item.attributes?.text || item?.text}
+                </CustomMarkdown>
+              </div>
             </div>
           ) : null}
         </div>
@@ -53,7 +54,7 @@ const Accordion = ({ items, title = '', button = false }) => {
       {button ? (
         <div className={`${styles.accordion_button} center`}>
           <Button href="/faqs" className={`primary rounded`}>
-            More FAQ
+            {lang.moreFAQ}
           </Button>
         </div>
       ) : null}

@@ -2,14 +2,19 @@ import { useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { getPageData } from 'hooks/api';
+import routes from 'routes';
 import styles from '/components/listing/Listing.module.scss';
 import InventoryItem from 'components/listing/listing-item/ListingItem';
 import Banner from 'components/global/banner/Banner';
+import CustomMarkdown from 'components/CustomMarkdown';
+import Accordion from 'components/global/accordion/Accordion';
 
 function Home(props) {
   const topBanner = { ...props?.pageData?.attributes?.banner };
   const topBannerSubtitle = props?.pageData?.attributes?.banner.subtitle;
   topBanner.subtitle = null;
+  const bottomText = props?.pageData?.attributes?.bottomText;
+  const faqs = props?.pageData?.attributes?.faqs;
 
   // Animations
   useEffect(() => {
@@ -101,28 +106,46 @@ function Home(props) {
           )}
         </div>
       </div>
+
+      {bottomText ? (
+        <div className={`container_small`}>
+          <div className={`${styles.listing_bottomText}`}>
+            <CustomMarkdown>{bottomText}</CustomMarkdown>
+          </div>
+        </div>
+      ) : null}
+
+      {faqs?.length > 0 ? (
+        <div className={`mt2`}>
+          <Accordion items={faqs} title="Frequently Asked Questions" />
+        </div>
+      ) : null}
     </>
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const { locale } = context;
+  const route = routes.inventory;
+
   const query = `filters[$or][0][categories][slug][$eq]=armored-law-enforcement&filters[$or][1][categories][slug][$eq]=armored-specialty-vehicles&filters[slug][$notContains]=mastiff`;
 
   const vehicles = await getPageData({
-    route: 'inventories',
+    route: route.collectionSingle,
     params: query,
     sort: 'order',
     populate: 'rentalsFeaturedImage',
     fields:
-      'fields[0]=vehicleID&fields[1]=armor_level&fields[2]=engine&fields[3]=engine&fields[4]=title&fields[5]=slug&fields[6]=trans&fields[7]=VIN&fields[8]=hide',
+      'fields[0]=vehicleID&fields[1]=armor_level&fields[2]=engine&fields[3]=engine&fields[4]=title&fields[5]=slug&fields[6]=trans&fields[7]=VIN&fields[8]=hide&fields[9]=flag&fields[10]=label',
     pageSize: 100,
+    locale,
   });
 
   // Filter out hidden vehicles
   vehicles.data = vehicles.data.filter((vehicle) => !vehicle.attributes.hide);
 
   let pageData = await getPageData({
-    route: 'swat-listing-inventory',
+    route: route.collection,
     populate: 'deep',
   }).then((response) => response.data);
 
@@ -135,6 +158,7 @@ export async function getServerSideProps() {
       pageData,
       vehicles,
       seoData,
+      locale,
     },
   };
 }

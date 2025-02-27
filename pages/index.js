@@ -5,6 +5,7 @@ import Head from 'next/head';
 import HPBanner from 'components/hp-banner/HPBanner';
 import FillingText from 'components/global/filling-text/FillingText';
 import FeaturedVehicles from 'components/global/featured-vehicles/FeaturedVehicles';
+import Button from 'components/global/button/Button';
 
 function Home(props) {
   const data = props.homepageData.data?.attributes;
@@ -47,7 +48,7 @@ function Home(props) {
 
   const featuredVehiclesData = {
     title: data?.featuredVehiclesTitle,
-    items: data?.featuredRentalVehicles?.data,
+    items: data?.vehicles_we_armors?.data,
   };
 
   const GSA = data?.GSA;
@@ -95,7 +96,16 @@ function Home(props) {
 
       <FeaturedVehicles data={featuredVehiclesData} />
 
-      {GSA ? <FillingText small dark data={GSA} /> : null}
+      {GSA ? (
+        <>
+          <FillingText small dark data={GSA} />
+          <div className={`center`}>
+            <Button className={`primary rounded`} href="contact">
+              Contact Us
+            </Button>
+          </div>
+        </>
+      ) : null}
     </>
   );
 }

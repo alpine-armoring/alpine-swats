@@ -1,0 +1,124 @@
+.listing_item {
+  max-width: 425px;
+  margin: auto;
+  margin-bottom: rem(32);
+  opacity: 0;
+  animation: fade-in-opacity 0.5s linear forwards;
+
+  // &:nth-child(-n + 14) {
+  //   opacity: 1;
+  //   animation: none;
+  // }
+
+  @include breakpoint(medium) {
+    width: calc(50% - 12px);
+    align-self: stretch;
+    display: flex;
+    margin: unset;
+    margin-bottom: rem(32);
+  }
+
+  @include breakpoint(large) {
+    width: calc(100% / 3 - 16px);
+    max-width: 100%;
+    &:hover {
+      .listing_item {
+        &_content {
+          box-shadow:
+            0 0 0 0px rgba(35, 38, 59, 0.05),
+            0 10px 16px -4px rgba(35, 38, 59, 0.25);
+        }
+        &_image img {
+          filter: brightness(0.7);
+        }
+        &_button {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+  @include breakpoint(max) {
+    width: calc(100% / 4 - 18px);
+    margin-bottom: rem(48);
+  }
+
+  &_inner {
+    @include breakpoint(medium) {
+      display: flex;
+      flex-flow: column;
+      // height: 100%;
+      margin-top: auto;
+      width: 100%;
+    }
+  }
+
+  &_content {
+    position: relative;
+    padding: rem(8) rem(16) rem(16) rem(16);
+    background: white;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    // flex: 1;
+    transition: box-shadow 0.3s ease;
+
+    @include breakpoint(large) {
+      padding: rem(16) rem(24) rem(24) rem(24);
+    }
+
+    &:before {
+      position: absolute;
+      content: '';
+      left: 0;
+      right: 0;
+      top: -60px;
+      background: url('/assets/topCurve.svg') no-repeat;
+      height: 60px;
+      background-size: cover;
+      z-index: -1;
+    }
+  }
+
+  &_title {
+    font-weight: var(--font-medium);
+    white-space: pre-wrap;
+    font-size: 16px;
+    font-size: clamp(1rem, 0.9848rem + 0.0647vw, 1.0625rem);
+  }
+
+  &_image {
+    position: relative;
+    padding: 0 rem(8);
+
+    img {
+      // max-height: 200px;
+      margin: auto;
+      object-fit: cover;
+      transition: filter 0.3s ease;
+      width: 100%;
+    }
+  }
+
+  &_button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+  }
+}
+
+@keyframes fade-in-opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

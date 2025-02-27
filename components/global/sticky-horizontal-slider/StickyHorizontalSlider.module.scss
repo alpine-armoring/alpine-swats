@@ -1,0 +1,191 @@
+.stickyHorizontalSlider {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+
+  &_inventory {
+    .stickyHorizontalSlider_inner {
+      @include breakpoint(large) {
+        flex-wrap: wrap;
+        padding: 0 rem(16);
+        gap: 16px;
+      }
+    }
+    .stickyHorizontalSlider_item {
+      @include breakpoint(large) {
+        flex: 0 0 calc(100% / 4 - 12px);
+        margin: 0 0 rem(16) 0;
+
+        &:hover {
+          transform: none;
+          .stickyHorizontalSlider_item_image {
+            transform: scale(1.04);
+
+            // &_wrap {
+            //   box-shadow:
+            //     0 20px 25px -5px #000,
+            //     0 8px 10px -6px #000;
+            // }
+          }
+        }
+      }
+
+      @include breakpoint(huge) {
+        flex: 0 0 calc(100% / 5 - 13px);
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:before {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.8) 0%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        // border-radius: 8px;
+        z-index: 1;
+      }
+
+      &_content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: rem(8);
+        z-index: 1;
+        background: transparent;
+        border-radius: 0;
+        text-align: left;
+      }
+
+      &_image {
+        border-radius: 8px;
+      }
+    }
+  }
+
+  @include breakpoint(large) {
+    padding-left: 0;
+  }
+
+  @include breakpoint(huge) {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  & > div {
+    width: 100%;
+  }
+
+  &_heading {
+    max-width: unset;
+    width: 100%;
+  }
+
+  &_inner {
+    display: flex;
+    margin-bottom: rem(24);
+
+    @include breakpoint(large) {
+      overflow: unset;
+      margin-bottom: rem(40);
+      font-size: rem(16);
+      position: relative;
+      padding-left: rem(24);
+    }
+  }
+
+  &_item {
+    position: relative;
+    margin-right: rem(16);
+    flex: 0 0 70%;
+    background: var(--color-white);
+    border-radius: rem(8);
+    overflow: hidden;
+
+    @include breakpoint(medium) {
+      flex: 0 0 40%;
+      cursor: pointer;
+      border-radius: rem(16);
+      transition:
+        transform 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out;
+
+      &:hover {
+        transform: scale(0.985);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        .stickyHorizontalSlider_item_image {
+          transform: scale(1.04);
+        }
+      }
+    }
+
+    @include breakpoint(large) {
+      margin-right: rem(24);
+      flex-shrink: 0;
+      flex: 0 0 25%;
+      border-bottom-left-radius: rem(16);
+      border-bottom-right-radius: rem(16);
+    }
+
+    &:last-child {
+      margin-right: rem(15);
+    }
+
+    &_image {
+      object-fit: cover;
+      width: 100%;
+
+      @include breakpoint(medium) {
+        transition: transform 0.3s ease-in-out;
+      }
+
+      @include breakpoint(large) {
+        width: 100%;
+      }
+
+      &_wrap {
+        display: block;
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 1.5/1;
+
+        @supports not (aspect-ratio: 16 / 9) {
+          padding-top: 67%;
+          height: 0;
+          position: relative;
+          overflow: hidden;
+        }
+      }
+    }
+
+    &_content {
+      padding: rem(16) rem(8);
+      text-align: center;
+      @include breakpoint(large) {
+        max-width: 600px;
+      }
+    }
+
+    &_title {
+      font-size: rem(14);
+    }
+
+    &_date {
+      font-size: rem(11);
+      font-weight: var(--font-medium);
+      color: var(--color-primary);
+      @include breakpoint(large) {
+        font-size: rem(14);
+      }
+    }
+  }
+}

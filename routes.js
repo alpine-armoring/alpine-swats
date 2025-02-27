@@ -1,36 +1,18 @@
 const routes = {
-  news: {
-    collection: 'news-page',
-    collectionSingle: 'blogs',
-    paths: {
-      en: '/news',
-      es: '/noticias',
-    },
-  },
   inventory: {
-    collection: 'list-inventory',
+    collection: 'swat-listing-inventory',
     collectionSingle: 'inventories',
     paths: {
-      en: '/available-now',
+      en: '/inventory',
       es: '/disponible-ahora',
     },
   },
-  vehiclesWeArmor: {
-    collection: 'list-vehicles-we-armor',
+  models: {
+    collection: 'swat-listing-model',
     collectionSingle: 'vehicles-we-armors',
     paths: {
-      en: '/vehicles-we-armor',
+      en: '/models',
       es: '/vehiculos-que-blindamos',
-    },
-    typePath: {
-      en: 'type',
-      es: 'tipo',
-    },
-    types: {
-      'armored-suvs': {
-        en: 'armored-suvs',
-        es: 'suvs-blindados',
-      },
     },
   },
   ballisticTesting: {
@@ -38,21 +20,6 @@ const routes = {
     paths: {
       en: '/ballistic-testing',
       es: '/pruebas-balisticas',
-    },
-  },
-  about: {
-    collection: 'about',
-    paths: {
-      en: '/about-us',
-      es: '/hacerca-de-nosotros/',
-    },
-  },
-  videos: {
-    collection: 'video-page',
-    collectionSingle: 'videos',
-    paths: {
-      en: '/media/videos',
-      es: '/medios/videos',
     },
   },
 };

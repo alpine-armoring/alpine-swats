@@ -14,99 +14,6 @@
         width: 100%;
       }
     }
-
-    &_radio {
-      margin-bottom: 15px;
-      // padding-left: 16px;
-      font-size: rem(14);
-      text-align: center;
-
-      @supports (-webkit-touch-callout: none) {
-        @include breakpoint(small) {
-          font-size: rem(16);
-        }
-      }
-
-      &_wrap {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        label {
-          margin-right: 16px;
-          cursor: pointer;
-        }
-      }
-
-      legend {
-        font-weight: var(--font-regular);
-        color: var(--color-secondary);
-        margin-bottom: 8px;
-      }
-
-      input[type='radio'] {
-        background-color: initial;
-        cursor: pointer;
-        appearance: auto;
-        box-sizing: border-box;
-        margin: 0 4px 0px 0;
-        padding: initial;
-        border: initial;
-      }
-    }
-
-    &_date {
-      &_title {
-        margin-bottom: 8px;
-        text-align: center;
-        font-size: 0.9rem;
-      }
-      input[type='date']::-webkit-datetime-edit-text,
-      input[type='date']::-webkit-datetime-edit-month-field,
-      input[type='date']::-webkit-datetime-edit-day-field,
-      input[type='date']::-webkit-datetime-edit-year-field {
-        text-transform: uppercase;
-      }
-
-      .form_date_wrapper {
-        @include breakpoint(medium) {
-          display: flex;
-          gap: 1rem;
-        }
-
-        > div {
-          flex: 1;
-
-          @include breakpoint(small) {
-            margin-bottom: 8px;
-          }
-        }
-      }
-
-      &_wrap {
-        display: flex;
-        align-items: center;
-      }
-
-      label {
-        display: block;
-        margin-right: 4px;
-        font-size: 0.9rem;
-
-        @include breakpoint(small) {
-          min-width: 50px;
-        }
-      }
-
-      input[type='date'] {
-        width: 100%;
-        padding: 0.875rem 0.5rem 0.875rem 1rem;
-        border: 1px solid transparent;
-        border-radius: 8px;
-        font-weight: var(--font-regular);
-        color: var(--color-secondary);
-      }
-    }
   }
 
   &_input {
@@ -164,7 +71,7 @@
       color: var(--color-dark);
       background: transparent;
       border: 0;
-      font-size: rem(14);
+      font-size: rem(13);
       padding: 0;
 
       @supports (-webkit-touch-callout: none) {
@@ -237,7 +144,7 @@
     &_option {
       padding: 8px 0;
       font-weight: var(--font-medium);
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
       transition: 0.3s ease-in-out;
 

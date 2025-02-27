@@ -15,9 +15,9 @@ const InventoryItem = ({ props, index }: InventoryItemProps) => {
   const router = useRouter();
   const currentPath = router.asPath;
 
-  const linkHref = currentPath.includes('armored-rental')
+  const linkHref = currentPath.includes(lang.armoredRentalURL)
     ? `/rental-vehicles/${data.slug}`
-    : `/inventory/${data.slug}`;
+    : `${lang.availableNowURL}/${data.slug}`;
 
   return (
     <Link
@@ -26,7 +26,7 @@ const InventoryItem = ({ props, index }: InventoryItemProps) => {
         ${styles.inventory_item} 
         ${data.flag == 'sold' ? styles.inventory_item_sold : ''}
         ${
-          currentPath.includes('inventory/type/armored-rental')
+          currentPath.includes('available-now/type/armored-rental')
             ? styles.inventory_item_rental
             : ''
         }

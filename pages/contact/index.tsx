@@ -1,16 +1,33 @@
 import styles from './Contact.module.scss';
+import Head from 'next/head';
 import { getPageData } from 'hooks/api';
 import { useEffect } from 'react';
-import Head from 'next/head';
+import useLocale from 'hooks/useLocale';
 import Banner from 'components/global/banner/Banner';
 import Form from 'components/global/form/Form';
 import Accordion from 'components/global/accordion/Accordion';
-import { useMarkdownToHtml } from 'hooks/useMarkdownToHtml';
+import Image from 'next/image';
+import CustomMarkdown from 'components/CustomMarkdown';
+
+import useLightbox from 'components/global/lightbox/useLightbox';
+import NextJsImage from 'components/global/lightbox/NextJsImage';
+import Zoom from 'yet-another-react-lightbox/plugins/zoom';
 
 function Contact(props) {
-  const convertMarkdown = useMarkdownToHtml();
+  const { openLightbox, renderLightbox } = useLightbox();
+  type CustomSlide = {
+    src: string;
+    width?: number;
+    height?: number;
+    alt?: string;
+    unoptimized?: boolean;
+    index?: number;
+    selectedIndex?: number;
+  };
+
+  const { lang } = useLocale();
+
   const faqs = props?.pageData?.fa_qs;
-  const vehicles = props?.vehicles;
 
   // Animations
   useEffect(() => {
@@ -77,24 +94,65 @@ function Contact(props) {
         ) : null}
         <div className={`${styles.contact_main} container_small`}>
           <div className={`${styles.contact_main_left}`}>
-            <Form vehicles={vehicles} />
+            <Form />
           </div>
 
           <div className={`${styles.contact_main_right}`}>
             <div className={`${styles.contact_main_right_boxes}`}>
               <div className={`${styles.contact_main_right_column}`}>
                 <h3 className={`${styles.contact_main_right_title}`}>
-                  Our rental support team is available on:
+                  {lang.salesInquiries}
                 </h3>
                 {props.pageData?.salesInfo ? (
-                  <div
+                  <CustomMarkdown>{props.pageData.salesInfo}</CustomMarkdown>
+                ) : null}
+              </div>
+              <div className={`${styles.contact_main_right_column}`}>
+                <h3 className={`${styles.contact_main_right_title}`}>
+                  <span
                     dangerouslySetInnerHTML={{
-                      __html: convertMarkdown(props.pageData.salesInfo),
+                      __html: lang.partsServiceWarranty,
                     }}
-                  ></div>
+                  />
+                </h3>
+                {props.pageData?.partsInfo ? (
+                  <CustomMarkdown>{props.pageData.partsInfo}</CustomMarkdown>
                 ) : null}
               </div>
             </div>
+
+            {props.pageData?.mapImage?.data && (
+              <>
+                <div className={styles.contact_map}>
+                  <Image
+                    src={props.pageData?.mapImage.data.attributes.url}
+                    alt={'Alpine Armoring Location'}
+                    fill
+                    onClick={() => {
+                      openLightbox();
+                    }}
+                  />
+                </div>
+
+                {renderLightbox({
+                  slides: [
+                    {
+                      src: props.pageData?.mapImage.data.attributes.url,
+                      width: 874,
+                      height: 295,
+                      alt: 'Alpine Armoring Location',
+                      unoptimized: true,
+                    },
+                  ] as CustomSlide[],
+                  plugins: [Zoom],
+                  render: {
+                    slide: NextJsImage,
+                    buttonPrev: () => null,
+                    buttonNext: () => null,
+                  },
+                })}
+              </>
+            )}
           </div>
         </div>
 
@@ -110,26 +168,18 @@ function Contact(props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale = 'en' }) {
   let pageData = await getPageData({
-    route: 'rentals-contact-page',
-    populate: 'banner.media, banner.imageMobile, banner.mediaMP4, fa_qs, seo',
+    route: 'contact-page',
+    populate: 'deep',
+    locale,
   });
   pageData = pageData.data?.attributes || null;
 
   const seoData = pageData?.seo ?? null;
 
-  const vehicles = await getPageData({
-    route: 'inventories',
-    params: 'filters[categories][slug][$eq]=armored-rental',
-    sort: 'order',
-    populate: '/',
-    fields: 'fields[0]=title',
-    pageSize: 100,
-  });
-
   return {
-    props: { pageData, vehicles, seoData },
+    props: { pageData, seoData, locale },
   };
 }
 

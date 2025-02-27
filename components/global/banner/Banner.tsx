@@ -166,7 +166,7 @@ const TopBanner = ({ props, shape, small }: BannerProps) => {
         {mediaElement}
 
         {currentRoute.startsWith('/inventory') ||
-        currentRoute.startsWith('/vehicles-we-armor') ? (
+        currentRoute.startsWith('/models') ? (
           <div className={`${styles.banner_content}`}>
             <div className={`${styles.banner_text}`}>
               {bannerTitle ? (
@@ -201,7 +201,7 @@ const TopBanner = ({ props, shape, small }: BannerProps) => {
 
       {bannerTitle &&
       !currentRoute.startsWith('/inventory') &&
-      !currentRoute.startsWith('/vehicles-we-armor') ? (
+      !currentRoute.startsWith('/models') ? (
         <>
           <h1
             className={`

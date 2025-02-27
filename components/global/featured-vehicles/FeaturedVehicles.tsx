@@ -64,15 +64,15 @@ const FeaturedVehicles = (props) => {
                   selectedIndex === index ? styles.active : ''
                 }`}
               >
-                {item.attributes.transparentImage.data ? (
+                {item.attributes.featuredImage.data ? (
                   <Image
                     src={`${
-                      item.attributes.transparentImage.data.attributes.formats
+                      item.attributes.featuredImage.data.attributes.formats
                         .large?.url ||
-                      item.attributes.transparentImage.data.attributes.url
+                      item.attributes.featuredImage.data.attributes.url
                     }`}
                     alt={
-                      item.attributes.transparentImage.data.attributes
+                      item.attributes.featuredImage.data.attributes
                         .alternativeText || 'Alpine Armoring'
                     }
                     width={900}

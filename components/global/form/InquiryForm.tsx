@@ -1,18 +1,13 @@
 import styles from './InquiryForm.module.scss';
 import Image from 'next/image';
 import Form from 'components/global/form/Form';
+import { useRouter } from 'next/router';
+import useLocale from 'hooks/useLocale';
 
 const InquiryForm = (props) => {
-  const vehicle = {
-    data: [
-      {
-        attributes: {
-          title: props.title,
-          prefilled: true,
-        },
-      },
-    ],
-  };
+  const router = useRouter();
+  const { lang } = useLocale();
+  const currentPath = router.asPath;
 
   return (
     <div
@@ -30,11 +25,19 @@ const InquiryForm = (props) => {
         <div className={`${styles.inquiry_form_inner} container_small`}>
           <div className={`${styles.inquiry_form_left}`}>
             <div className={`${styles.inquiry_form_heading}`}>
-              You are inquiring about this <br /> ready-to-rent
+              {lang.inquiringAbout}
+
+              {/* {!props.plain ? ' this ready-to-ship' : null} */}
+              {/* Render Filters conditionally based on path and filter type */}
+              {!props.plain
+                ? !currentPath.includes('rental-vehicles')
+                  ? ` ${lang.thisReadyToShip}`
+                  : ` ${lang.rentalOfThis}`
+                : ` ${lang.the}`}
               <p>
                 <strong
                   dangerouslySetInnerHTML={{
-                    __html: `${props?.title}`,
+                    __html: props?.title,
                   }}
                 ></strong>
               </p>
@@ -68,15 +71,15 @@ const InquiryForm = (props) => {
               />
             ) : null}
             <div className={`${styles.inquiry_form_heading}`}>
-              {!props.plain && props?.vehicleID ? (
+              {!props.plain ? (
                 <span>
-                  Vehicle ID: <strong>{props?.vehicleID}</strong>
+                  {lang.vehicleID}: <strong>{props?.vehicleID}</strong>
                 </span>
               ) : null}
             </div>
           </div>
 
-          <Form vehicles={vehicle} />
+          <Form />
         </div>
 
         <div className={`shapeCurved_rightBottom shapeCurved`}></div>

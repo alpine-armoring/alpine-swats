@@ -3,6 +3,7 @@ import { getPageData } from 'hooks/api';
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import routes from 'routes';
 const DownloadIcon = dynamic(() => import('components/icons/Download'));
 const InfoIcon = dynamic(() => import('components/icons/Info'));
 const PDFIcon = dynamic(() => import('components/icons/PDF2'));
@@ -104,8 +105,6 @@ function InventoryVehicle(props) {
 
   const topGallery = data?.gallery?.data;
   const mainText = data?.description;
-  const category = data?.categories?.data[0]?.attributes?.title;
-  const categorySlug = data?.categories?.data[0]?.attributes?.slug;
 
   const videoWebm = data?.video?.data?.attributes;
   const videoMP4 = data?.videoMP4?.data?.attributes;
@@ -160,7 +159,7 @@ function InventoryVehicle(props) {
       image: data?.featuredImage?.data?.attributes?.url,
       description:
         props.seoData?.metaDescription || data?.title?.replace('\n', ' '),
-      url: `https://www.alpineco.com/available-now/${data?.slug}`,
+      url: `https://www.alpineco.com/inventory/${data?.slug}`,
       brand: {
         '@type': 'Brand',
         name: 'Alpine Armoring® Armored Vehicles',
@@ -168,7 +167,7 @@ function InventoryVehicle(props) {
       sku: `Alpine-${data?.slug}`,
       offers: {
         '@type': 'AggregateOffer',
-        url: `https://www.alpineco.com/available-now/${data?.slug}`,
+        url: `https://www.alpineco.com/inventory/${data?.slug}`,
         priceCurrency: 'USD',
         lowPrice: '50000',
         highPrice: '200000',
@@ -285,20 +284,14 @@ function InventoryVehicle(props) {
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Available now',
-          item: `https://www.alpineco.com/available-now`,
+          name: 'Inventory',
+          item: `https://www.alpineco.com/inventory`,
         },
-        // {
-        //   '@type': 'ListItem',
-        //   position: 3,
-        //   name: category,
-        //   item: `https://www.alpineco.com/available-now/type/${categorySlug}`,
-        // },
         {
           '@type': 'ListItem',
           position: 3,
           name: data?.title,
-          item: `https://www.alpineco.com/available-now/${data?.slug}`,
+          item: `https://www.alpineco.com/inventory/${data?.slug}`,
         },
       ],
     };
@@ -403,11 +396,7 @@ function InventoryVehicle(props) {
             <div className={`b-breadcrumbs`}>
               <Link href="/">Home</Link>
               <span>&gt;</span>
-              <Link href="/available-now">Available now</Link>
-              <span>&gt;</span>
-              <Link href={`/available-now/type/${categorySlug}`}>
-                {category}
-              </Link>
+              <Link href="/inventory">Inventory</Link>
               <span>&gt;</span>
               <span className={`b-breadcrumbs_current`}>{data?.title}</span>
             </div>
@@ -632,9 +621,11 @@ function InventoryVehicle(props) {
 }
 
 export async function getServerSideProps({ params, locale }) {
+  const route = routes.inventory;
+
   try {
     let data = await getPageData({
-      route: 'inventories',
+      route: route.collectionSingle,
       params: `filters[slug][$eq]=${params.slug}`,
       locale,
     });
@@ -643,7 +634,7 @@ export async function getServerSideProps({ params, locale }) {
     if (!data?.data?.length) {
       const baseSlug = params.slug.replace(/-[a-z]{2}$/, '');
       data = await getPageData({
-        route: 'inventories',
+        route: route.collectionSingle,
         params: `filters[slug][$eq]=${baseSlug}`,
         locale,
       });
