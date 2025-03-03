@@ -19,8 +19,14 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
 
   const links = [
     { path: '/inventory', text: 'Inventory' },
-    { path: '/ballistic-chart', text: 'Ballistic Chart' },
-    { path: '/faqs', text: 'FAQ' },
+    { path: '/models', text: 'Models' },
+  ];
+
+  const linksRight = [
+    { path: '/about', text: 'About Us' },
+    { path: '/ballistic-testing', text: 'Ballistic Chart' },
+    { path: '/ballistic-chart', text: 'Weapons & Ammunition Chart' },
+    { path: '/faqs', text: 'FAQs' },
     { path: '/contact', text: 'Contact' },
   ];
 
@@ -60,6 +66,30 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
                     {link.text}
                   </span>
                 )}
+              </li>
+            ))}
+          </ul>
+
+          <ul
+            className={`${styles.navigationPopup_list_right} ${styles.navigationPopup_list}`}
+          >
+            {linksRight.map((link, index) => (
+              <li
+                key={index}
+                className={`
+                  ${styles.navigationPopup_item} 
+                  ${
+                    router.asPath === link.path
+                      ? `${styles.navigationPopup_item_active}`
+                      : ''
+                  }`}
+              >
+                <Link
+                  className={`${styles.navigationPopup_link}`}
+                  href={link.path}
+                >
+                  {link.text}
+                </Link>
               </li>
             ))}
           </ul>

@@ -85,15 +85,6 @@ const Header = ({
         <Navigation isNavOpen={isNavOpen} />
 
         <div className={`${styles.header_right}`}>
-          <div
-            className={`${styles.header_burger} mobile-only`}
-            onClick={() => {
-              setNavOpen((prevState) => !prevState);
-            }}
-          >
-            <div className={`${styles.header_burger_inner}`}></div>
-          </div>
-
           <div className={`desktop-only flex`}>
             <Button
               href="/contact"
@@ -101,6 +92,15 @@ const Header = ({
             >
               <span onClick={() => setNavOpen(false)}>Contact</span>
             </Button>
+          </div>
+
+          <div
+            className={`${styles.header_burger}`}
+            onClick={() => {
+              setNavOpen((prevState) => !prevState);
+            }}
+          >
+            <div className={`${styles.header_burger_inner}`}></div>
           </div>
         </div>
       </div>

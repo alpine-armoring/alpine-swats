@@ -18,14 +18,23 @@
     opacity 0.3s ease-out,
     visibility 0.3s ease-out;
 
+  @include breakpoint(large) {
+    padding-top: 0;
+    z-index: 6;
+  }
+
   &_open {
     visibility: visible;
-    opacity: 0.95;
+    opacity: 0.97;
 
     .navigationPopup_list_left .navigationPopup_item {
-      @for $i from 1 through 4 {
+      @for $i from 1 through 3 {
         &:nth-of-type(#{$i}) {
           transition-delay: $i * 0.03s;
+
+          @include breakpoint(large) {
+            transition-delay: $i * 0.15s;
+          }
         }
       }
     }
@@ -33,6 +42,9 @@
       @for $i from 1 through 15 {
         &:nth-of-type(#{$i}) {
           transition-delay: ($i * 0.03s) + 0.09s;
+          @include breakpoint(large) {
+            transition-delay: ($i * 0.05s);
+          }
         }
       }
     }
@@ -41,8 +53,8 @@
       transform: translate(0%, 0px) !important;
       opacity: 1;
       transition:
-        opacity 0.3s ease-out,
-        transform 0.3s ease-out;
+        opacity 0.25s ease-out,
+        transform 0.25s ease-out;
     }
   }
 
@@ -52,6 +64,9 @@
     flex-flow: column;
     padding: 0 rem(16);
     overflow: auto;
+    @include breakpoint(large) {
+      padding: 0 rem(48);
+    }
   }
 
   &_nav {
@@ -60,6 +75,38 @@
     display: flex;
     flex-flow: column;
     justify-content: center;
+
+    @media (max-height: 670px) {
+      .navigationPopup_list_left {
+        margin-bottom: 0;
+      }
+    }
+
+    @include breakpoint(large) {
+      justify-content: space-evenly;
+      align-items: center;
+      text-align: left;
+      flex-flow: row;
+    }
+  }
+
+  &_list {
+    &_left {
+      margin-bottom: rem(32);
+      @include breakpoint(large) {
+        margin-bottom: 0;
+      }
+    }
+    @include breakpoint(large) {
+      &:hover .navigationPopup_item:not(:hover) .navigationPopup_link {
+        opacity: 0.3;
+        transform: translateX(10px);
+      }
+
+      &_right {
+        overflow: hidden;
+      }
+    }
   }
 
   &_item {
@@ -74,14 +121,33 @@
       opacity 0.2s ease-in,
       transform 0.2s ease-in;
 
+    @include breakpoint(large) {
+      font-size: clamp(2.1875rem, 0.5625rem + 2.0313vw, 3rem);
+      transition-duration: 0.2s;
+    }
+
+    // @for $i from 1 through 15 {
+    //   &:nth-of-type(#{$i}) {
+    //     transition-delay: $i * 0.01s;
+    //   }
+    // }
+
     .navigationPopup_list_right & {
       font-size: rem(14);
       font-weight: var(--font-regular);
+
+      @include breakpoint(large) {
+        transform: translateX(100%);
+        font-size: rem(16);
+        &:last-child {
+          display: none;
+        }
+      }
     }
 
     &_active {
-      color: var(--color-rentals);
-      font-weight: var(--font-medium) !important;
+      color: var(--color-background);
+      font-weight: var(--font-demi) !important;
     }
   }
 
@@ -89,24 +155,82 @@
     display: inline-block;
     position: relative;
     padding: rem(8);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+
+    @include breakpoint(large) {
+      padding: rem(16);
+      cursor: pointer;
+    }
+
+    .navigationPopup_list_right & {
+      padding: rem(8);
+    }
   }
 
   &_info {
-    display: flex;
-    flex-flow: column;
-    padding: rem(10) 0;
+    padding: rem(8) 0;
+
+    @include breakpoint(large) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-flow: row;
+      padding: rem(20) 0;
+    }
   }
 
   &_socials {
-    display: grid;
-    grid-auto-flow: column;
-    gap: 8px;
-    margin-top: rem(20);
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: rem(24);
+
+    &_item {
+      transition: transform 0.3s ease;
+      svg path,
+      svg rect {
+        transition:
+          fill 0.3s ease,
+          stroke 0.3s ease;
+      }
+      &:hover {
+        transform: translateY(-3px);
+      }
+      &:not(.navigationPopup_socials_item_tiktok):not(
+          .navigationPopup_socials_item_threads
+        ):not(.navigationPopup_socials_item_x):hover {
+        svg path {
+          fill: var(--color-background);
+        }
+      }
+      &_tiktok:hover {
+        svg rect {
+          fill: var(--color-background);
+        }
+      }
+      &_x:hover {
+        svg path:first-child {
+          fill: var(--color-background);
+          stroke: var(--color-background);
+        }
+      }
+      &_threads:hover {
+        circle {
+          fill: var(--color-background);
+        }
+      }
+    }
+
+    @include breakpoint(large) {
+      margin-top: rem(0);
+    }
   }
 
   &_contact {
     display: grid;
-    gap: 8px;
+    gap:8px;
     font-size: rem(13);
 
     &_item {
@@ -120,7 +244,80 @@
       svg {
         position: relative;
         top: -1px;
-        margin-right: 14px;
+        margin-right: 10px;
+
+        path {
+          transition: fill 0.3s ease;
+        }
+      }
+
+      &:hover {
+        color: var(--color-background);
+        transform: translateY(-3px);
+
+        svg path {
+          fill: var(--color-background);
+        }
+      }
+    }
+
+    @include breakpoint(medium) {
+      grid-auto-flow: column;
+      gap: 16px;
+    }
+
+    @include breakpoint(large) {
+      margin-top: unset;
+      gap: 32px;
+    }
+  }
+
+  &_bottom {
+    @include breakpoint(small) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: rem(24) 0 rem(16) 0;
+
+      &_lang {
+        font-weight: 500;
+      }
+    }
+  }
+
+  &_submenu {
+    position: relative;
+
+    @include breakpoint(large) {
+      .navigationPopup_link {
+        font-size: 23px;
+        padding: rem(8);
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: translateX(12px);
+        }
+      }
+    }
+
+    &_back {
+      position: absolute;
+      top: -35px;
+      left: 12px;
+      transform: rotate(180deg);
+      cursor: pointer;
+
+      @include breakpoint(large) {
+        left: -35px;
+      }
+
+      svg {
+        width: 26px;
+        height: 26px;
+
+        path {
+          stroke: white;
+        }
       }
     }
   }
