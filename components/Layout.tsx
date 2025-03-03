@@ -54,6 +54,10 @@ const Layout = ({ children }) => {
   const isHeaderGray = pathsHeaderTransparent.some(
     (path) => router.pathname.startsWith(path) || isHomepage
   );
+  const pathsDarkMode = ['/inventory', '/ballistic-testing'];
+  const isDarkMode = pathsDarkMode.some((path) =>
+    router.pathname.startsWith(path)
+  );
 
   const [isNavOpen, setNavOpen] = useState(false);
 
@@ -61,6 +65,17 @@ const Layout = ({ children }) => {
     <>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        {isDarkMode && (
+          <style>{`
+              body {
+                background: #101010 url(/assets/noise4.png) !important;
+                background-size: 30px !important;
+              }
+              .c-navigation_item:after{
+                background: #b7baa7 !important;
+              }
+            `}</style>
+        )}
         {isHeaderGray && (
           <style>{`
               header,
@@ -118,6 +133,7 @@ const Layout = ({ children }) => {
           setNavOpen={setNavOpen}
           isNavOpen={isNavOpen}
           isHeaderGray={isHeaderGray}
+          isDarkMode={isDarkMode}
         />
 
         <NavigationPopup isNavOpen={isNavOpen} setNavOpen={setNavOpen} />

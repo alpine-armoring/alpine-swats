@@ -33,12 +33,8 @@
   &.header_gray,
   &.down,
   &.up,
-  &_navOpen {
-    // .header_logo path,
-    // .header_logo rect,
-    // .header_logo polygon {
-    //   fill: white;
-    // }
+  &_navOpen,
+  &_transparent {
 
     .header_logo {
       g:nth-child(2) {
@@ -58,7 +54,7 @@
     }
   }
 
-  &:not(.header_navOpen):not(.header.up):not(.header.down):not(.header_gray) {
+  &:not(.header_navOpen):not(.header.up):not(.header.down):not(.header_gray):not(.header_transparent) {
     --color-white: var(--color-primary);
 
     // .header_logo path,
@@ -93,6 +89,7 @@
     }
   }
 
+  &_transparent,
   &_navOpen {
     background: transparent;
     backdrop-filter: none;

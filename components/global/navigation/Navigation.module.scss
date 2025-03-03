@@ -37,6 +37,10 @@
         transform: scaleX(0);
         transform-origin: left;
         transition: transform 0.3s cubic-bezier(0.4, 0, 0, 1);
+
+        .header_transparent & {
+          display: none;
+        }
       }
 
       &_active,

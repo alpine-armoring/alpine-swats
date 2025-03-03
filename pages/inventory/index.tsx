@@ -75,14 +75,14 @@ function Home(props) {
         />
       </Head>
 
-      <div className={`${styles.listing}`}>
+      <div className={`${styles.listing} background-dark`}>
         <div className={`b-breadcrumbs b-breadcrumbs-list container`}>
           <Link href="/">Home</Link>
           <span>&gt;</span>
           Inventory
         </div>
 
-        {topBanner.title && <Banner props={topBanner} shape="white" />}
+        {topBanner.title && <Banner props={topBanner} shape="dark" />}
 
         {topBannerSubtitle ? (
           <p className={`${styles.listing_heading} center container`}>
@@ -105,21 +105,23 @@ function Home(props) {
             </div>
           )}
         </div>
+
+        {bottomText ? (
+          <div className={`container_small`}>
+            <div className={`${styles.listing_bottomText}`}>
+              <CustomMarkdown>{bottomText}</CustomMarkdown>
+            </div>
+          </div>
+        ) : null}
+
+        {faqs?.length > 0 ? (
+          <div className={`mt2`}>
+            <Accordion items={faqs} title="Frequently Asked Questions" />
+          </div>
+        ) : null}
       </div>
 
-      {bottomText ? (
-        <div className={`container_small`}>
-          <div className={`${styles.listing_bottomText}`}>
-            <CustomMarkdown>{bottomText}</CustomMarkdown>
-          </div>
-        </div>
-      ) : null}
-
-      {faqs?.length > 0 ? (
-        <div className={`mt2`}>
-          <Accordion items={faqs} title="Frequently Asked Questions" />
-        </div>
-      ) : null}
+      <div className="shape-margin shape-before shape-before-white"></div>
     </>
   );
 }

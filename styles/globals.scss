@@ -142,6 +142,14 @@ body {
   }
 }
 
+.shape-margin{
+  margin-top: 50px !important;
+  margin-bottom: -25px;
+  @include breakpoint(large) {
+    margin-top: 100px !important;
+  }
+}
+
 ::i-block-chrome,
 .shape-before {
   overflow-x: hidden;
@@ -705,6 +713,10 @@ $shapeColor: var(--color-background);
   margin-bottom: rem(16);
   font-size: clamp(0.6875rem, 0.6723rem + 0.0647vw, 0.75rem);
   line-height: 1.5;
+
+  .background-dark & {
+    color: var(--color-background);
+  }
 
   span {
     margin: 0 rem(8);

@@ -154,7 +154,6 @@
       @include breakpoint(medium) {
         position: absolute;
         display: flex;
-        // background-color: var(--color-gray3);
         background-color: var(--color-dark);
         z-index: 1;
         border-radius: 99px;

@@ -22,6 +22,7 @@ const Navigation = ({ isNavOpen }: NavigationProps) => {
             key={index}
             className={`
               ${styles.navigation_item} 
+              c-navigation_item
               ${
                 router.pathname.startsWith(link.path)
                   ? `${styles.navigation_item_active}`

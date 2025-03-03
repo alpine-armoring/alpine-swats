@@ -7,7 +7,12 @@ import Navigation from 'components/global/navigation/Navigation';
 import styles from './Header.module.scss';
 import { HeaderProps } from 'types';
 
-const Header = ({ setNavOpen, isNavOpen, isHeaderGray }: HeaderProps) => {
+const Header = ({
+  setNavOpen,
+  isNavOpen,
+  isHeaderGray,
+  isDarkMode,
+}: HeaderProps) => {
   const [hState, sethState] = useState('-top');
 
   useEffect(() => {
@@ -56,7 +61,8 @@ const Header = ({ setNavOpen, isNavOpen, isHeaderGray }: HeaderProps) => {
         ${styles.header}
         ${styles[hState]}
         ${isNavOpen ? styles.header_navOpen : ''}
-        ${isHeaderGray ? styles.header_gray : ''}     
+        ${isHeaderGray ? styles.header_gray : ''}   
+        ${isDarkMode ? styles.header_transparent : ''}  
         b-header
       `}
     >
