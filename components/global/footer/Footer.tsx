@@ -12,18 +12,22 @@ import PhoneIcon from 'components/icons/Phone';
 import MailIcon from 'components/icons/Mail';
 import Link from 'next/link';
 
-const Footer = () => {
+const Footer = (props) => {
   const links = [
     { path: '/inventory', text: 'Available SWAT Vehicles' },
+    { path: '/about', text: 'About Us' },
+    { path: '/models', text: 'Models' },
     { path: '/faqs', text: 'FAQs' },
-    { path: '/ballistic-chart', text: 'Ballistic Testing' },
+    { path: '/ballistic-testing', text: 'Ballistic Testing' },
     { path: '/contact', text: 'Contact Us' },
+    { path: '/ballistic-chart', text: 'Weapons & Ammunition Chart' },
   ];
 
   return (
     <footer
       className={`
-        ${styles.footer}        
+        ${styles.footer}     
+        ${props.isDarkMode ? styles.footer_dark : ''}       
       `}
     >
       <div className={`${styles.footer_inner} container`}>

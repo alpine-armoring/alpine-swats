@@ -24,11 +24,15 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
 
   const linksRight = [
     { path: '/about', text: 'About Us' },
-    { path: '/ballistic-testing', text: 'Ballistic Chart' },
+    { path: '/ballistic-testing', text: 'Ballistic Testing' },
     { path: '/ballistic-chart', text: 'Weapons & Ammunition Chart' },
     { path: '/faqs', text: 'FAQs' },
     { path: '/contact', text: 'Contact' },
   ];
+
+  const closeNav = () => {
+    setNavOpen(false);
+  };
 
   return (
     <nav
@@ -83,6 +87,7 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
                       ? `${styles.navigationPopup_item_active}`
                       : ''
                   }`}
+                onClick={closeNav}
               >
                 <Link
                   className={`${styles.navigationPopup_link}`}

@@ -54,6 +54,12 @@ const Layout = ({ children }) => {
   const isHeaderGray = pathsHeaderTransparent.some(
     (path) => router.pathname.startsWith(path) || isHomepage
   );
+
+  const pathsDarkFooter = ['/ballistic-testing'];
+  const isDarkFooter = pathsDarkFooter.some((path) =>
+    router.pathname.startsWith(path)
+  );
+
   const pathsDarkMode = ['/inventory', '/ballistic-testing'];
   const isDarkMode = pathsDarkMode.some((path) =>
     router.pathname.startsWith(path)
@@ -142,7 +148,7 @@ const Layout = ({ children }) => {
 
         <ScrollToTopButton />
 
-        <Footer />
+        <Footer isDarkMode={isDarkFooter} />
       </div>
     </>
   );

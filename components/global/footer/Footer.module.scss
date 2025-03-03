@@ -13,6 +13,12 @@
     padding-bottom: rem(40);
   }
 
+  &_dark {
+    background: #101010 url(/assets/noise4.png);
+    background-size: 30px !important;
+    color: var(--color-white);
+  }
+
   &_top {
     padding-bottom: rem(32);
     margin-bottom: rem(32);
@@ -35,8 +41,13 @@
       font-size: rem(17);
       color: var(--color-primary);
       font-weight: var(--font-medium);
+
       @include breakpoint(large) {
         font-size: rem(20);
+      }
+
+      .footer_dark & {
+        color: var(--color-background);
       }
     }
   }
@@ -85,6 +96,13 @@
             svg path {
               fill: var(--color-primary);
             }
+
+            .footer_dark & {
+              color: var(--color-background);
+              svg path {
+                fill: var(--color-background);
+              }
+            }
           }
           svg path {
             transition: fill 0.3s ease;
@@ -93,6 +111,12 @@
 
         svg {
           margin-right: 16px;
+
+          path{  
+            .footer_dark & {
+              fill: var(--color-grayDark);
+            }
+          }
         }
       }
     }
@@ -153,6 +177,63 @@
       svg {
         width: 30px;
       }
+
+      &_tiktok,
+      &_threads {
+        path {
+          fill: var(--color-background);
+        }
+      }
+
+      &_x {
+        path:first-child {
+          stroke: var(--color-background);
+        }
+        path:nth-child(2) {
+          fill: var(--color-background);
+        }
+      }
+    }
+
+    .footer_dark & {
+      &_item {
+        &:not(.footer_socials_item_tiktok):not(.footer_socials_item_x):not(
+            .footer_socials_item_threads
+          ) {
+          svg path {
+            fill: #fff;
+          }
+        }
+        &_tiktok {
+          svg {
+            rect {
+              fill: #fff;
+            }
+            path {
+              fill: var(--color-dark);
+            }
+          }
+        }
+        &_x {
+          svg path {
+            &:first-child {
+              fill: #fff;
+              stroke: #fff;
+            }
+            &:last-child {
+              fill: var(--color-dark);
+            }
+          }
+        }
+        &_threads {
+          circle {
+            fill: #fff;
+          }
+          path {
+            fill: var(--color-dark);
+          }
+        }
+      }
     }
 
     @include breakpoint(medium) {
@@ -168,22 +249,39 @@
           ):not(.footer_socials_item_x):hover {
           svg path {
             fill: var(--color-primary);
+
+            .footer_dark & {
+              fill: var(--color-background);
+            }
           }
         }
         &_tiktok:hover {
           svg rect {
             fill: var(--color-primary);
+
+            .footer_dark & {
+              fill: var(--color-background);
+            }
           }
         }
         &_threads:hover {
           svg circle {
             fill: var(--color-primary);
+
+            .footer_dark & {
+              fill: var(--color-background);
+            }
           }
         }
         &_x:hover {
           svg path:first-child {
             fill: var(--color-primary);
             stroke: var(--color-primary);
+
+            .footer_dark & {
+              fill: var(--color-background);
+              stroke: var(--color-background);
+            }
           }
         }
       }
