@@ -30,6 +30,8 @@
   transform: translateZ(0) scale(1);
 }
 
+
+
 .block-reveal {
   position: relative;
   display: inline-block;
@@ -51,6 +53,38 @@
     }
     &:after {
       animation: rev-block 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    }
+  }
+
+  &-title {
+    position: relative;
+    margin-bottom: rem(18);
+    color: var(--color-primary);
+    font-size: 20px;
+    font-weight: var(--font-medium);
+    letter-spacing: 0.1px;
+    z-index: 2;
+    text-align: center;
+
+    @include breakpoint(medium) {
+      // display: block;
+      // width: 78%;
+      max-width: 940px;
+      margin: auto;
+      margin-bottom: rem(24);
+    }
+
+    @include breakpoint(large) {
+      font-size: rem(35);
+    }
+
+    &-wrap {
+      text-align: center;
+    }
+
+    strong,
+    b {
+      font-weight: var(--font-demi);
     }
   }
 }

@@ -1,19 +1,101 @@
+const vehicleTypes = {
+  'special-of-the-month': {
+    en: 'special-of-the-month',
+    es: 'especial-del-mes',
+  },
+  'armored-suvs': {
+    en: 'armored-suvs',
+    es: 'suvs-blindados',
+  },
+  'armored-sedans': {
+    en: 'armored-sedans',
+    es: 'sedanes-blindados',
+  },
+  'armored-pickup-trucks': {
+    en: 'armored-pickup-trucks',
+    es: 'camionetas-blindadas',
+  },
+  'armored-law-enforcement': {
+    en: 'armored-law-enforcement',
+    es: 'blindados-fuerzas-del-orden',
+  },
+  'armored-cash-in-transit-cit': {
+    en: 'armored-cash-in-transit-cit',
+    es: 'transporte-blindado-valores-cit',
+  },
+  'armored-specialty-vehicles': {
+    en: 'armored-specialty-vehicles',
+    es: 'vehiculos-blindados-especiales',
+  },
+  'armored-pre-owned': {
+    en: 'armored-pre-owned',
+    es: 'blindados-pre-usados',
+  },
+  'armored-rental': {
+    en: 'armored-rental',
+    es: 'alquiler-blindados',
+  },
+  'armored-vans-and-buses': {
+    en: 'armored-vans-and-buses',
+    es: 'furgonetas-y-autobuses-blindados',
+  },
+};
+
 const routes = {
-  inventory: {
-    collection: 'swat-listing-inventory',
-    collectionSingle: 'inventories',
+  about: {
+    collection: 'swat-about',
     paths: {
-      en: '/inventory',
-      es: '/disponible-ahora',
+      en: '/about-us',
+      es: '/hacerca-de-nosotros',
     },
   },
-  models: {
-    collection: 'swat-listing-model',
+  allDownloads: {
+    collection: 'all-download',
+    paths: {
+      en: '/all-downloads',
+      es: '/todas-las-descargas',
+    },
+  },
+  author: {
+    collection: 'authors',
+    paths: {
+      en: '/author',
+      es: '/autore',
+    },
+  },
+  inventory: {
+    collection: 'list-inventory',
+    collectionSingle: 'inventories',
+    paths: {
+      en: '/available-now',
+      es: '/disponible-ahora',
+    },
+    typePath: {
+      en: 'type',
+      es: 'tipo',
+    },
+    types: vehicleTypes,
+  },
+  news: {
+    collection: 'news-page',
+    collectionSingle: 'blogs',
+    paths: {
+      en: '/news',
+      es: '/noticias',
+    },
+  },
+  vehiclesWeArmor: {
+    collection: 'list-vehicles-we-armor',
     collectionSingle: 'vehicles-we-armors',
     paths: {
-      en: '/models',
+      en: '/vehicles-we-armor',
       es: '/vehiculos-que-blindamos',
     },
+    typePath: {
+      en: 'type',
+      es: 'tipo',
+    },
+    types: vehicleTypes,
   },
   ballisticTesting: {
     collection: 'ballistic-testing',
@@ -22,18 +104,48 @@ const routes = {
       es: '/pruebas-balisticas',
     },
   },
+  videos: {
+    collection: 'video-page',
+    collectionSingle: 'videos',
+    paths: {
+      en: '/media/videos',
+      es: '/medios/videos',
+    },
+  },
+  blog: {
+    collection: 'blog-page',
+    collectionSingle: 'blog-evergreens',
+    paths: {
+      en: '/blog',
+      es: '/blog',
+    },
+  },
+  shippingAndLogistics: {
+    collection: 'shipping',
+    paths: {
+      en: '/shipping-and-logistics',
+      es: '/envio-y-logistica',
+    },
+  },
+  privacyPolicy: {
+    collection: 'privacy-policy',
+    paths: {
+      en: '/privacy-policy',
+      es: '/politica-de-privacidad',
+    },
+  },
+  manufacturing: {
+    collection: 'manufacturing',
+    paths: {
+      en: '/manufacturing',
+      es: '/fabricacion',
+    },
+  },
 };
 
 const utils = {
   getLocalizedType: (route, type, locale) => {
-    const typeMap = {
-      'armored-suvs': {
-        en: 'armored-suvs',
-        es: 'suvs-blindados',
-      },
-    };
-
-    return typeMap[type]?.[locale] || type;
+    return vehicleTypes[type]?.[locale] || type;
   },
 
   getLocalizedPath: (paths, locale, slug) => {

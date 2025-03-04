@@ -15,7 +15,7 @@ import Link from 'next/link';
 const Footer = (props) => {
   const links = [
     { path: '/inventory', text: 'Available SWAT Vehicles' },
-    { path: '/about', text: 'About Us' },
+    { path: '/about-us', text: 'About Us' },
     { path: '/models', text: 'Models' },
     { path: '/faqs', text: 'FAQs' },
     { path: '/ballistic-testing', text: 'Ballistic Testing' },
