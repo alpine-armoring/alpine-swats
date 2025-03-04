@@ -111,10 +111,10 @@
         white-space: pre-wrap;
 
         @include breakpoint(large) {
-          font-size: 21px;      
+          font-size: 21px;
         }
         @include breakpoint(max) {
-          font-size: 24px;      
+          font-size: 24px;
         }
       }
 
