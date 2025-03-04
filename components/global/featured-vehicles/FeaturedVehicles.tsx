@@ -115,6 +115,12 @@ const FeaturedVehicles = (props) => {
           </svg>
         </button>
 
+        <div className={`center`}>
+          <Button className={`rounded`} href="models">
+            View All Models
+          </Button>
+        </div>
+
         <button
           onClick={onNextButtonClick}
           className={`slider_arrow slider_arrow_next`}

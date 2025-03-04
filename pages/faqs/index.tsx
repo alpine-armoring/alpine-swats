@@ -82,7 +82,7 @@ export async function getStaticProps() {
   pageData = pageData?.data?.attributes || null;
 
   let faqs = await getPageData({
-    route: 'fa-qs-rentals',
+    route: 'fa-qs-swats',
     populate: 'deep',
     sort: 'order',
   });
@@ -90,7 +90,7 @@ export async function getStaticProps() {
 
   const seoData = pageData?.seo ?? null;
   if (seoData) {
-    seoData.metaTitle = `Rentals ${seoData.metaTitle}`;
+    seoData.metaTitle = `SWAT ${seoData.metaTitle}`;
   }
 
   return {

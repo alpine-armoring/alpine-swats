@@ -1,12 +1,21 @@
 .featuredVehicles {
+
   &_container {
     position: relative;
-    margin: 50px 0 82px 0;
+    margin: 70px 0 30px 0;
+
+    @include breakpoint(large) {
+      margin-bottom: 80px;
+    }
   }
 
   &_slider {
     position: relative;
     overflow: hidden;
+
+    @include breakpoint(untilLarge) {
+      margin-bottom: 20px;
+    }
 
     &_container {
       backface-visibility: hidden;
@@ -138,6 +147,7 @@
       @include breakpoint(medium) {
         display: flex;
         justify-content: center;
+        align-items: center;
         gap: 16px;
 
         button {
@@ -146,7 +156,7 @@
           width: 40px;
           transform: none;
 
-          &:nth-child(2) {
+          &:nth-child(3) {
             transform: rotate(180deg);
           }
         }

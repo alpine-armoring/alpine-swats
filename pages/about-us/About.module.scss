@@ -223,9 +223,6 @@
     @include breakpoint(untilLarge) {
       margin-top: -30px;
     }
-    @include breakpoint(large) {
-      padding: 40px 0;
-    }
   }
 }
 

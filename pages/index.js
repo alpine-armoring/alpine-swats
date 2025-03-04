@@ -94,6 +94,12 @@ function Home(props) {
 
       {topText ? <FillingText small dark data={topText} /> : null}
 
+      <div className={`center`}>
+        <Button className={`primary rounded`} href="inventory">
+          View Available Inventory
+        </Button>
+      </div>
+
       <FeaturedVehicles data={featuredVehiclesData} />
 
       {GSA ? (

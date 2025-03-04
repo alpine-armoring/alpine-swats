@@ -27,7 +27,7 @@ function Contact(props) {
 
   const { lang } = useLocale();
 
-  const faqs = props?.pageData?.fa_qs;
+  const faqs = props?.pageData?.fa_qs_swats;
 
   // Animations
   useEffect(() => {
