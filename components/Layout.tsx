@@ -84,19 +84,15 @@ const Layout = ({ children }) => {
         )}
         {isHeaderGray && (
           <style>{`
-              header,
-              .navigation_submenu{
+              header{
                 background-color: rgba(23, 23, 23, 0.8) !important;
                 backdrop-filter: blur(10px) !important;
               }
               .navigation_submenu a{
                 color: white;
               }
-              .header_logo_gold{
-                display: block !important;
-              }
-              .header_logo_black{
-                display: none;
+              .c-navigation_item:after{
+                background: #b7baa7 !important;
               }
             `}</style>
         )}

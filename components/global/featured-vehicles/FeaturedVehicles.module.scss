@@ -67,10 +67,9 @@
         margin: -20px auto 0 auto;
 
         @include breakpoint(medium) {
-          padding: 16px;
+          padding: 20px;
           width: 100%;
           max-width: 430px;
-          font-size: rem(20);
           border-radius: 48px;
           box-shadow:
             0 8px 16px 0 rgba(0, 0, 0, 0.2),
@@ -97,6 +96,7 @@
           background: url(/assets/glass.png);
           background-size: cover;
           z-index: -1;
+
           @include breakpoint(medium) {
             border-radius: 48px;
             opacity: 0.8;
@@ -106,9 +106,16 @@
 
       &_title {
         color: white;
-        font-size: clamp(1.125rem, 1.034rem + 0.3883vw, 1.5rem);
+        font-size: 18px;
         font-weight: var(--font-medium);
         white-space: pre-wrap;
+
+        @include breakpoint(large) {
+          font-size: 21px;      
+        }
+        @include breakpoint(max) {
+          font-size: 24px;      
+        }
       }
 
       &_button {

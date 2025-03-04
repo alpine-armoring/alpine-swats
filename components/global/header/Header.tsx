@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-// import Image from 'next/image';
+import Image from 'next/image';
 import Button from 'components/global/button/Button';
-import Logo from 'components/icons/Logo';
+// import Logo from 'components/icons/Logo';
 import Navigation from 'components/global/navigation/Navigation';
 import styles from './Header.module.scss';
 import { HeaderProps } from 'types';
@@ -67,20 +67,25 @@ const Header = ({
       `}
     >
       <div className={`${styles.header_wrapper} container`}>
-        <div
+        <Link
+          href={'/'}
           className={`${styles.header_logo}`}
+          aria-label="Alpine Armoring Logo"
           onClick={() => setNavOpen(false)}
         >
-          <Link href={'/'} aria-label="Alpine Armoring Logo">
-            <Logo />
-            {/* <Image 
-              src="/assets/LogoTest.svg"
-              alt=""
-              width="400"
-              height="90"            
-            /> */}
-          </Link>
-        </div>
+          {/* <Logo /> */}
+          <Image
+            src="/assets/Alpine-Armoring-Original-gold-logo.png"
+            alt="Alpine Armoring Logo"
+            width="70"
+            height="108"
+            priority
+          />
+
+          <h2 className={`${styles.header_headline}`}>
+            Armored Swat/APC Vehicles
+          </h2>
+        </Link>
 
         <Navigation isNavOpen={isNavOpen} />
 

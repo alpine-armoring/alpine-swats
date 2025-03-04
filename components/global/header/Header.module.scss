@@ -1,5 +1,5 @@
 .header {
-  padding: rem(14) 0;
+  padding: rem(8) 0;
   position: fixed;
   top: 0;
   left: 0;
@@ -14,6 +14,11 @@
   @include breakpoint(medium) {
     padding-top: rem(12);
     padding-bottom: rem(12);
+  }
+
+  @include breakpoint(large) {
+    display: flex;
+    height: 145px;
   }
 
   &_static,
@@ -107,9 +112,33 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 8px;
+    @include breakpoint(medium) {
+      padding: 0 16px;
+    }
+    @include breakpoint('large') {
+      padding: 0 32px;
+      width: 100%;
+    }
+  }
+
+  &_headline { 
+    font-weight: var(--font-demi); 
+    font-size: 12px;
+    margin-top: 10px;
+    text-transform: uppercase;
+
+    @include breakpoint('large') {
+      margin-top: 6px;
+      font-size: 14px;
+    }
   }
 
   &_logo {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
     @include breakpoint('large') {
       position: absolute;
       left: 0;
@@ -119,6 +148,11 @@
       margin: auto;
       width: 450px;
     }
+
+    img{
+      max-width: 70px;
+    }
+
     svg {
       @include breakpoint('untilLarge') {
         width: 280px;
