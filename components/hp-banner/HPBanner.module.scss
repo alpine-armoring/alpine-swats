@@ -79,7 +79,7 @@
     margin-bottom: rem(12);
     font-weight: var(--font-light);
     font-size: rem(16);
-    font-size: clamp(0.8125rem, 0.6305rem + 0.7767vw, 1.5625rem);
+    font-size: clamp(0.84375rem, 0.6835rem + 0.7325vw, 1.5625rem);
     text-transform: uppercase;
     white-space: pre-wrap;
     letter-spacing: -0.7px;
@@ -88,7 +88,7 @@
       display: inline-block;
       margin-top: 5px;
       font-size: rem(18);
-      font-size: clamp(1.1125rem, 0.9202rem + 0.9051vw, 2.00625rem);
+      font-size: clamp(1.15rem, 0.9591rem + 0.8726vw, 2.00625rem);
       font-weight: var(--font-regular);
     }
 
