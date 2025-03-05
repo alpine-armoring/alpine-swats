@@ -59,7 +59,7 @@ const FeaturedVehicles = (props) => {
             {props.data.items.map((item, index) => (
               <Link
                 key={item.id}
-                href={`/inventory/${item.attributes.slug}`}
+                href={`/models/${item.attributes.slug}`}
                 className={`${styles.featuredVehicles_slider_item} ${
                   selectedIndex === index ? styles.active : ''
                 }`}
