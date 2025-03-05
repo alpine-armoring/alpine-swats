@@ -75,15 +75,15 @@ const Header = ({
         >
           {/* <Logo /> */}
           <Image
-            src="/assets/Alpine-Armoring-Original-gold-logo.png"
+            src="/assets/Alpine-Armoring-Armored-Vehicles.png"
             alt="Alpine Armoring Logo"
-            width="70"
-            height="108"
+            width="110"
+            height="40"
             priority
           />
 
           <h2 className={`${styles.header_headline}`}>
-            Armored Swat/APC Vehicles
+            Armored SWAT & APC Vehicles
           </h2>
         </Link>
 

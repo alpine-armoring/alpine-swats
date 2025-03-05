@@ -18,7 +18,7 @@
 
   @include breakpoint(large) {
     display: flex;
-    height: 145px;
+    height: 75px;
   }
 
   &_static,
@@ -124,20 +124,19 @@
 
   &_headline {
     font-weight: var(--font-demi);
-    font-size: 12px;
-    margin-top: 10px;
+    font-size: 11px;
+    margin-top: 8px;
     text-transform: uppercase;
 
     @include breakpoint('large') {
-      margin-top: 6px;
-      font-size: 14px;
+      margin-top: 4px;
+      font-size: 13px;
     }
   }
 
   &_logo {
     display: flex;
     flex-flow: column;
-    align-items: center;
 
     @include breakpoint('large') {
       position: absolute;
@@ -147,11 +146,12 @@
       transform: translateY(-50%);
       margin: auto;
       width: 450px;
+      align-items: center;
     }
 
-    img {
-      max-width: 70px;
-    }
+    // img {
+    //   max-width: 70px;
+    // }
 
     svg {
       @include breakpoint('untilLarge') {
