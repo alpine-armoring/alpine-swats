@@ -44,7 +44,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: rem(32) rem(12) rem(72) rem(12);
+    padding: rem(32) rem(8) rem(55) rem(8);
     z-index: 3;
 
     @include breakpoint(medium) {
@@ -82,12 +82,13 @@
     font-size: clamp(0.8125rem, 0.6305rem + 0.7767vw, 1.5625rem);
     text-transform: uppercase;
     white-space: pre-wrap;
+    letter-spacing: -0.7px;
 
     b {
       display: inline-block;
       margin-top: 5px;
       font-size: rem(18);
-      font-size: clamp(1.125rem, 0.9058rem + 0.9353vw, 2.028125rem);
+      font-size: clamp(1.1125rem, 0.9202rem + 0.9051vw, 2.00625rem);
       font-weight: var(--font-regular);
     }
 
