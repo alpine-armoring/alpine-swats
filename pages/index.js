@@ -5,6 +5,7 @@ import Head from 'next/head';
 import HPBanner from 'components/hp-banner/HPBanner';
 import FillingText from 'components/global/filling-text/FillingText';
 import FeaturedVehicles from 'components/global/featured-vehicles/FeaturedVehicles';
+import Testimonials from 'components/global/testimonials/Testimonials';
 import Button from 'components/global/button/Button';
 
 function Home(props) {
@@ -52,6 +53,7 @@ function Home(props) {
   };
 
   const GSA = data?.GSA;
+  const testimonials = data?.testimonials;
 
   // Animations
   useEffect(() => {
@@ -112,6 +114,8 @@ function Home(props) {
           </div>
         </>
       ) : null}
+
+      {testimonials ? <Testimonials data={testimonials} /> : null}
     </>
   );
 }
@@ -119,7 +123,8 @@ function Home(props) {
 export async function getStaticProps() {
   const homepageData = await getPageData({
     route: 'swat-homepage',
-    populate: 'deep',
+    populate:
+      'bannerVideo.video_webm, bannerVideo.video_mp4, vehicles_we_armors.featuredImage, GSA, topText, seo, testimonials.testimonials',
   });
 
   const seoData = homepageData.data?.attributes.seo || null;
