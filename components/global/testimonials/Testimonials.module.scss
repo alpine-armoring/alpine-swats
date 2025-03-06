@@ -1,125 +1,123 @@
 .testimonials {
-    color: var(--color-primary);
-    padding: 80px 0;
+  color: var(--color-primary);
+  padding: 80px 0;
 
+  @include breakpoint(large) {
+    padding: 130px 0 80px 0;
+  }
+
+  @include breakpoint(huge) {
+    padding: 150px 0 80px 0;
+  }
+
+  &__container {
+    max-width: 1200px;
+  }
+
+  &__slider {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 20px;
+  }
+
+  &__content {
+    // max-width: 800px;
+    width: 100%;
+    text-align: center;
+    padding: 0 25px;
+    // min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include breakpoint(medium) {
+      padding: 0 50px;
+    }
     @include breakpoint(large) {
-      padding: 130px 0 80px 0;
-    }
-
-    @include breakpoint(huge) {
-      padding: 150px 0 80px 0;
-    }
-    
-    &__container {
-      max-width: 1200px;
-    }
-    
-    &__slider {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      margin-top: 20px;
-    }
-    
-    &__content {
-      // max-width: 800px;
-      width: 100%;
-      text-align: center;
-      padding: 0 25px;
-      // min-height: 200px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      @include breakpoint(medium) {
-        padding: 0 50px;
-      }
-      @include breakpoint(large) {
-        padding: 0 80px;
-      }
-    }
-    
-    &__item {
-      transition: opacity 0.5s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      
-      &--animating {
-        opacity: 0;
-      }
-    }
-    
-    &__quote {
-      font-size: clamp(0.875rem, 0.7233rem + 0.6472vw, 1.5rem);
-      margin-bottom: 30px;
-    }
-    
-    &__author {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-    }
-    
-    &__name {
-      font-size: clamp(0.875rem, 0.7233rem + 0.6472vw, 1.5rem);
-      font-weight: 500;
-    }
-    
-    &__company {
-      font-size: clamp(0.8125rem, 0.7063rem + 0.4531vw, 1.25rem);
-    }
-    
-    &__button {
-      background: transparent;
-      border: none;
-      color: var(--color-primary);
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: opacity 0.3s ease;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-      &:hover {
-        opacity: 0.7;
-      }
-      
-      &:focus {
-        outline: none;
-      }
-      
-      &--prev {
-        left: 0;
-        
-        .testimonials__arrow {
-          transform: rotate(-45deg);
-        }
-      }
-      
-      &--next {
-        right: 0;
-        
-        .testimonials__arrow {
-          transform: rotate(135deg);
-        }
-      }
-    }
-    
-    &__arrow {
-      display: block;
-      width: 15px;
-      height: 15px;
-      border-top: 3px solid var(--color-primary);
-      border-left: 3px solid var(--color-primary);
+      padding: 0 80px;
     }
   }
-  
-  
+
+  &__item {
+    transition: opacity 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &--animating {
+      opacity: 0;
+    }
+  }
+
+  &__quote {
+    font-size: clamp(0.875rem, 0.7233rem + 0.6472vw, 1.5rem);
+    margin-bottom: 30px;
+  }
+
+  &__author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__name {
+    font-size: clamp(0.875rem, 0.7233rem + 0.6472vw, 1.5rem);
+    font-weight: 500;
+  }
+
+  &__company {
+    font-size: clamp(0.8125rem, 0.7063rem + 0.4531vw, 1.25rem);
+  }
+
+  &__button {
+    background: transparent;
+    border: none;
+    color: var(--color-primary);
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.3s ease;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &--prev {
+      left: 0;
+
+      .testimonials__arrow {
+        transform: rotate(-45deg);
+      }
+    }
+
+    &--next {
+      right: 0;
+
+      .testimonials__arrow {
+        transform: rotate(135deg);
+      }
+    }
+  }
+
+  &__arrow {
+    display: block;
+    width: 15px;
+    height: 15px;
+    border-top: 3px solid var(--color-primary);
+    border-left: 3px solid var(--color-primary);
+  }
+}
