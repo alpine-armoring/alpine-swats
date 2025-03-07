@@ -122,14 +122,14 @@
         }
       }
 
-      &_buttons{
+      &_buttons {
         display: flex;
 
-        &>a{
+        & > a {
           width: 50%;
           max-width: 200px;
 
-          &:first-child{
+          &:first-child {
             margin-right: 8px;
           }
         }
