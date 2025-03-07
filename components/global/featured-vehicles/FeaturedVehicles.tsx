@@ -57,29 +57,30 @@ const FeaturedVehicles = (props) => {
         <div className={`${styles.featuredVehicles_slider}`} ref={sliderRef}>
           <div className={`${styles.featuredVehicles_slider_container}`}>
             {props.data.items.map((item, index) => (
-              <Link
+              <div
                 key={item.id}
-                href={`/models/${item.attributes.slug}`}
                 className={`${styles.featuredVehicles_slider_item} ${
                   selectedIndex === index ? styles.active : ''
                 }`}
               >
                 {item.attributes.featuredImage.data ? (
-                  <Image
-                    src={`${
-                      item.attributes.featuredImage.data.attributes.formats
-                        .large?.url ||
-                      item.attributes.featuredImage.data.attributes.url
-                    }`}
-                    alt={
-                      item.attributes.featuredImage.data.attributes
-                        .alternativeText || 'Alpine Armoring'
-                    }
-                    width={900}
-                    height={500}
-                    priority={index === 0}
-                    className={`${styles.featuredVehicles_slider_item_image}`}
-                  />
+                  <Link href={`/models/${item.attributes.slug}`}>
+                    <Image
+                      src={`${
+                        item.attributes.featuredImage.data.attributes.formats
+                          .large?.url ||
+                        item.attributes.featuredImage.data.attributes.url
+                      }`}
+                      alt={
+                        item.attributes.featuredImage.data.attributes
+                          .alternativeText || 'Alpine Armoring'
+                      }
+                      width={900}
+                      height={500}
+                      priority={index === 0}
+                      className={`${styles.featuredVehicles_slider_item_image}`}
+                    />
+                  </Link>
                 ) : null}
 
                 <div
@@ -92,14 +93,28 @@ const FeaturedVehicles = (props) => {
                     }}
                   ></h3>
 
-                  <Button
-                    className={`${styles.featuredVehicles_slider_item_button} primary rounded`}
-                    button
+                  <div
+                    className={`${styles.featuredVehicles_slider_item_buttons}`}
                   >
-                    View Vehicle
-                  </Button>
+                    <Button
+                      className={`${styles.featuredVehicles_slider_item_button} rounded`}
+                      // button
+                      href={`/models/${item.attributes.slug}`}
+                    >
+                      View Model
+                    </Button>
+
+                    {item.attributes.swatsStock.data ? (
+                      <Button
+                        className={`${styles.featuredVehicles_slider_item_button} primary rounded`}
+                        href={`/inventory/${item.attributes.swatsStock.data.attributes.slug}`}
+                      >
+                        View Stock
+                      </Button>
+                    ) : null}
+                  </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -117,7 +132,7 @@ const FeaturedVehicles = (props) => {
 
         <div className={`center`}>
           <Button className={`rounded`} href="models">
-            View All Models
+            View All Tactical Models
           </Button>
         </div>
 

@@ -122,6 +122,19 @@
         }
       }
 
+      &_buttons{
+        display: flex;
+
+        &>a{
+          width: 50%;
+          max-width: 200px;
+
+          &:first-child{
+            margin-right: 8px;
+          }
+        }
+      }
+
       &_button {
         margin-top: rem(10);
         cursor: pointer;

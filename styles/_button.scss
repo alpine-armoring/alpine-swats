@@ -21,8 +21,8 @@
   }
 
   &:hover:not(.shiny):not(.primary):not(.border):not(.attention):not(.icon) {
-    background: transparent;
-    border-color: var(--color-dark);
+    background: white;
+    // border-color: var(--color-dark);
     color: var(--color-dark);
   }
 

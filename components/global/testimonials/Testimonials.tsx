@@ -1,40 +1,9 @@
 import { useState } from 'react';
 import styles from './Testimonials.module.scss';
 
-// Testimonial data type
-// interface Testimonial {
-//   id: number
-//   quote: string
-//   name: string
-//   company: string
-// }
-
-// Sample testimonials data
-// const testimonials: Testimonial[] = [
-//   {
-//     id: 1,
-//     quote: "ADCI had an ability to truly listen and pay attention to what we were saying.",
-//     name: "Amanda Gonser",
-//     company: "Drupal Association",
-//   },
-//   {
-//     id: 2,
-//     quote: "Their team was responsive, professional, and delivered exceptional results on time.",
-//     name: "John Smith",
-//     company: "Tech Solutions Inc.",
-//   },
-//   {
-//     id: 3,
-//     quote: "Working with them transformed our digital presence and helped us reach new customers.",
-//     name: "Sarah Johnson",
-//     company: "Global Enterprises",
-//   },
-// ]
-
 function Testimonials(props) {
   const testimonials = props.data.testimonials;
-  console.log(testimonials);
-  // return null;
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   //   const [autoplayEnabled, setAutoplayEnabled] = useState(false)

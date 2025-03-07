@@ -96,9 +96,9 @@ function Home(props) {
 
       {topText ? <FillingText small dark data={topText} /> : null}
 
-      <div className={`center`}>
+      <div className={`center observe fade-in-up`}>
         <Button className={`primary rounded`} href="inventory">
-          View Available Inventory
+          View Available Tactical Vehicles
         </Button>
       </div>
 
@@ -107,7 +107,7 @@ function Home(props) {
       {GSA ? (
         <>
           <FillingText small dark data={GSA} />
-          <div className={`center`}>
+          <div className={`center observe fade-in-up`}>
             <Button className={`primary rounded`} href="contact">
               Contact Us
             </Button>
@@ -124,7 +124,8 @@ export async function getStaticProps() {
   const homepageData = await getPageData({
     route: 'swat-homepage',
     populate:
-      'bannerVideo.video_webm, bannerVideo.video_mp4, vehicles_we_armors.featuredImage, GSA, topText, seo, testimonials.testimonials',
+      'bannerVideo.video_webm, bannerVideo.video_mp4, vehicles_we_armors.featuredImage, vehicles_we_armors.swatsStock, GSA, topText, seo, testimonials.testimonials',
+    // populate: 'deep',
   });
 
   const seoData = homepageData.data?.attributes.seo || null;
