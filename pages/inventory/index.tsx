@@ -127,10 +127,22 @@ function Home(props) {
 }
 
 export async function getServerSideProps(context) {
-  const { locale } = context;
+  const locale = context.locale || 'en';
   const route = routes.inventory;
 
-  const query = `filters[$or][0][categories][slug][$eq]=armored-law-enforcement&filters[$or][1][categories][slug][$eq]=armored-specialty-vehicles&filters[slug][$notContains]=mastiff`;
+  let pageData = await getPageData({
+    route: route.collection,
+    populate: 'deep',
+  }).then((response) => response.data);
+
+  pageData = pageData ? pageData : null;
+
+  const { vehicles_we_armor } = context.query;
+
+  let query = `filters[$or][0][categories][slug][$eq]=armored-law-enforcement&filters[$or][1][categories][slug][$eq]=armored-specialty-vehicles&filters[slug][$notContains]=mastiff`;
+  if (vehicles_we_armor) {
+    query += `&filters[vehicles_we_armor][slug][$eq]=${vehicles_we_armor}`;
+  }
 
   const vehicles = await getPageData({
     route: route.collectionSingle,
@@ -145,13 +157,6 @@ export async function getServerSideProps(context) {
 
   // Filter out hidden vehicles
   vehicles.data = vehicles.data.filter((vehicle) => !vehicle.attributes.hide);
-
-  let pageData = await getPageData({
-    route: route.collection,
-    populate: 'deep',
-  }).then((response) => response.data);
-
-  pageData = pageData ? pageData : null;
 
   const seoData = pageData?.attributes?.seo ?? null;
 
