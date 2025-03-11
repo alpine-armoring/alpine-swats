@@ -109,7 +109,7 @@ const FeaturedVehicles = (props) => {
                         className={`${styles.featuredVehicles_slider_item_button} primary rounded`}
                         href={`/inventory/${item.attributes.swatsStock.data.attributes.slug}`}
                       >
-                        View Stock
+                        View Inventory
                       </Button>
                     ) : null}
                   </div>
