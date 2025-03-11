@@ -3,7 +3,7 @@ import { getPageData } from 'hooks/api';
 import { useEffect, useState, useRef } from 'react';
 import Banner from 'components/global/banner/Banner';
 import CustomMarkdown from 'components/CustomMarkdown';
-import TabSlider from 'components/global/tab-slider/TabSlider';
+// import TabSlider from 'components/global/tab-slider/TabSlider';
 import LightboxCustom from 'components/global/lightbox/LightboxCustom';
 import Image from 'next/image';
 import routes from 'routes';
@@ -83,34 +83,34 @@ function Testing(props) {
     };
   }, []);
 
-  const tabSliderData = [
-    {
-      id: 0,
-      titleNav: 'Ballistic Certifications',
-    },
-    {
-      id: 1,
-      titleNav: 'Material Testing',
-    },
-    {
-      id: 2,
-      titleNav: 'Live Fire Testing',
-    },
-  ];
+  // const tabSliderData = [
+  //   {
+  //     id: 0,
+  //     titleNav: 'Ballistic Certifications',
+  //   },
+  //   {
+  //     id: 1,
+  //     titleNav: 'Material Testing',
+  //   },
+  //   {
+  //     id: 2,
+  //     titleNav: 'Live Fire Testing',
+  //   },
+  // ];
 
-  const handleTabChange = (index, titleNav) => {
-    const targetId = titleNav.toLowerCase().replace(/\s+/g, '-');
-    const targetElement = document.getElementById(targetId);
-    const offset = 100;
+  // const handleTabChange = (index, titleNav) => {
+  //   const targetId = titleNav.toLowerCase().replace(/\s+/g, '-');
+  //   const targetElement = document.getElementById(targetId);
+  //   const offset = 100;
 
-    const elementPosition = targetElement.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - offset;
+  //   const elementPosition = targetElement.getBoundingClientRect().top;
+  //   const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth',
-    });
-  };
+  //   window.scrollTo({
+  //     top: offsetPosition,
+  //     behavior: 'smooth',
+  //   });
+  // };
 
   // Lightbox
   const [selectedTitle, setSelectedTitle] = useState('');
@@ -143,12 +143,12 @@ function Testing(props) {
           <Banner props={props.pageData?.banner} shape="dark" />
         ) : null}
 
-        <TabSlider
+        {/* <TabSlider
           className={`${styles.testing_tabs} desktop-only`}
           props={tabSliderData}
           onTabChange={handleTabChange}
           anchor
-        />
+        /> */}
 
         {title ? (
           <div
