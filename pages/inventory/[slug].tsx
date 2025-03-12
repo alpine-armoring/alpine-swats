@@ -104,7 +104,7 @@ function InventoryVehicle(props) {
     props && props.data && props.data.data[0] && props.data.data[0].attributes;
 
   const topGallery = data?.gallery?.data;
-  const mainText = data?.description;
+  const mainText = data?.rentalsDescription;
 
   const videoWebm = data?.video?.data?.attributes;
   const videoMP4 = data?.videoMP4?.data?.attributes;
