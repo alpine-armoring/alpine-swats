@@ -132,6 +132,9 @@ small {
     margin: 10px 0;
     content: '';
   }
+  video{
+    max-width: 100%;
+  }
   blockquote {
     background-color: var(--color-white);
     border-radius: 8px;

@@ -52,6 +52,12 @@
         margin-bottom: 10px;
       }
     }
+
+    a{
+      text-decoration: underline;
+      font-weight: var(--font-medium);
+    }
+
   }
 
   &_content {

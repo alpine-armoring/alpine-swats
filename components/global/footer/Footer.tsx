@@ -3,6 +3,7 @@ import styles from './Footer.module.scss';
 import FacebookIcon from 'components/icons/Facebook';
 import TiktokIcon from 'components/icons/Tiktok';
 import XIcon from 'components/icons/X';
+import { useRouter } from 'next/router';
 import InstagramIcon from 'components/icons/Instagram';
 import YoutubeIcon from 'components/icons/Youtube';
 import LinkedinIcon from 'components/icons/Linkedin';
@@ -11,8 +12,11 @@ import MapIcon from 'components/icons/Map';
 import PhoneIcon from 'components/icons/Phone';
 import MailIcon from 'components/icons/Mail';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Footer = (props) => {
+  const router = useRouter();
+
   const links = [
     { path: '/inventory', text: 'Available SWAT Vehicles' },
     { path: '/about-us', text: 'About Us' },
@@ -186,8 +190,34 @@ const Footer = (props) => {
           </ul>
 
           <p className={`${styles.footer_bottom_copy}`}>
-            ©1997-2024. Alpine Armoring Inc. <span>All Rights Reserved</span>
+            ©1997-{new Date().getFullYear()}. Alpine Armoring Inc.{' '}
+            <span>All Rights Reserved</span>
           </p>
+
+          <Link
+            href="https://www.alpineco.com/"
+            className={`
+              ${styles.footer_flag} 
+              ${
+                ['/manufacturing', '/ballistic-testing'].includes(
+                  router.pathname
+                )
+                  ? styles.footer_flag_dark
+                  : styles.footer_flag_light
+              }
+            `}
+          >
+            <Image
+              src="/assets/Alpine-Armoring-logo-vertical.png"
+              alt="armored vehicles"
+              width={55}
+              height={84}
+              unoptimized
+            />
+            <h4 className={`${styles.footer_flag_wrap}`}>
+              Visit Alpine Amoring
+            </h4>
+          </Link>
         </div>
       </div>
     </footer>

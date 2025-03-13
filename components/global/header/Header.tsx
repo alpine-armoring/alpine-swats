@@ -82,6 +82,23 @@ const Header = ({
             priority
           />
 
+          {/* <svg version="1.1" id="Layer_3" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            viewBox="0 0 625.8 37">
+            <defs>
+              <style type="text/css">
+                {`
+                  .st0{fill:none;}
+                  .st1{fill:#FFFFFF;}
+                  .st2{font-family:'Termina';}
+                  .st3{font-size:28px;}
+
+                `}
+              </style>
+            </defs>
+          <rect y="7.7" className="st0" width="625.8" height="37"/>
+          <text transform="matrix(1 0 0 1 8.6111 28.4184)" className="st1 st2 st3">SWAT &amp; APC VEHICLES</text>
+          </svg> */}
+
           <span className={`${styles.header_headline}`}>
             Armored SWAT & APC Vehicles
           </span>
