@@ -20,11 +20,10 @@
       margin-top: 80px;
     }
 
-    &_text {
+    &_text,
+    &_video,
+    &_image {
       margin-bottom: 40px;
-      @include breakpoint(large) {
-        margin-bottom: 80px;
-      }
     }
 
     h2 {

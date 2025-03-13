@@ -62,7 +62,13 @@ function Testing(props) {
                     component.media.data?.attributes.mime.startsWith('video/')
                   ) {
                     return (
-                      <video autoPlay muted loop key={index}>
+                      <video
+                        autoPlay
+                        muted
+                        loop
+                        key={index}
+                        className={`${styles.testing_content_video}`}
+                      >
                         <source
                           src={component.media.data.attributes.url}
                           type={component.media.data.attributes.mime}
@@ -88,6 +94,7 @@ function Testing(props) {
                           component.media.data?.attributes.formats.large
                             ?.height || component.media.data?.attributes.height
                         }
+                        className={`${styles.testing_content_image}`}
                       />
                     );
                   }
