@@ -1,5 +1,4 @@
 .testing {
-  
   color: white;
 
   &_title {
@@ -16,32 +15,31 @@
     }
   }
 
-  &_content{
-
+  &_content {
     @include breakpoint(large) {
       margin-top: 80px;
     }
 
-    &_text{
+    &_text {
       margin-bottom: 40px;
       @include breakpoint(large) {
         margin-bottom: 80px;
       }
     }
 
-    h2{
+    h2 {
       margin-bottom: 1rem;
       text-transform: uppercase;
       color: var(--color-background);
       font-weight: var(--font-demi);
       font-size: 1.25rem;
-      font-size: clamp(1.125rem, 1.0188rem + .4531vw, 1.5625rem);
+      font-size: clamp(1.125rem, 1.0188rem + 0.4531vw, 1.5625rem);
     }
 
-    p{
+    p {
       margin-bottom: 1rem;
-      font-size: .875rem;
-      font-size: clamp(.875rem, .784rem + .3883vw, 1.25rem);
+      font-size: 0.875rem;
+      font-size: clamp(0.875rem, 0.784rem + 0.3883vw, 1.25rem);
     }
   }
 
@@ -75,4 +73,3 @@
     }
   }
 }
-
