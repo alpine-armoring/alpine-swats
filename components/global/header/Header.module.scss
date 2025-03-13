@@ -63,11 +63,9 @@
     ):not(.header_transparent) {
     --color-white: var(--color-primary);
 
-    // .header_logo path,
-    // .header_logo rect,
-    // .header_logo polygon {
-    //   fill: var(--color-dark);
-    // }
+    .header_logo path {
+      fill: var(--color-dark);
+    }
     // svg {
     //   fill: var(--color-dark);
     // }
@@ -153,13 +151,13 @@
     //   max-width: 70px;
     // }
 
-    svg {
-      @include breakpoint('untilLarge') {
-        width: 280px;
-        height: 40px;
-        max-width: 77vw;
-      }
-    }
+    // svg {
+    //   @include breakpoint('untilLarge') {
+    //     width: 280px;
+    //     height: 40px;
+    //     max-width: 77vw;
+    //   }
+    // }
 
     a {
       display: flex;

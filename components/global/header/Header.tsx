@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from 'components/global/button/Button';
-// import Logo from 'components/icons/Logo';
+import Logo from 'components/icons/Logo2';
 import Navigation from 'components/global/navigation/Navigation';
 import styles from './Header.module.scss';
 import { HeaderProps } from 'types';
@@ -73,12 +73,11 @@ const Header = ({
           aria-label="Alpine Armoring Logo"
           onClick={() => setNavOpen(false)}
         >
-          {/* <Logo /> */}
           <Image
             src="/assets/alpine-armoring-logo-goldbox-curved.png"
             alt="Alpine Armoring Logo"
-            width="130"
-            height="54"
+            width="120"
+            height="50"
             priority
           />
 
@@ -100,7 +99,8 @@ const Header = ({
           </svg> */}
 
           <span className={`${styles.header_headline}`}>
-            Armored SWAT & APC Vehicles
+            {/* Armored SWAT & APC Vehicles */}
+            <Logo />
           </span>
         </Link>
 

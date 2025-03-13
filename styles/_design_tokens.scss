@@ -16,7 +16,7 @@
   --font-medium: 500;
   --font-demi: 600;
 
-  --header-height: 90px;
+  --header-height: 95px;
   @include breakpoint(large) {
     --header-height: 80px;
   }
