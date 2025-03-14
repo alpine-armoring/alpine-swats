@@ -45,13 +45,13 @@ function VehicleWeArmor(props) {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://www.alpineco.com/',
+          item: 'https://www.armored-swat.com/',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Models',
-          item: `https://www.alpineco.com/models`,
+          item: `https://www.armored-swat.com/models`,
         },
       ],
     };

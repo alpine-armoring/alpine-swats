@@ -11,4 +11,4 @@ Disallow: /contact-message.html
 Disallow: /Standard-0108.00
 Disallow: /Standard-0101.02
 
-Sitemap: https://armoredautos.com/sitemap.xml
+Sitemap: https://armored-swat.com/sitemap.xml

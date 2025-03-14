@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 const Seo = ({ props }) => {
   const router = useRouter();
-  const baseUrl = 'https://www.armoredautos.com';
+  const baseUrl = 'https://www.armored-swat.com';
 
   // Default values
   const metaTitle = props?.metaTitle || 'Alpine Armoring';

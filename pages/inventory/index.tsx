@@ -52,13 +52,13 @@ function Home(props) {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://www.armoredautos.com/',
+          item: 'https://www.armored-swat.com/',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Armored SWATS in stock',
-          item: `https://www.armoredautos.com/inventory`,
+          item: `https://www.armored-swat.com/inventory`,
         },
       ],
     };

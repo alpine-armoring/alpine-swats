@@ -10,7 +10,7 @@ const replaceHeadings = (text) =>
 const replaceLinks = (text) =>
   text.replace(/\[(.*?)\]\((.*?)\)/g, (match, linkText, url) => {
     const isExternal =
-      !url.startsWith('/') && !url.includes('https://www.armoredautos.com/');
+      !url.startsWith('/') && !url.includes('https://www.armored-swat.com/');
     const attributes = isExternal
       ? ' target="_blank" rel="noopener noreferrer"'
       : '';

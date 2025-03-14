@@ -159,7 +159,7 @@ function InventoryVehicle(props) {
       image: data?.featuredImage?.data?.attributes?.url,
       description:
         props.seoData?.metaDescription || data?.title?.replace('\n', ' '),
-      url: `https://www.alpineco.com/inventory/${data?.slug}`,
+      url: `https://www.armored-swat.com/inventory/${data?.slug}`,
       brand: {
         '@type': 'Brand',
         name: 'Alpine Armoring® Armored Vehicles',
@@ -167,7 +167,7 @@ function InventoryVehicle(props) {
       sku: `Alpine-${data?.slug}`,
       offers: {
         '@type': 'AggregateOffer',
-        url: `https://www.alpineco.com/inventory/${data?.slug}`,
+        url: `https://www.armored-swat.com/inventory/${data?.slug}`,
         priceCurrency: 'USD',
         lowPrice: '50000',
         highPrice: '200000',
@@ -279,19 +279,19 @@ function InventoryVehicle(props) {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://www.alpineco.com/',
+          item: 'https://www.armored-swat.com/',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Inventory',
-          item: `https://www.alpineco.com/inventory`,
+          item: `https://www.armored-swat.com/inventory`,
         },
         {
           '@type': 'ListItem',
           position: 3,
           name: data?.title,
-          item: `https://www.alpineco.com/inventory/${data?.slug}`,
+          item: `https://www.armored-swat.com/inventory/${data?.slug}`,
         },
       ],
     };
