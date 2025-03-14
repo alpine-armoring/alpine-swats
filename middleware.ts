@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const redirects = new Map([['/index.html', '/']]);
+const redirects = new Map([
+  ['/stock.html', '/inventory'],
+  ['/ballistic-chart.html', '/ballistic-chart'],
+  ['/contact.html', '/contact'],
+  ['/about.html', '/about-us'],
+  ['/index.html', '/'],
+]);
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

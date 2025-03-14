@@ -7,9 +7,30 @@ import FillingText from 'components/global/filling-text/FillingText';
 import FeaturedVehicles from 'components/global/featured-vehicles/FeaturedVehicles';
 import Testimonials from 'components/global/testimonials/Testimonials';
 import Button from 'components/global/button/Button';
+import Accordion from 'components/global/accordion/Accordion';
 
 function Home(props) {
   const data = props.homepageData.data?.attributes;
+
+  const topBanner = {
+    title: data?.topBannerTitle,
+    description: data?.topBannerDescription,
+    video: data?.bannerVideo,
+    white: true,
+  };
+
+  const topText = data?.topText;
+
+  const featuredVehiclesData = {
+    title: data?.featuredVehiclesTitle,
+    items: data?.vehicles_we_armors?.data,
+  };
+
+  const middleText = data?.middleText;
+  const GSA = data?.GSA;
+  const testimonials = data?.testimonials;
+  const faqsTitle = data.faqsTitle;
+  const faqs = data.faqs;
 
   const getOrganizationStructuredData = () => {
     const structuredData = {
@@ -37,23 +58,6 @@ function Home(props) {
 
     return JSON.stringify(structuredData);
   };
-
-  const topBanner = {
-    title: data?.topBannerTitle,
-    description: data?.topBannerDescription,
-    video: data?.bannerVideo,
-    white: true,
-  };
-
-  const topText = data?.topText;
-
-  const featuredVehiclesData = {
-    title: data?.featuredVehiclesTitle,
-    items: data?.vehicles_we_armors?.data,
-  };
-
-  const GSA = data?.GSA;
-  const testimonials = data?.testimonials;
 
   // Animations
   useEffect(() => {
@@ -104,6 +108,8 @@ function Home(props) {
 
       <FeaturedVehicles data={featuredVehiclesData} />
 
+      {middleText ? <FillingText small dark data={middleText} /> : null}
+
       {GSA ? (
         <>
           <FillingText small dark data={GSA} />
@@ -116,6 +122,15 @@ function Home(props) {
       ) : null}
 
       {testimonials ? <Testimonials data={testimonials} /> : null}
+
+      {faqs?.length > 0 ? (
+        <div className={`mt2`}>
+          <Accordion
+            items={faqs}
+            title={`${faqsTitle || 'Frequently Asked Questions'}`}
+          />
+        </div>
+      ) : null}
     </>
   );
 }
@@ -124,7 +139,7 @@ export async function getStaticProps() {
   const homepageData = await getPageData({
     route: 'swat-homepage',
     populate:
-      'bannerVideo.video_webm, bannerVideo.video_mp4, vehicles_we_armors.featuredImage, vehicles_we_armors.swatsStock, GSA, topText, seo, testimonials.testimonials',
+      'bannerVideo.video_webm, bannerVideo.video_mp4, vehicles_we_armors.featuredImage, vehicles_we_armors.swatsStock, GSA, topText, middleText, seo, testimonials.testimonials, faqs',
     // populate: 'deep',
   });
 

@@ -4,6 +4,10 @@
   color: var(--color-white);
   overflow: hidden;
 
+  @include breakpoint(large) {
+    margin-bottom: rem(40);
+  }
+
   &_dark {
     color: var(--color-secondary);
   }
@@ -56,6 +60,26 @@
     a {
       text-decoration: underline;
       font-weight: var(--font-medium);
+    }
+
+    h2{
+      text-align: center;
+      font-weight: var(--font-medium);
+      letter-spacing: 0.1px;
+      margin-bottom: 1.125rem;
+      padding: 0 10px;
+      color: var(--color-primary);
+      font-size: 20px;
+
+      @include breakpoint(medium) {
+        max-width: 940px;
+        margin: auto;
+        margin-bottom: 1.5rem;
+      }
+
+      @include breakpoint(large) {
+        font-size: rem(35);
+      }
     }
   }
 

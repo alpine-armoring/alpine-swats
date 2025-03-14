@@ -24,7 +24,7 @@ const FillingText = ({ data, dark = false, className = '', small = false }) => {
         ) : null}
 
         {text ? (
-          <div className={`${styles.fillingText_text} observe fade-in-up`}>
+          <div className={`${styles.fillingText_text} observe fade-in`}>
             <CustomMarkdown>{text}</CustomMarkdown>
           </div>
         ) : null}
