@@ -7,6 +7,7 @@ import FillingText from 'components/global/filling-text/FillingText';
 import FeaturedVehicles from 'components/global/featured-vehicles/FeaturedVehicles';
 import Testimonials from 'components/global/testimonials/Testimonials';
 import Button from 'components/global/button/Button';
+import Partners from 'components/global/partners/Partners';
 import Accordion from 'components/global/accordion/Accordion';
 
 function Home(props) {
@@ -29,6 +30,7 @@ function Home(props) {
   const middleText = data?.middleText;
   const GSA = data?.GSA;
   const testimonials = data?.testimonials;
+  const partners = data?.industryPartners;
   const faqsTitle = data.faqsTitle;
   const faqs = data.faqs;
 
@@ -123,6 +125,8 @@ function Home(props) {
 
       {testimonials ? <Testimonials data={testimonials} /> : null}
 
+      {partners ? <Partners props={partners} /> : null}
+
       {faqs?.length > 0 ? (
         <div className={`mt2`}>
           <Accordion
@@ -139,7 +143,7 @@ export async function getStaticProps() {
   const homepageData = await getPageData({
     route: 'swat-homepage',
     populate:
-      'bannerVideo.video_webm, bannerVideo.video_mp4, vehicles_we_armors.featuredImage, vehicles_we_armors.swatsStock, GSA, topText, middleText, seo, testimonials.testimonials, faqs',
+      'bannerVideo.video_webm, bannerVideo.video_mp4, industryPartners.image, vehicles_we_armors.featuredImage, vehicles_we_armors.swatsStock, GSA, topText, middleText, seo, testimonials.testimonials, faqs',
     // populate: 'deep',
   });
 
