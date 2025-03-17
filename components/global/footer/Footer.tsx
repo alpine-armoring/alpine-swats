@@ -196,6 +196,7 @@ const Footer = (props) => {
 
           <Link
             href="https://www.alpineco.com/"
+            target="_blank"
             className={`
               ${styles.footer_flag} 
               ${
