@@ -25,7 +25,7 @@ const routes = {
   ballisticTesting: {
     collection: 'swat-ballistic-testing',
     paths: {
-      en: '/ballistic-testing',
+      en: '/armored-vehicle-testing',
       es: '/pruebas-balisticas',
     },
   },

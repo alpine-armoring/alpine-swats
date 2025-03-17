@@ -24,7 +24,7 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
 
   const linksRight = [
     { path: '/about-us', text: 'About Us' },
-    { path: '/ballistic-testing', text: 'Ballistic Testing' },
+    { path: '/armored-vehicle-testing', text: 'Armored Vehicle Testing' },
     { path: '/ballistic-chart', text: 'Weapons & Ammunition Chart' },
     { path: '/faqs', text: 'FAQs' },
     { path: '/contact', text: 'Contact' },

@@ -1,14 +1,20 @@
 User-agent: *
 
-Disallow: /images/
-Disallow: /vehicle-pages/
-Disallow: /pdf/
-Disallow: /link
-Disallow: /allaboutcookies.org
-Disallow: /inventory/armored-mercedes-benz-s580-executive-1287
-Disallow: /pdf/MB-S550-3947/mercedes-benz-S550-full-armoring-specs.pdf
-Disallow: /contact-message.html
-Disallow: /Standard-0108.00
-Disallow: /Standard-0101.02
+Disallow: index.html
+Disallow: /about.html
+Disallow: /stock.html
+Disallow: /ballistic-chart.html
+Disallow: /contact.html
+Disallow: /pdf/Pit-Bull-VX.pdf
+Disallow: /pdf/UL-752.pdf
+Disallow: /pdf/NIJ-Standards_0108_01.pdf
+Disallow: /pdf/coming-soon.pdf
+Disallow: /pdf/Cuda.pdf
+Disallow: /pdf/European-Ballistic-Standards.pdf
+Disallow: /vehicles/cuda.html
+Disallow: /vehicles/vxt.html
+Disallow: /vehicles/xl.html
+Disallow: /vehicles/pointer-gray.html
+Disallow: /vehicles/vx.html
 
 Sitemap: https://armored-swat.com/sitemap.xml

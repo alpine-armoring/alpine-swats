@@ -159,7 +159,7 @@ const TopBanner = ({ props, shape, small }: BannerProps) => {
       className={`
       ${styles.banner}
       ${small ? styles.banner_small : ''}
-      ${currentRoute.startsWith('/ballistic-testing') ? styles.banner_full : ''}
+      ${currentRoute.startsWith('/armored-vehicle-testing') ? styles.banner_full : ''}
     `}
     >
       <div className={`${styles.banner_inner}`}>
@@ -210,7 +210,7 @@ const TopBanner = ({ props, shape, small }: BannerProps) => {
               ${
                 [
                   '/manufacturing',
-                  '/ballistic-testing',
+                  '/armored-vehicle-testing',
                   '/shipping-and-logistics',
                 ].includes(currentRoute)
                   ? styles.banner_heading_margin

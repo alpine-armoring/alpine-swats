@@ -50,17 +50,17 @@ const Layout = ({ children }) => {
 
   const isHomepage = router.pathname === '/';
 
-  const pathsHeaderTransparent = ['/ballistic-testing'];
+  const pathsHeaderTransparent = ['/armored-vehicle-testing'];
   const isHeaderGray = pathsHeaderTransparent.some(
     (path) => router.pathname.startsWith(path) || isHomepage
   );
 
-  const pathsDarkFooter = ['/ballistic-testing'];
+  const pathsDarkFooter = ['/armored-vehicle-testing'];
   const isDarkFooter = pathsDarkFooter.some((path) =>
     router.pathname.startsWith(path)
   );
 
-  const pathsDarkMode = ['/inventory', '/ballistic-testing'];
+  const pathsDarkMode = ['/inventory', '/armored-vehicle-testing'];
   const isDarkMode = pathsDarkMode.some((path) =>
     router.pathname.startsWith(path)
   );

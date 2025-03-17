@@ -22,7 +22,7 @@ const Footer = (props) => {
     { path: '/about-us', text: 'About Us' },
     { path: '/models', text: 'All SWAT Models' },
     { path: '/faqs', text: 'Armored SWAT  & APC FAQs' },
-    { path: '/ballistic-testing', text: 'Ballistic Testing' },
+    { path: '/armored-vehicle-testing', text: 'Armored Vehicle Testing' },
     { path: '/contact', text: 'Contact Us' },
     { path: '/ballistic-chart', text: 'Weapons & Ammunition Chart' },
   ];
@@ -200,7 +200,7 @@ const Footer = (props) => {
             className={`
               ${styles.footer_flag} 
               ${
-                ['/manufacturing', '/ballistic-testing'].includes(
+                ['/manufacturing', '/armored-vehicle-testing'].includes(
                   router.pathname
                 )
                   ? styles.footer_flag_dark

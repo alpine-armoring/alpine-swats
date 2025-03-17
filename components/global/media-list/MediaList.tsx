@@ -184,7 +184,7 @@ function MediaList({ props, itemType }) {
 
         return (
           <div className={`${styles.mediaList_list} container`} key={index}>
-            {currentRoute !== '/ballistic-testing' ? (
+            {currentRoute !== '/armored-vehicle-testing' ? (
               <h2 className={`${styles.mediaList_list_title} fade-in observe`}>
                 {getTranslatedCategory(category)}
               </h2>
