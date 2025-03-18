@@ -495,11 +495,33 @@ function Vehicle(props) {
     </>
   );
 }
-
 export async function getServerSideProps({ params, locale }) {
   const route = routes.models;
 
   try {
+    const parentPageData = await getPageData({
+      route: route.collection,
+      populate: 'vehicles_we_armors',
+      locale,
+    });
+
+    // Extract the IDs or slugs of the vehicles that are in vehicles_we_armors
+    const allowedVehicles =
+      parentPageData?.data?.attributes?.vehicles_we_armors?.data || [];
+    const allowedSlugs = allowedVehicles.map(
+      (vehicle) => vehicle.attributes.slug
+    );
+
+    // If there are no vehicles in vehicles_we_armors or the requested slug isn't in the list
+    if (!allowedSlugs.length || !allowedSlugs.includes(params.slug)) {
+      // Try looking for the slug without language suffix
+      const baseSlug = params.slug.replace(/-[a-z]{2}$/, '');
+      if (!allowedSlugs.includes(baseSlug)) {
+        return { notFound: true };
+      }
+    }
+
+    // Fetch the specific vehicle with the slug
     let data = await getPageData({
       route: route.collectionSingle,
       params: `filters[slug][$eq]=${params.slug}`,
@@ -534,7 +556,7 @@ export async function getServerSideProps({ params, locale }) {
       },
     };
   } catch (error) {
-    console.error('Error fetching inventory data:', error);
+    console.error('Error fetching model data:', error);
     return {
       notFound: true,
     };

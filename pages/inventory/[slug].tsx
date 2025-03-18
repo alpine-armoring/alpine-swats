@@ -624,22 +624,34 @@ export async function getServerSideProps({ params, locale }) {
   const route = routes.inventory;
 
   try {
+    // Apply the same category filters we use on the listing page
+    const categoryFilter = `filters[$or][0][categories][slug][$eq]=armored-law-enforcement&filters[$or][1][categories][slug][$eq]=armored-specialty-vehicles&filters[slug][$notContains]=mastiff`;
+
+    // Add the specific slug filter
+    const slugFilter = `&filters[slug][$eq]=${params.slug}`;
+
+    // Combine filters
+    let query = categoryFilter + slugFilter;
+
     let data = await getPageData({
       route: route.collectionSingle,
-      params: `filters[slug][$eq]=${params.slug}`,
+      params: query,
       locale,
     });
 
-    // If no data found, try fetching without language suffix
+    // If no data found, try fetching without language suffix but still with category filters
     if (!data?.data?.length) {
       const baseSlug = params.slug.replace(/-[a-z]{2}$/, '');
+      query = categoryFilter + `&filters[slug][$eq]=${baseSlug}`;
+
       data = await getPageData({
         route: route.collectionSingle,
-        params: `filters[slug][$eq]=${baseSlug}`,
+        params: query,
         locale,
       });
     }
 
+    // If still no data or if data doesn't match our filters, return notFound
     if (!data?.data?.length) {
       return { notFound: true };
     }
