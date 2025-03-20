@@ -170,7 +170,7 @@ function Contact(props) {
 
 export async function getStaticProps({ locale = 'en' }) {
   let pageData = await getPageData({
-    route: 'contact-page',
+    route: 'swat-contact-page',
     populate: 'deep',
     locale,
   });
