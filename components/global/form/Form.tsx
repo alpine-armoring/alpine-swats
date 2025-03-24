@@ -424,6 +424,7 @@ const Form = () => {
                 message: sanitizedMessage,
                 route: window.location.origin + router.asPath,
                 date: Date.now(),
+                domain: 'swats',
               },
             }),
           }
