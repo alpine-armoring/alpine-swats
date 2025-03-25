@@ -11,22 +11,22 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/models/armored-pit-bull-vxt-50-cal</loc>
+    <loc>https://www.armored-swat.com/vehicles-we-build/armored-pit-bull-vxt-50-cal</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/models/armored-pointer-swat-van-transit</loc>
+    <loc>https://www.armored-swat.com/vehicles-we-build/armored-pointer-swat-van-transit</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/models/armored-pointer-swat-van-sprinter</loc>
+    <loc>https://www.armored-swat.com/vehicles-we-build/armored-pointer-swat-van-sprinter</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/models/armored-pit-bull-vx</loc>
+    <loc>https://www.armored-swat.com/vehicles-we-build/armored-pit-bull-vx</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -36,27 +36,27 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/models</loc>
+    <loc>https://www.armored-swat.com/vehicles-we-build</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory/armored-pit-bull-vxt-7017</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale/armored-pit-bull-vxt-7017</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/models/armored-pit-bull-vxt</loc>
+    <loc>https://www.armored-swat.com/vehicles-we-build/armored-pit-bull-vxt</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/models/armored-omicron-ambulance</loc>
+    <loc>https://www.armored-swat.com/vehicles-we-build/armored-omicron-ambulance</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -66,7 +66,7 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory/armored-swat-truck-pit-bull-vx-8374</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale/armored-swat-truck-pit-bull-vx-8374</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -86,112 +86,112 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory/tactical-armored-apc-cuda-5017</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale/tactical-armored-apc-cuda-5017</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory/armored-pointer-van-6670</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale/armored-pointer-van-6670</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/models/armored-cuda-apc-swat</loc>
+    <loc>https://www.armored-swat.com/vehicles-we-build/armored-cuda-apc-swat</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory?vehicles_we_armor=armored-pit-bull-vxt-50-cal</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale?vehicles_we_armor=armored-pit-bull-vxt-50-cal</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory?vehicles_we_armor=armored-pointer-swat-van-transit</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale?vehicles_we_armor=armored-pointer-swat-van-transit</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory?vehicles_we_armor=armored-pointer-swat-van-sprinter</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale?vehicles_we_armor=armored-pointer-swat-van-sprinter</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory?vehicles_we_armor=armored-pit-bull-vx</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale?vehicles_we_armor=armored-pit-bull-vx</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory/armored-swat-truck-pit-bull-vx-50-cal-4018</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale/armored-swat-truck-pit-bull-vx-50-cal-4018</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory/armored-ford-explorer-police-interceptor-ppv-4571</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale/armored-ford-explorer-police-interceptor-ppv-4571</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory/armored-pointer-van-0045</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale/armored-pointer-van-0045</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory/armored-swat-truck-pit-bull-vxt-50-cal-4016</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale/armored-swat-truck-pit-bull-vxt-50-cal-4016</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory/armored-pit-bull-vxt-2397</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale/armored-pit-bull-vxt-2397</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory/armored-swat-truck-pit-bull-vx-8375</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale/armored-swat-truck-pit-bull-vx-8375</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory/armored-pit-bull-vxt-7018</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale/armored-pit-bull-vxt-7018</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory/armored-pointer-van-2228</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale/armored-pointer-van-2228</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/models/armored-pit-bull-vx-50-cal</loc>
+    <loc>https://www.armored-swat.com/vehicles-we-build/armored-pit-bull-vx-50-cal</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/models/armored-pointer-mobile-command</loc>
+    <loc>https://www.armored-swat.com/vehicles-we-build/armored-pointer-mobile-command</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/models/armored-toyota-ambulance</loc>
+    <loc>https://www.armored-swat.com/vehicles-we-build/armored-toyota-ambulance</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory?vehicles_we_armor=armored-pit-bull-vxt</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale?vehicles_we_armor=armored-pit-bull-vxt</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory?vehicles_we_armor=armored-cuda-apc-swat</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale?vehicles_we_armor=armored-cuda-apc-swat</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory?vehicles_we_armor=armored-pit-bull-vx-50-cal</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale?vehicles_we_armor=armored-pit-bull-vx-50-cal</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.armored-swat.com/inventory?vehicles_we_armor=armored-pointer-mobile-command</loc>
+    <loc>https://www.armored-swat.com/swat-for-sale?vehicles_we_armor=armored-pointer-mobile-command</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>  

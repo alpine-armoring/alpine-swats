@@ -10,7 +10,7 @@ const routes = {
     collection: 'swat-listing-inventory',
     collectionSingle: 'inventories',
     paths: {
-      en: '/inventory',
+      en: '/swat-for-sale',
       es: '/disponible-ahora',
     },
   },
@@ -18,7 +18,7 @@ const routes = {
     collection: 'swat-listing-model',
     collectionSingle: 'vehicles-we-armors',
     paths: {
-      en: '/models',
+      en: '/vehicles-we-build',
       es: '/vehiculos-que-blindamos',
     },
   },

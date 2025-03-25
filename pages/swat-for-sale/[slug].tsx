@@ -159,7 +159,7 @@ function InventoryVehicle(props) {
       image: data?.featuredImage?.data?.attributes?.url,
       description:
         props.seoData?.metaDescription || data?.title?.replace('\n', ' '),
-      url: `https://www.armored-swat.com/inventory/${data?.slug}`,
+      url: `https://www.armored-swat.com/swat-for-sale/${data?.slug}`,
       brand: {
         '@type': 'Brand',
         name: 'Alpine Armoring® Armored Vehicles',
@@ -167,7 +167,7 @@ function InventoryVehicle(props) {
       sku: `Alpine-${data?.slug}`,
       offers: {
         '@type': 'AggregateOffer',
-        url: `https://www.armored-swat.com/inventory/${data?.slug}`,
+        url: `https://www.armored-swat.com/swat-for-sale/${data?.slug}`,
         priceCurrency: 'USD',
         lowPrice: '50000',
         highPrice: '200000',
@@ -284,14 +284,14 @@ function InventoryVehicle(props) {
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Inventory',
-          item: `https://www.armored-swat.com/inventory`,
+          name: 'SWAT for Sale',
+          item: `https://www.armored-swat.com/swat-for-sale`,
         },
         {
           '@type': 'ListItem',
           position: 3,
           name: data?.title,
-          item: `https://www.armored-swat.com/inventory/${data?.slug}`,
+          item: `https://www.armored-swat.com/swat-for-sale/${data?.slug}`,
         },
       ],
     };
@@ -396,7 +396,7 @@ function InventoryVehicle(props) {
             <div className={`b-breadcrumbs`}>
               <Link href="/">Home</Link>
               <span>&gt;</span>
-              <Link href="/inventory">Inventory</Link>
+              <Link href="/swat-for-sale">SWAT for Sale</Link>
               <span>&gt;</span>
               <span className={`b-breadcrumbs_current`}>{data?.title}</span>
             </div>

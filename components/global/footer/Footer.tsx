@@ -18,9 +18,9 @@ const Footer = (props) => {
   const router = useRouter();
 
   const links = [
-    { path: '/inventory', text: 'Available SWAT Vehicles' },
+    { path: '/swat-for-sale', text: 'Available SWAT Vehicles' },
     { path: '/about-us', text: 'About Us' },
-    { path: '/models', text: 'All SWAT Models' },
+    { path: '/vehicles-we-build', text: 'All SWAT Models' },
     { path: '/faqs', text: 'Armored SWAT  & APC FAQs' },
     { path: '/armored-vehicle-testing', text: 'Armored Vehicle Testing' },
     { path: '/contact', text: 'Contact Us' },

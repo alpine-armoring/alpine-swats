@@ -64,7 +64,7 @@ const FeaturedVehicles = (props) => {
                 }`}
               >
                 {item.attributes.featuredImage.data ? (
-                  <Link href={`/models/${item.attributes.slug}`}>
+                  <Link href={`/vehicles-we-build/${item.attributes.slug}`}>
                     <Image
                       src={`${
                         item.attributes.featuredImage.data.attributes.formats
@@ -99,7 +99,7 @@ const FeaturedVehicles = (props) => {
                     <Button
                       className={`${styles.featuredVehicles_slider_item_button} rounded`}
                       // button
-                      href={`/models/${item.attributes.slug}`}
+                      href={`/vehicles-we-build/${item.attributes.slug}`}
                     >
                       View Model
                     </Button>
@@ -107,9 +107,9 @@ const FeaturedVehicles = (props) => {
                     {item.attributes.swatsStock.data ? (
                       <Button
                         className={`${styles.featuredVehicles_slider_item_button} primary rounded`}
-                        href={`/inventory/${item.attributes.swatsStock.data.attributes.slug}`}
+                        href={`/swat-for-sale/${item.attributes.swatsStock.data.attributes.slug}`}
                       >
-                        View Inventory
+                        View SWAT for Sale
                       </Button>
                     ) : null}
                   </div>
@@ -131,8 +131,8 @@ const FeaturedVehicles = (props) => {
         </button>
 
         <div className={`center`}>
-          <Button className={`rounded`} href="models">
-            View All Tactical Models
+          <Button className={`rounded`} href="vehicles-we-build">
+            View All Tactical Vehicles we Build
           </Button>
         </div>
 

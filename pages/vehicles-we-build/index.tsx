@@ -50,8 +50,8 @@ function VehicleWeArmor(props) {
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Models',
-          item: `https://www.armored-swat.com/models`,
+          name: 'Vehicles we Build',
+          item: `https://www.armored-swat.com/vehicles-we-build`,
         },
       ],
     };
@@ -110,7 +110,7 @@ function VehicleWeArmor(props) {
         >
           <Link href="/">Home</Link>
           <span>&gt;</span>
-          Models
+          Vehicles we Build
         </div>
 
         {topBanner ? <Banner props={topBanner} shape="white" small /> : null}

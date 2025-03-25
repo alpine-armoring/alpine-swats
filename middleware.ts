@@ -4,20 +4,23 @@ import type { NextRequest } from 'next/server';
 const redirects = new Map([
   ['/index.html', '/'],
   ['/about.html', '/about-us'],
-  ['/stock.html', '/inventory'],
+  ['/stock.html', '/swat-for-sale'],
   ['/ballistic-chart.html', '/ballistic-chart'],
   ['/contact.html', '/contact'],
-  ['/pdf/Pit-Bull-VX.pdf', '/models/armored-pit-bull-vx'],
+  ['/pdf/Pit-Bull-VX.pdf', '/vehicles-we-build/armored-pit-bull-vx'],
   ['/pdf/UL-752.pdf', '/ballistic-chart'],
   ['/pdf/NIJ-Standards_0108_01.pdf', '/ballistic-chart'],
-  ['/pdf/coming-soon.pdf', '/inventory'],
-  ['/pdf/Cuda.pdf', '/models/armored-cuda-apc-swat'],
+  ['/pdf/coming-soon.pdf', '/swat-for-sale'],
+  ['/pdf/Cuda.pdf', '/vehicles-we-build/armored-cuda-apc-swat'],
   ['/pdf/European-Ballistic-Standards.pdf', '/ballistic-chart'],
-  ['/vehicles/cuda.html', '/models/armored-cuda-apc-swat'],
-  ['/vehicles/vxt.html', '/models/armored-pit-bull-vxt'],
-  ['/vehicles/xl.html', '/models/armored-pit-bull-vx'],
-  ['/vehicles/pointer-gray.html', '/models/armored-pointer-swat-van-transit'],
-  ['/vehicles/vx.html', '/models/armored-pit-bull-vx'],
+  ['/vehicles/cuda.html', '/vehicles-we-build/armored-cuda-apc-swat'],
+  ['/vehicles/vxt.html', '/vehicles-we-build/armored-pit-bull-vxt'],
+  ['/vehicles/xl.html', '/vehicles-we-build/armored-pit-bull-vx'],
+  [
+    '/vehicles/pointer-gray.html',
+    '/vehicles-we-build/armored-pointer-swat-van-transit',
+  ],
+  ['/vehicles/vx.html', '/vehicles-we-build/armored-pit-bull-vx'],
 ]);
 
 export function middleware(request: NextRequest) {

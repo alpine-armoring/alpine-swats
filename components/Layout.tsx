@@ -60,7 +60,7 @@ const Layout = ({ children }) => {
     router.pathname.startsWith(path)
   );
 
-  const pathsDarkMode = ['/inventory', '/armored-vehicle-testing'];
+  const pathsDarkMode = ['/swat-for-sale', '/armored-vehicle-testing'];
   const isDarkMode = pathsDarkMode.some((path) =>
     router.pathname.startsWith(path)
   );

@@ -103,7 +103,7 @@ function Home(props) {
       {topText ? <FillingText small dark data={topText} /> : null}
 
       <div className={`center observe fade-in-up`}>
-        <Button className={`primary rounded`} href="inventory">
+        <Button className={`primary rounded`} href="swat-for-sale">
           View Available Tactical Vehicles
         </Button>
       </div>

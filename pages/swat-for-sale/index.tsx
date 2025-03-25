@@ -58,7 +58,7 @@ function Home(props) {
           '@type': 'ListItem',
           position: 2,
           name: 'Armored SWATS in stock',
-          item: `https://www.armored-swat.com/inventory`,
+          item: `https://www.armored-swat.com/swat-for-sale`,
         },
       ],
     };
@@ -79,7 +79,7 @@ function Home(props) {
         <div className={`b-breadcrumbs b-breadcrumbs-list container`}>
           <Link href="/">Home</Link>
           <span>&gt;</span>
-          Inventory
+          SWAT for Sale
         </div>
 
         {topBanner.title && <Banner props={topBanner} shape="dark" />}

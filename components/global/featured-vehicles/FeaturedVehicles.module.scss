@@ -125,9 +125,27 @@
       &_buttons {
         display: flex;
 
+        @include breakpoint(small) {
+          margin: 0 -10px;
+        }
+
         & > a {
-          width: 50%;
-          max-width: 200px;
+          @include breakpoint(small) {
+            & > span {
+              padding: 13px 10px;
+              font-size: 12px;
+              letter-spacing: -0.5px;
+            }
+          }
+
+          @include breakpoint(medium) {
+            width: 50%;
+
+            & > span {
+              padding: 16px;
+              font-size: 13px;
+            }
+          }
 
           &:first-child {
             margin-right: 8px;

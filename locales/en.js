@@ -1,5 +1,5 @@
 export default {
-  availableNowURL: 'inventory',
+  availableNowURL: 'swat-for-sale',
   vehiclesWeArmorURL: '/vehicles-we-armor',
   type: 'type',
   suvsURL: 'armored-suvs',
@@ -25,7 +25,7 @@ export default {
   contactURL: '/contact',
   downloadsURL: '/all-downloads',
   privacyPolicyURL: '/privacy-policy',
-  vehiclesWeArmorStock: '/inventory/?vehicles_we_armor=',
+  vehiclesWeArmorStock: '/swat-for-sale/?vehicles_we_armor=',
   blogsURL: '/blog',
 
   availableNowTitle: 'Available Now',
