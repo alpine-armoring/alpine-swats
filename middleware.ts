@@ -57,9 +57,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/images/:path*',
-    '/vehicle-pages/:path*',
-    '/pdf/:path*',
-    '/:path*',
+    '/((?!_next/static|_next/image|favicon.ico|api|sitemap|robots|manifest|sw.js).*)',
   ],
 };

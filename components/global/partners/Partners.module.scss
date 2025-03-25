@@ -1,10 +1,11 @@
 .partners {
   position: relative;
-  padding-bottom: rem(50);
+  padding-top: rem(32);
   z-index: 2;
 
-  @include breakpoint(small) {
-    padding-top: rem(32);
+  @include breakpoint(large) {
+    padding-bottom: rem(50);
+    padding-top: rem(100);
   }
 
   &_wrap {
