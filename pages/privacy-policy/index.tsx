@@ -1,19 +1,16 @@
 import { getPageData } from 'hooks/api';
-import { useMarkdownToHtml } from 'hooks/useMarkdownToHtml';
+import CustomMarkdown from 'components/CustomMarkdown';
 
 function Privacy(props) {
   const text = props?.pageData?.text;
-
-  const convertMarkdown = useMarkdownToHtml();
 
   return (
     <>
       {text ? (
         <div className={`static container_small`}>
-          <div
-            className={`mt2`}
-            dangerouslySetInnerHTML={{ __html: convertMarkdown(text) }}
-          ></div>
+          <div className={`mt2`}>
+            <CustomMarkdown>{text}</CustomMarkdown>
+          </div>
         </div>
       ) : null}
     </>
