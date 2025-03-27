@@ -208,15 +208,17 @@ const Footer = (props) => {
               }
             `}
           >
-            <Image
-              src="/assets/Alpine-Armoring-logo-vertical.png"
-              alt="armored vehicles"
-              width={55}
-              height={84}
-              unoptimized
-            />
+            <div className={`${styles.footer_flag_img}`}>
+              <Image
+                src="/assets/Alpine-Armoring-logo-vertical.png"
+                alt="armored vehicles"
+                width={55}
+                height={84}
+                unoptimized
+              />
+            </div>
             <h4 className={`${styles.footer_flag_wrap}`}>
-              Visit Alpine Amoring
+              Visit Our Main Website
             </h4>
           </Link>
         </div>
