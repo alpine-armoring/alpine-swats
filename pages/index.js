@@ -31,8 +31,8 @@ function Home(props) {
   const GSA = data?.GSA;
   const testimonials = data?.testimonials;
   const partners = data?.industryPartners;
-  const faqsTitle = data.faqsTitle;
-  const faqs = data.faqs;
+  const faqsTitle = data?.faqsTitle;
+  const faqs = data?.faqs;
 
   const getOrganizationStructuredData = () => {
     const structuredData = {
