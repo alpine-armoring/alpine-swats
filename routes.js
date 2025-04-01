@@ -36,6 +36,13 @@ const routes = {
       es: '/politica-de-privacidad',
     },
   },
+  allDownloads: {
+    collection: 'swat-all-download',
+    paths: {
+      en: '/all-downloads',
+      es: '/todas-las-descargas',
+    },
+  },
 };
 
 const utils = {
