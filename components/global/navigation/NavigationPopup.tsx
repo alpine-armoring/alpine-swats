@@ -18,8 +18,8 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
   const router = useRouter();
 
   const links = [
-    { path: '/swat-for-sale', text: 'SWAT for Sale' },
-    { path: '/vehicles-we-build', text: 'Vehicles we Build' },
+    { path: '/swat-for-sale', text: 'Ready to Ship Now' },
+    { path: '/vehicles-we-build', text: 'Swat vehicles we manufacture' },
   ];
 
   const linksRight = [

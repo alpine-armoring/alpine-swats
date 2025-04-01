@@ -5,8 +5,8 @@ const Logo = ({ className }: IconProps) => {
   return (
     <svg
       className={className}
-      width="200"
-      height="18"
+      width="240"
+      height="22"
       viewBox="0 0 405.9 37"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

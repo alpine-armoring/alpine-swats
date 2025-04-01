@@ -18,7 +18,7 @@
 
   @include breakpoint(large) {
     display: flex;
-    height: 80px;
+    height: 90px;
   }
 
   &_static,
@@ -121,14 +121,10 @@
   }
 
   &_headline {
-    font-weight: var(--font-demi);
-    font-size: 11px;
     margin-top: 8px;
-    text-transform: uppercase;
 
-    @include breakpoint('large') {
-      margin-top: 4px;
-      font-size: 13px;
+    svg{      
+      display: block;
     }
   }
 

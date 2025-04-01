@@ -203,7 +203,7 @@ function Vehicle(props) {
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Vehicles we Build',
+          name: 'SWAT Vehicles We Manufacture',
           item: `https://www.armored-swat.com/vehicles-we-build`,
         },
         // {
@@ -312,7 +312,7 @@ function Vehicle(props) {
         >
           <Link href="/">Home</Link>
           <span>&gt;</span>
-          <Link href="/vehicles-we-build">Vehicles we Build</Link>
+          <Link href="/vehicles-we-build">SWAT Vehicles We Manufacture</Link>
           <span>&gt;</span>
           <span className={`b-breadcrumbs_current`}>{data?.slug}</span>
         </div>
