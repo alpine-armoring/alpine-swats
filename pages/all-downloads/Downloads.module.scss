@@ -28,7 +28,7 @@
   //   margin-left: 5px;
   // }
 
-  li {    
+  li {
     display: flex;
     align-items: center;
     font-weight: var(--font-medium);
@@ -37,9 +37,9 @@
     transition:
       color 0.2s ease-in-out,
       transform 0.2s ease-in-out;
-      
+
     &::before {
-      content: "•";
+      content: '•';
       position: relative;
       top: -2px;
       vertical-align: middle;
