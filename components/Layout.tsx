@@ -71,6 +71,12 @@ const Layout = ({ children }) => {
     <>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+        <meta
+          name="google-site-verification"
+          content="LWKT6mDUWyxtzhf-Ek0FC7u3lhQu14kka2zQ1eoTlY4"
+        />
+
         {isDarkMode && (
           <style>{`
               body {

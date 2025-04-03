@@ -1,13 +1,15 @@
 import styles from './Testing.module.scss';
+import routes from 'routes';
 import { getPageData } from 'hooks/api';
+import CustomMarkdown from 'components/CustomMarkdown';
 import { useEffect } from 'react';
 import Image from 'next/image';
 import Banner from 'components/global/banner/Banner';
-import CustomMarkdown from 'components/CustomMarkdown';
-import routes from 'routes';
+import MediaList from 'components/global/media-list/MediaList';
 
 function Testing(props) {
   const dynamicZone = props?.pageData?.dynamicZone;
+  const videos = props?.pageData?.videos?.data;
 
   // Animations
   useEffect(() => {
@@ -105,6 +107,8 @@ function Testing(props) {
             }
           })}
         </div>
+
+        <MediaList props={videos} itemType="video" />
       </div>
     </>
   );
