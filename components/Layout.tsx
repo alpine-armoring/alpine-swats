@@ -74,7 +74,7 @@ const Layout = ({ children }) => {
 
         <meta
           name="google-site-verification"
-          content="LWKT6mDUWyxtzhf-Ek0FC7u3lhQu14kka2zQ1eoTlY4"
+          content="a4ex9cSs7U8SCnN333HdIOmzaJMLNsfuDBDvb-CUmf4"
         />
 
         {isDarkMode && (
