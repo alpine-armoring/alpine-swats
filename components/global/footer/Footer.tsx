@@ -21,10 +21,11 @@ const Footer = (props) => {
     { path: '/swat-for-sale', text: 'Available SWAT Vehicles' },
     { path: '/about-us', text: 'About Us' },
     { path: '/vehicles-we-build', text: 'All SWAT Models' },
-    { path: '/faqs', text: 'Armored SWAT  & APC FAQs' },
+    { path: '/faqs', text: 'Frequently Asked Questions' },
     { path: '/armored-vehicle-testing', text: 'Armored Vehicle Testing' },
-    { path: '/contact', text: 'Contact Us' },
+    { path: '/all-downloads', text: 'All Downloads' },
     { path: '/ballistic-chart', text: 'Weapons & Ammunition Chart' },
+    { path: '/contact', text: 'Contact Us' },
   ];
 
   return (

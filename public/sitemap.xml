@@ -46,6 +46,11 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://www.armored-swat.com/all-downloads</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://www.armored-swat.com/swat-for-sale/armored-pit-bull-vxt-7017</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
