@@ -9,7 +9,6 @@ import MediaList from 'components/global/media-list/MediaList';
 
 function Testing(props) {
   const dynamicZone = props?.pageData?.dynamicZone;
-  const videos = props?.pageData?.videos?.data;
 
   // Animations
   useEffect(() => {
@@ -56,6 +55,15 @@ function Testing(props) {
                   >
                     <CustomMarkdown>{component.Content}</CustomMarkdown>
                   </div>
+                );
+              }
+              case 'slices.videos-slider': {
+                return (
+                  <MediaList
+                    key={index}
+                    props={component.videos.data}
+                    itemType="video"
+                  />
                 );
               }
               case 'slices.single-media':
@@ -107,8 +115,6 @@ function Testing(props) {
             }
           })}
         </div>
-
-        <MediaList props={videos} itemType="video" />
       </div>
     </>
   );

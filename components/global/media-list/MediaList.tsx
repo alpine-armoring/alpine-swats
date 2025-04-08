@@ -1,132 +1,47 @@
 import { useEffect, useState, useCallback } from 'react';
-import useLocale from 'hooks/useLocale';
 import styles from './MediaList.module.scss';
 import EmblaCarousel from 'embla-carousel';
 import VideoSingle from './VideoSingle';
 import LightboxCustom from 'components/global/lightbox/LightboxCustom';
-import { useRouter } from 'next/router';
 
 function MediaList({ props, itemType }) {
-  const router = useRouter();
-  const { lang } = useLocale();
-  const currentRoute = router.asPath;
-
-  const categoryOrder = [
-    'ballisticTests',
-    'mediaAppearances',
-    'coolVideos',
-    'selectedVansAndTrucks',
-    'selectedSUVsAndSedans',
-  ];
-
-  const getTranslatedCategory = (category) => {
-    const translationMap = {
-      'Ballistic Tests': lang.ballisticTests,
-      'Media Appearances': lang.mediaAppearances,
-      'Cool Videos': lang.coolVideos,
-      'Selected Vans and Trucks': lang.selectedVansAndTrucks,
-      'Selected SUVs and Sedans': lang.selectedSUVsAndSedans,
-    };
-    return translationMap[category] || category;
-  };
-
-  const categoryMap = new Map();
-  props?.forEach((item) => {
-    const category = item.attributes.videoCategory;
-    if (!categoryMap.has(category)) {
-      categoryMap.set(category, []);
-    }
-    categoryMap.get(category).push(item);
-  });
-
-  // Sort categories based on the predefined order
-  const sortedCategories = Array.from(categoryMap.keys()).sort((a, b) => {
-    const indexA = categoryOrder.indexOf(a);
-    const indexB = categoryOrder.indexOf(b);
-
-    // If both categories are in the order list, compare their positions
-    if (indexA !== -1 && indexB !== -1) {
-      return indexA - indexB;
-    }
-
-    // If one category is in the list and the other isn't, prioritize the one in the list
-    if (indexA !== -1) return -1;
-    if (indexB !== -1) return 1;
-
-    // If neither category is in the list, maintain alphabetical order
-    return a.localeCompare(b);
-  });
-
   // Slider setup
-  const [emblaApis, setEmblaApis] = useState([]);
-  const [prevBtnDisabledStates, setPrevBtnDisabledStates] = useState([]);
-  const [nextBtnDisabledStates, setNextBtnDisabledStates] = useState([]);
+  const [emblaApi, setEmblaApi] = useState(null);
+  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
+  const [nextBtnDisabled, setNextBtnDisabled] = useState(false);
 
   useEffect(() => {
-    const emblaNodes = [].slice.call(document.querySelectorAll('.embla'));
+    if (typeof document === 'undefined') return;
+
+    const emblaNode = document.querySelector('.embla') as HTMLElement;
+    if (!emblaNode) return;
+
     const sliderOptions = { dragFree: true };
+    const api = EmblaCarousel(emblaNode, sliderOptions);
+    setEmblaApi(api);
 
-    const emblaApis = emblaNodes.map((emblaNode) =>
-      EmblaCarousel(emblaNode, sliderOptions)
-    );
+    setPrevBtnDisabled(!api.canScrollPrev());
+    setNextBtnDisabled(!api.canScrollNext());
 
-    setEmblaApis(emblaApis);
-
-    const initialDisabledStatesPrev = emblaApis.map(
-      (emblaApi) => !emblaApi.canScrollPrev()
-    );
-    setPrevBtnDisabledStates(initialDisabledStatesPrev);
-
-    const initialDisabledStatesNext = emblaApis.map(
-      (emblaApi) => !emblaApi.canScrollNext()
-    );
-    setNextBtnDisabledStates(initialDisabledStatesNext);
-
-    emblaApis.forEach((emblaApi, index) => {
-      const canScrollPrev = emblaApi.canScrollPrev();
-      setPrevBtnDisabledStates((prevStates) => {
-        const newStates = [...prevStates];
-        newStates[index] = !canScrollPrev;
-        return newStates;
-      });
-
-      emblaApi.on('scroll', () => {
-        const canScrollPrev = emblaApi.canScrollPrev();
-        setPrevBtnDisabledStates((prevStates) => {
-          const newStates = [...prevStates];
-          newStates[index] = !canScrollPrev;
-          return newStates;
-        });
-
-        const canScrollNext = emblaApi.canScrollNext();
-        setNextBtnDisabledStates((prevStates) => {
-          const newStates = [...prevStates];
-          newStates[index] = !canScrollNext;
-          return newStates;
-        });
-      });
+    api.on('scroll', () => {
+      setPrevBtnDisabled(!api.canScrollPrev());
+      setNextBtnDisabled(!api.canScrollNext());
     });
 
     return () => {
-      emblaApis.forEach((emblaApi) => emblaApi.destroy());
+      api.destroy();
     };
   }, []);
 
-  const onNextButtonClick = useCallback(
-    (index) => {
-      if (!emblaApis[index]) return;
-      emblaApis[index].scrollNext();
-    },
-    [emblaApis]
-  );
+  const onNextButtonClick = useCallback(() => {
+    if (!emblaApi) return;
+    emblaApi.scrollNext();
+  }, [emblaApi]);
 
-  const onPrevButtonClick = useCallback(
-    (index) => {
-      if (!emblaApis[index]) return;
-      emblaApis[index].scrollPrev();
-    },
-    [emblaApis]
-  );
+  const onPrevButtonClick = useCallback(() => {
+    if (!emblaApi) return;
+    emblaApi.scrollPrev();
+  }, [emblaApi]);
 
   // Lightbox
   const [selectedTitle, setSelectedTitle] = useState('');
@@ -170,83 +85,60 @@ function MediaList({ props, itemType }) {
     year: selectedYear,
   };
 
+  const prevButtonClass = prevBtnDisabled
+    ? `${styles.mediaList_list_slider_arrow} ${styles.mediaList_list_slider_arrow_disabled}`
+    : `${styles.mediaList_list_slider_arrow}`;
+
+  const nextButtonClass = nextBtnDisabled
+    ? `${styles.mediaList_list_slider_arrow} ${styles.mediaList_list_slider_arrow_next} ${styles.mediaList_list_slider_arrow_disabled}`
+    : `${styles.mediaList_list_slider_arrow} ${styles.mediaList_list_slider_arrow_next}`;
+
   return (
-    <>
-      {sortedCategories.map((category, index) => {
-        const itemsInCategory = categoryMap.get(category);
-
-        const prevButtonDisabled = prevBtnDisabledStates[index]
-          ? `${styles.mediaList_list_slider_arrow_disabled}`
-          : '';
-        const nextButtonDisabled = nextBtnDisabledStates[index]
-          ? `${styles.mediaList_list_slider_arrow_disabled}`
-          : '';
-
-        return (
-          <div className={`${styles.mediaList_list} container`} key={index}>
-            {currentRoute !== '/armored-vehicle-testing' ? (
-              <h2 className={`${styles.mediaList_list_title} fade-in observe`}>
-                {getTranslatedCategory(category)}
-              </h2>
-            ) : null}
-
-            <div className={`${styles.mediaList_list_slider} embla`}>
-              <div className={`${styles.mediaList_list_slider_inner}`}>
-                {itemsInCategory.map((item, index) =>
-                  itemType === 'video' ? (
-                    <VideoSingle
-                      props={item}
-                      key={index}
-                      onLightboxOpen={handleLightboxOpen}
-                    />
-                  ) : (
-                    <></>
-                  )
-                )}
-              </div>
-
-              <div className={`${styles.mediaList_list_slider_arrows}`}>
-                <button
-                  onClick={() => {
-                    onPrevButtonClick(index);
-                  }}
-                  className={`${styles.mediaList_list_slider_arrow} ${prevButtonDisabled}`}
-                >
-                  <svg viewBox="0 0 532 532">
-                    <path
-                      fill="currentColor"
-                      d="M355.66 11.354c13.793-13.805 36.208-13.805 50.001 0 13.785 13.804 13.785 36.238 0 50.034L201.22 266l204.442 204.61c13.785 13.805 13.785 36.239 0 50.044-13.793 13.796-36.208 13.796-50.002 0a5994246.277 5994246.277 0 0 0-229.332-229.454 35.065 35.065 0 0 1-10.326-25.126c0-9.2 3.393-18.26 10.326-25.2C172.192 194.973 332.731 34.31 355.66 11.354Z"
-                    />
-                  </svg>
-                </button>
-
-                <button
-                  onClick={() => {
-                    onNextButtonClick(index);
-                  }}
-                  className={`${styles.mediaList_list_slider_arrow} ${styles.mediaList_list_slider_arrow_next} ${nextButtonDisabled}`}
-                >
-                  <svg viewBox="0 0 532 532">
-                    <path
-                      fill="currentColor"
-                      d="M355.66 11.354c13.793-13.805 36.208-13.805 50.001 0 13.785 13.804 13.785 36.238 0 50.034L201.22 266l204.442 204.61c13.785 13.805 13.785 36.239 0 50.044-13.793 13.796-36.208 13.796-50.002 0a5994246.277 5994246.277 0 0 0-229.332-229.454 35.065 35.065 0 0 1-10.326-25.126c0-9.2 3.393-18.26 10.326-25.2C172.192 194.973 332.731 34.31 355.66 11.354Z"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            {isLightboxPopupOpen ? (
-              <LightboxCustom
-                isLightboxPopupOpen={isLightboxPopupOpen}
-                lightboxData={lightboxData}
-                setLightboxPopupOpen={setLightboxPopupOpen}
+    <div className={`${styles.mediaList_list}`}>
+      <div className={`${styles.mediaList_list_slider} embla`}>
+        <div className={`${styles.mediaList_list_slider_inner}`}>
+          {props.map((item, index) =>
+            itemType === 'video' ? (
+              <VideoSingle
+                props={item}
+                key={index}
+                onLightboxOpen={handleLightboxOpen}
               />
-            ) : null}
-          </div>
-        );
-      })}
-    </>
+            ) : (
+              <></>
+            )
+          )}
+        </div>
+
+        <div className={`${styles.mediaList_list_slider_arrows}`}>
+          <button onClick={onPrevButtonClick} className={prevButtonClass}>
+            <svg viewBox="0 0 532 532">
+              <path
+                fill="currentColor"
+                d="M355.66 11.354c13.793-13.805 36.208-13.805 50.001 0 13.785 13.804 13.785 36.238 0 50.034L201.22 266l204.442 204.61c13.785 13.805 13.785 36.239 0 50.044-13.793 13.796-36.208 13.796-50.002 0a5994246.277 5994246.277 0 0 0-229.332-229.454 35.065 35.065 0 0 1-10.326-25.126c0-9.2 3.393-18.26 10.326-25.2C172.192 194.973 332.731 34.31 355.66 11.354Z"
+              />
+            </svg>
+          </button>
+
+          <button onClick={onNextButtonClick} className={nextButtonClass}>
+            <svg viewBox="0 0 532 532">
+              <path
+                fill="currentColor"
+                d="M355.66 11.354c13.793-13.805 36.208-13.805 50.001 0 13.785 13.804 13.785 36.238 0 50.034L201.22 266l204.442 204.61c13.785 13.805 13.785 36.239 0 50.044-13.793 13.796-36.208 13.796-50.002 0a5994246.277 5994246.277 0 0 0-229.332-229.454 35.065 35.065 0 0 1-10.326-25.126c0-9.2 3.393-18.26 10.326-25.2C172.192 194.973 332.731 34.31 355.66 11.354Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {isLightboxPopupOpen ? (
+        <LightboxCustom
+          isLightboxPopupOpen={isLightboxPopupOpen}
+          lightboxData={lightboxData}
+          setLightboxPopupOpen={setLightboxPopupOpen}
+        />
+      ) : null}
+    </div>
   );
 }
 
