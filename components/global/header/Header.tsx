@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import Button from 'components/global/button/Button';
 import Logo from 'components/icons/Logo2';
 import Navigation from 'components/global/navigation/Navigation';
@@ -73,12 +72,18 @@ const Header = ({
           aria-label="Alpine Armoring Logo"
           onClick={() => setNavOpen(false)}
         >
-          <Image
+          {/* <Image
             src="/assets/alpine-armoring-logo-goldbox-curved.png"
             alt="Alpine Armoring Logo"
             width="120"
             height="50"
             priority
+          /> */}
+          <img
+            src="/assets/alpine-armoring-logo-goldbox-curved.png"
+            alt="Alpine Armoring Logo"
+            width="120"
+            height="50"
           />
           <span className={`${styles.header_headline}`}>
             {/* Armored SWAT & APC Vehicles */}
