@@ -139,7 +139,7 @@ export async function getServerSideProps(context) {
 
   const { vehicles_we_armor } = context.query;
 
-  let query = `filters[$or][0][categories][slug][$eq]=armored-law-enforcement&filters[$or][1][categories][slug][$eq]=armored-specialty-vehicles&filters[slug][$notContains]=mastiff`;
+  let query = `filters[$or][0][categories][slug][$eq]=armored-law-enforcement&filters[$or][1][categories][slug][$eq]=armored-specialty-vehicles&filters[$and][0][slug][$notContains]=mastiff&filters[$and][1][slug][$notContains]=condor`;
   if (vehicles_we_armor) {
     query += `&filters[vehicles_we_armor][slug][$eq]=${vehicles_we_armor}`;
   }
