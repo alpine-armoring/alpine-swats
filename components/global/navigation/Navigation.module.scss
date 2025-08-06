@@ -1,8 +1,8 @@
 .navigation {
-  @media (max-width: 1550px){
+  @media (max-width: 1550px) {
     display: none;
   }
-  @media (min-width: 1550px){
+  @media (min-width: 1550px) {
     &_navOpen {
       visibility: hidden;
     }
