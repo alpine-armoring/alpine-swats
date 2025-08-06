@@ -1,8 +1,8 @@
 .navigation {
-  @include breakpoint('untilLarge') {
+  @media (max-width: 1550px){
     display: none;
   }
-  @include breakpoint('large') {
+  @media (min-width: 1550px){
     &_navOpen {
       visibility: hidden;
     }

@@ -284,7 +284,7 @@ function InventoryVehicle(props) {
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Ready to Ship Now',
+          name: 'Armored SWAT vehicles for sale',
           item: `https://www.armored-swat.com/swat-for-sale`,
         },
         {
@@ -396,7 +396,7 @@ function InventoryVehicle(props) {
             <div className={`b-breadcrumbs`}>
               <Link href="/">Home</Link>
               <span>&gt;</span>
-              <Link href="/swat-for-sale">Ready to Ship Now</Link>
+              <Link href="/swat-for-sale">Armored SWAT vehicles for sale</Link>
               <span>&gt;</span>
               <span className={`b-breadcrumbs_current`}>{data?.title}</span>
             </div>

@@ -79,7 +79,7 @@ function Home(props) {
         <div className={`b-breadcrumbs b-breadcrumbs-list container`}>
           <Link href="/">Home</Link>
           <span>&gt;</span>
-          Ready to Ship Now
+          Armored SWAT vehicles for sale
         </div>
 
         {topBanner.title && <Banner props={topBanner} shape="dark" />}
