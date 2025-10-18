@@ -1,7 +1,7 @@
 import styles from './Vehicle.module.scss';
 import { getPageData } from 'hooks/api';
 import { useEffect } from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
 import Head from 'next/head';
 import routes from 'routes';
 import Banner from 'components/vehicle-we-armor/Banner';
@@ -307,7 +307,7 @@ function Vehicle(props) {
       </Head>
 
       <div className={`${styles.slug_wrapper}`}>
-        <div
+        {/* <div
           className={`${styles.slug_breadcrumbs} b-breadcrumbs b-breadcrumbs-list b-breadcrumbs-dark container`}
         >
           <Link href="/">Home</Link>
@@ -315,7 +315,7 @@ function Vehicle(props) {
           <Link href="/vehicles-we-build">SWAT Vehicles We Manufacture</Link>
           <span>&gt;</span>
           <span className={`b-breadcrumbs_current`}>{data?.slug}</span>
-        </div>
+        </div> */}
 
         <Banner props={banner} />
 

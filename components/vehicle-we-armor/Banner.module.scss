@@ -194,8 +194,13 @@
   &_image {
     background: linear-gradient(0, #d0d0d2 20%, hsla(240, 2%, 82%, 0));
     padding: rem(24) rem(16) rem(72) rem(16);
+
     @include breakpoint(small) {
       flex: 1;
+    }
+
+    @include breakpoint(medium) {
+      padding-top: 0;
     }
 
     @include breakpoint(large) {
@@ -254,9 +259,15 @@
       max-width: 100%;
       object-fit: contain;
       width: 100%;
+      
+      @include breakpoint(medium) {
+        max-height: 60vh;
+      }
+
       @include breakpoint(large) {
         margin: unset;
         max-width: 1300px;
+        max-height: unset;
       }
     }
   }

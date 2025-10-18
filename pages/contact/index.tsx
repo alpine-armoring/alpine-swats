@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { getPageData } from 'hooks/api';
 import { useEffect } from 'react';
 import useLocale from 'hooks/useLocale';
-import Banner from 'components/global/banner/Banner';
+// import Banner from 'components/global/banner/Banner';
 import Form from 'components/global/form/Form';
 import Accordion from 'components/global/accordion/Accordion';
 import Image from 'next/image';
@@ -89,9 +89,9 @@ function Contact(props) {
       </Head>
 
       <div className={`${styles.contact}`}>
-        {props.pageData?.banner ? (
+        {/* {props.pageData?.banner ? (
           <Banner props={props.pageData.banner} shape="white" />
-        ) : null}
+        ) : null} */}
         <div className={`${styles.contact_main} container_small`}>
           <div className={`${styles.contact_main_left}`}>
             <Form />
