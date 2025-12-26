@@ -39,7 +39,7 @@ function Home(props) {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
       image:
-        'https://www.alpineco.com/_next/image?url=https%3A%2F%2Fd102sycao8uwt8.cloudfront.net%2Fmedium_About_us_hompage_thumbnail_1_ea1c33f592.JPG&w=640&q=75',
+        'https://assets.alpineco.com/medium_About_us_hompage_thumbnail_1_ea1c33f592.JPG',
       url: 'https://www.armored-swat.com/',
       sameAs: ['https://www.alpineco.com/'],
       logo: 'https://www.alpineco.com/assets/alpine-armoring-logo-goldbox-curved.png',
