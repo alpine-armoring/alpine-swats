@@ -3,7 +3,6 @@ import styles from './Footer.module.scss';
 import FacebookIcon from 'components/icons/Facebook';
 import TiktokIcon from 'components/icons/Tiktok';
 import XIcon from 'components/icons/X';
-import { useRouter } from 'next/router';
 import InstagramIcon from 'components/icons/Instagram';
 import YoutubeIcon from 'components/icons/Youtube';
 import LinkedinIcon from 'components/icons/Linkedin';
@@ -15,8 +14,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const Footer = (props) => {
-  const router = useRouter();
-
   const links = [
     { path: '/swat-for-sale', text: 'Available SWAT Vehicles' },
     { path: '/about-us', text: 'About Us' },
@@ -195,33 +192,29 @@ const Footer = (props) => {
             <span>All Rights Reserved</span>
           </p>
 
-          <Link
-            href="https://www.alpineco.com/"
-            target="_blank"
-            className={`
-              ${styles.footer_flag} 
-              ${
-                ['/manufacturing', '/armored-vehicle-testing'].includes(
-                  router.pathname
-                )
-                  ? styles.footer_flag_dark
-                  : styles.footer_flag_light
-              }
-            `}
-          >
-            <div className={`${styles.footer_flag_img}`}>
+          <div className={`${styles.footer_flag}`}>
+            <p className={`${styles.footer_flag_title}`}>
+              Belonging to the group of companies at
+            </p>
+            <Image
+              src="/assets/footer-american-flag.gif"
+              alt="armored vehicles"
+              fill
+              unoptimized
+            />
+            <Link
+              href="https://armoredvehicles.com"
+              target="_blank"
+              className={`${styles.footer_flag_wrap}`}
+            >
               <Image
-                src="/assets/Alpine-Armoring-logo-vertical.png"
-                alt="armored vehicles"
-                width={55}
-                height={84}
-                unoptimized
+                src="/assets/armoredVehicles.svg"
+                alt="armoredVehicles.com logo"
+                width={350}
+                height={24}
               />
-            </div>
-            <h4 className={`${styles.footer_flag_wrap}`}>
-              Visit Our Main Website
-            </h4>
-          </Link>
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
