@@ -14,7 +14,7 @@ function VehicleWeArmor(props) {
   const topBanner = props.pageData?.banner;
   const bottomText = props.pageData?.bottomText;
   const faqs = props.pageData?.faqs;
-  const vehiclesData = props.pageData.vehicles_we_armors.data;
+  const vehiclesData = props.pageData?.vehicles_we_armors?.data;
 
   useEffect(() => {
     const targets = document.querySelectorAll('.observe');
@@ -153,8 +153,7 @@ function VehicleWeArmor(props) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const { locale } = context;
+export async function getStaticProps({ locale }) {
   const route = routes.models;
 
   try {
@@ -171,11 +170,13 @@ export async function getServerSideProps(context) {
 
     return {
       props: { pageData, seoData },
+      revalidate: 604800,
     };
   } catch (error) {
     // console.error('Error fetching data:', error);
     return {
       notFound: true,
+      revalidate: 604800,
     };
   }
 }

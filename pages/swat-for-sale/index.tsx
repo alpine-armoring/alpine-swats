@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import { getPageData } from 'hooks/api';
@@ -10,11 +11,24 @@ import CustomMarkdown from 'components/CustomMarkdown';
 import Accordion from 'components/global/accordion/Accordion';
 
 function Home(props) {
+  const router = useRouter();
+  const { vehicles_we_armor } = router.query;
+
   const topBanner = { ...props?.pageData?.attributes?.banner };
   const topBannerSubtitle = props?.pageData?.attributes?.banner.subtitle;
   topBanner.subtitle = null;
   const bottomText = props?.pageData?.attributes?.bottomText;
   const faqs = props?.pageData?.attributes?.faqs;
+
+  const filteredVehicles = useMemo(() => {
+    if (!vehicles_we_armor || !props.vehicles?.data)
+      return props.vehicles?.data;
+    return props.vehicles.data.filter(
+      (vehicle) =>
+        vehicle.attributes?.vehicles_we_armor?.data?.attributes?.slug ===
+        vehicles_we_armor
+    );
+  }, [props.vehicles?.data, vehicles_we_armor]);
 
   // Animations
   useEffect(() => {
@@ -93,9 +107,9 @@ function Home(props) {
         <div
           className={`${styles.listing_wrap} ${styles.listing_wrap_inventory} container mt0`}
         >
-          {props.vehicles.data && props.vehicles.data.length > 0 ? (
+          {filteredVehicles && filteredVehicles.length > 0 ? (
             <div className={`${styles.listing_list}`}>
-              {props.vehicles.data.map((item, index) => (
+              {filteredVehicles.map((item, index) => (
                 <InventoryItem key={item.id} props={item} index={index} />
               ))}
             </div>
@@ -126,8 +140,8 @@ function Home(props) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const locale = context.locale || 'en';
+export async function getStaticProps({ locale }) {
+  const resolvedLocale = locale || 'en';
   const route = routes.inventory;
 
   let pageData = await getPageData({
@@ -137,26 +151,23 @@ export async function getServerSideProps(context) {
 
   pageData = pageData ? pageData : null;
 
-  const { vehicles_we_armor } = context.query;
-
-  let query = `filters[$or][0][categories][slug][$eq]=armored-law-enforcement&filters[$or][1][categories][slug][$eq]=armored-specialty-vehicles&filters[$and][0][slug][$notContains]=mastiff&filters[$and][1][slug][$notContains]=condor`;
-  if (vehicles_we_armor) {
-    query += `&filters[vehicles_we_armor][slug][$eq]=${vehicles_we_armor}`;
-  }
+  const query = `filters[$or][0][categories][slug][$eq]=armored-law-enforcement&filters[$or][1][categories][slug][$eq]=armored-specialty-vehicles&filters[$and][0][slug][$notContains]=mastiff&filters[$and][1][slug][$notContains]=condor&filters[$and][2][slug][$notContains]=toyota-land-cruiser-300`;
 
   const vehicles = await getPageData({
     route: route.collectionSingle,
     params: query,
     sort: 'order',
-    populate: 'rentalsFeaturedImage',
+    populate: 'rentalsFeaturedImage,vehicles_we_armor',
     fields:
       'fields[0]=vehicleID&fields[1]=armor_level&fields[2]=engine&fields[3]=engine&fields[4]=title&fields[5]=slug&fields[6]=trans&fields[7]=VIN&fields[8]=hide&fields[9]=flag&fields[10]=label',
     pageSize: 100,
-    locale,
+    locale: resolvedLocale,
   });
 
   // Filter out hidden vehicles
-  vehicles.data = vehicles.data.filter((vehicle) => !vehicle.attributes.hide);
+  if (vehicles?.data) {
+    vehicles.data = vehicles.data.filter((vehicle) => !vehicle.attributes.hide);
+  }
 
   const seoData = pageData?.attributes?.seo ?? null;
 
@@ -165,8 +176,9 @@ export async function getServerSideProps(context) {
       pageData,
       vehicles,
       seoData,
-      locale,
+      locale: resolvedLocale,
     },
+    revalidate: 604800,
   };
 }
 

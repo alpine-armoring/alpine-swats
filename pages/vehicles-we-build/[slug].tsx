@@ -495,7 +495,14 @@ function Vehicle(props) {
     </>
   );
 }
-export async function getServerSideProps({ params, locale }) {
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
+}
+
+export async function getStaticProps({ params, locale }) {
   const route = routes.models;
 
   try {
@@ -517,7 +524,7 @@ export async function getServerSideProps({ params, locale }) {
       // Try looking for the slug without language suffix
       const baseSlug = params.slug.replace(/-[a-z]{2}$/, '');
       if (!allowedSlugs.includes(baseSlug)) {
-        return { notFound: true };
+        return { notFound: true, revalidate: 604800 };
       }
     }
 
@@ -539,7 +546,7 @@ export async function getServerSideProps({ params, locale }) {
     }
 
     if (!data?.data?.length) {
-      return { notFound: true };
+      return { notFound: true, revalidate: 604800 };
     }
 
     const seoData = data?.data?.[0]?.attributes?.seo ?? null;
@@ -554,11 +561,13 @@ export async function getServerSideProps({ params, locale }) {
         seoData,
         locale,
       },
+      revalidate: 604800,
     };
   } catch (error) {
     console.error('Error fetching model data:', error);
     return {
       notFound: true,
+      revalidate: 604800,
     };
   }
 }
