@@ -635,6 +635,7 @@ const Form = () => {
             lang.formHearRepeat,
             lang.formHearEmail,
             lang.formHearThird,
+            lang.formHearKnew,
             lang.formHearReferral,
             lang.formHearOther,
           ]}

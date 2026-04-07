@@ -36,6 +36,7 @@ export default {
   formHearSearch: 'Motor de búsqueda (Google, Bing, etc.)',
   formHearRepeat: 'Cliente recurrente',
   formHearEmail: 'Correo electrónico o boletín',
+  formHearKnew: 'Ya conozco Alpine Armoring',
   formHearThird: 'Reseña de terceros',
   formHearReferral: 'Referencia',
   formHearOther: 'Otro',

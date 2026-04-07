@@ -103,6 +103,7 @@ export default {
   formHearSearch: 'Search Engine (Google, Bing, etc.)',
   formHearRepeat: 'Repeat Customer',
   formHearEmail: 'Email or Newsletter',
+  formHearKnew: 'I already know about Alpine Armoring',
   formHearThird: 'Third-Party Review',
   formHearReferral: 'Referral',
   formHearOther: 'Other',
