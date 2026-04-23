@@ -31,7 +31,7 @@ module.exports = {
       },
       {
         protocol: 'https',
-        hostname: 'https://alpinetesting.cloudflex-ha.com',
+        hostname: 'https://cms.alpine-web.com',
         pathname: '**',
       },
       {

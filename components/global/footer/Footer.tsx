@@ -196,22 +196,17 @@ const Footer = (props) => {
             <p className={`${styles.footer_flag_title}`}>
               Belonging to the group of companies at
             </p>
-            <Image
-              src="/assets/footer-american-flag.gif"
-              alt="armored vehicles"
-              fill
-              unoptimized
-            />
             <Link
               href="https://armoredvehicles.com"
-              target="_blank"
+              target="armoredvehicles"
               className={`${styles.footer_flag_wrap}`}
             >
               <Image
-                src="/assets/armoredVehicles.svg"
-                alt="armoredVehicles.com logo"
-                width={350}
-                height={24}
+                src="/assets/footer-flag.gif"
+                alt="armored vehicles"
+                fill
+                unoptimized
+                style={{ objectFit: 'cover' }}
               />
             </Link>
           </div>
